@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = [
+  {
+    name: "Freq Show",
+    description: "Music discovery for nerds (metadata, discographies, deep cuts).",
+    href: "https://freq-show.adamlacasse.dev",
+    repo: "https://github.com/adamlacasse/freq-show",
+    status: "Active",
+  },
+  {
+    name: "North Flow",
+    description: "Mindfulness/gratitude check-ins (DB-focused learning project).",
+    href: "https://northflow.adamlacasse.dev",
+    repo: "https://github.com/adamlacasse/northflow",
+    status: "Active",
+  },
+];
+
+---
+
+<BaseLayout title="Projects — Adam LaCasse">
+  <h1 style="margin: 24px 0 10px;">Projects</h1>
+  <p style="max-width: 75ch; line-height:1.6; opacity:.9;">
+    A living list. The hub stays stable; projects can come and go.
+  </p>
+
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 18px;">
+    {projects.map((p) => (
+      <article style="padding: 14px; border: 1px solid rgba(127,127,127,.25); border-radius: 12px;">
+        <div style="display:flex; justify-content:space-between; gap:10px; align-items:baseline;">
+          <h2 style="margin: 0; font-size: 1.2rem;">{p.name}</h2>
+          <small style="opacity:.7;">{p.status}</small>
+        </div>
+        <p style="margin: 8px 0 12px; opacity:.85;">{p.description}</p>
+        <div style="display:flex; gap: 12px; flex-wrap:wrap;">
+          <a href={p.href}>Live →</a>
+          <a href={p.repo} target="_blank" rel="noreferrer">Repo →</a>
+        </div>
+      </article>
+    ))}
+  </div>
+</BaseLayout>

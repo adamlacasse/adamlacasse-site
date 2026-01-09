@@ -1,0 +1,39 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const { title, description, pubDate, updatedDate, tags = [] } = Astro.props;
+---
+
+<BaseLayout title={`${title} — Adam LaCasse`} description={description}>
+  <article style="max-width: 75ch; margin: 28px auto;">
+    <header style="margin-bottom: 18px;">
+      <h1 style="margin: 0 0 8px;">{title}</h1>
+      <div style="opacity:.7;">
+        <time datetime={pubDate?.toISOString()}>
+          {pubDate?.toLocaleDateString("en-US", { year:"numeric", month:"short", day:"numeric" })}
+        </time>
+        {updatedDate && (
+          <>
+            {" · updated "}
+            <time datetime={updatedDate.toISOString()}>
+              {updatedDate.toLocaleDateString("en-US", { year:"numeric", month:"short", day:"numeric" })}
+            </time>
+          </>
+        )}
+      </div>
+      {tags.length > 0 && (
+        <div style="margin-top: 10px; display:flex; gap:8px; flex-wrap:wrap;">
+          {tags.map((t: any) => (
+            <span style="border: 1px solid rgba(127,127,127,.25); border-radius: 999px; padding: 2px 10px; font-size: .9rem; opacity:.85;">
+              {t}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div style="line-height:1.75;">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
