@@ -11,6 +11,7 @@ interface Props {
   ogDescription?: string;
   ogImage?: string;
   canonicalURL?: string;
+  contentWidth?: 'wide' | 'narrow';
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   ogDescription,
   ogImage,
   canonicalURL: canonicalOverride,
+  contentWidth = 'wide',
 } = Astro.props as Props;
 
 const siteBase = Astro.site ?? new URL('/', 'http://localhost');
@@ -81,7 +83,15 @@ const siteUrl = new URL(canonicalURL);
     </header>
 
     <main class="site-main">
-      <slot />
+      {
+        contentWidth === 'narrow' ? (
+          <div class="content content--narrow">
+            <slot />
+          </div>
+        ) : (
+          <slot />
+        )
+      }
     </main>
 
     <footer class="site-footer">
