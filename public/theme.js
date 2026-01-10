@@ -1,5 +1,3 @@
-/* eslint-env browser */
-
 const STORAGE_KEY = 'theme-preference';
 
 const getThemePreference = () => {
