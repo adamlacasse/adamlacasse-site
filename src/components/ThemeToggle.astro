@@ -1,0 +1,109 @@
+---
+/**
+ * ThemeToggle: Client-side theme switcher
+ * Allows users to toggle between light, dark, and system themes.
+ * Uses localStorage to persist preference.
+ */
+---
+
+<button id="theme-toggle" aria-label="Toggle theme" aria-pressed="false" class="theme-toggle">
+  <svg
+    class="theme-toggle-sun"
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"></circle>
+    <line x1="10" y1="1" x2="10" y2="3" stroke="currentColor" stroke-width="2"></line>
+    <line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="2"></line>
+    <line x1="1" y1="10" x2="3" y2="10" stroke="currentColor" stroke-width="2"></line>
+    <line x1="17" y1="10" x2="19" y2="10" stroke="currentColor" stroke-width="2"></line>
+    <line x1="3.64" y1="3.64" x2="5.05" y2="5.05" stroke="currentColor" stroke-width="2"></line>
+    <line x1="14.95" y1="14.95" x2="16.36" y2="16.36" stroke="currentColor" stroke-width="2"></line>
+    <line x1="16.36" y1="3.64" x2="14.95" y2="5.05" stroke="currentColor" stroke-width="2"></line>
+    <line x1="5.05" y1="14.95" x2="3.64" y2="16.36" stroke="currentColor" stroke-width="2"></line>
+  </svg>
+  <svg
+    class="theme-toggle-moon"
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M18 10.5C17.8 15.5 13.5 19.5 8.5 19.5C4.5 19.5 1 16.5 1 12.5C1 8.5 4 5.5 8 5.5C8.2 5.5 8.5 5.5 8.7 5.6C4.7 7 1.7 10.8 1.7 15.2C1.7 20 5.7 23.8 10.5 23.8C14.5 23.8 17.8 21.2 18.8 17.5C18.9 16.5 19 15.5 18 10.5Z"
+      fill="currentColor"></path>
+  </svg>
+  <span class="theme-toggle-label">Theme</span>
+</button>
+
+<script>
+  import { initThemeToggle } from '../scripts/theme';
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
+</script>
+
+<style>
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm-md);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: var(--fs-xs);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+
+  .theme-toggle:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent);
+  }
+
+  .theme-toggle-sun,
+  .theme-toggle-moon {
+    width: 16px;
+    height: 16px;
+    transition: opacity 0.2s ease;
+  }
+
+  .theme-toggle-moon {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  [data-theme='dark'] .theme-toggle-sun {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  [data-theme='dark'] .theme-toggle-moon {
+    opacity: 1;
+    position: static;
+  }
+
+  @media (max-width: 720px) {
+    .theme-toggle-label {
+      display: none;
+    }
+
+    .theme-toggle {
+      gap: 0;
+      padding: var(--space-xs);
+    }
+  }
+</style>

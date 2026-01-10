@@ -1,14 +1,18 @@
 # Project TODO
 
-> **Last updated:** January 10, 2026 - ✅ **ALL ITEMS COMPLETE!**
+> **Last updated:** January 10, 2026
 >
-> High Priority: 5/5 ✅ | Medium Priority: 6/6 ✅ | Low Priority: 7/7 ✅
+> High Priority: 5/5 ✅ | Medium Priority: 6/6 ✅ | Low Priority: 7/7 ✅ | **In Progress: 0**
 
 This file tracks identified issues and improvements for adamlacasse.dev. Items are organized by priority and category.
 
 ---
 
 ## 🚨 High Priority
+
+### Features
+
+- [ ] **Wire theme toggle to CSS** - Add `[data-theme]` variable overrides so clicking the header Theme button actually changes the palette (currently only `prefers-color-scheme` media query responds)
 
 ### Setup & Configuration
 
@@ -192,12 +196,11 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 - Placeholder images exist: `blog-placeholder-1.jpg` through `blog-placeholder-5.jpg` and `blog-placeholder-about.jpg`
 - **Status:** Assets ready for use when blog posts need featured images
 
-### Dark Mode Decision ⚠️ Needs Choice
+### Dark Mode Decision ✅ Implemented
 
-The `<meta name="color-scheme" content="light dark">` tag tells browsers the site supports both themes, but no dark mode CSS exists. Choose one:
-
-1. **Option A (Implement dark mode):** Add `@media (prefers-color-scheme: dark)` styles to `global.css` and `layout.css`
-2. **Option B (Remove dark mode indicator):** Delete the `color-scheme` meta tag from BaseLayout if dark mode isn't a priority
+- Dark styles are present via `@media (prefers-color-scheme: dark)` in global/layout CSS.
+- Decision: keep `<meta name="color-scheme" content="light dark">` and support user override via the Theme toggle.
+- Remaining gap: wire `[data-theme]` overrides so the toggle updates palettes (tracked in High Priority).
 
 ---
 
@@ -219,3 +222,21 @@ The `<meta name="color-scheme" content="light dark">` tag tells browsers the sit
 - ✅ Create robots.txt (created with sitemap reference)
 - ✅ Handle unused starter components (moved to `src/components/archive/`)
 - ✅ Update package.json metadata (all fields present)
+
+---
+
+## 🔄 In Progress (All Complete ✅)
+
+### Features
+
+- [x] **Dark mode toggle** - Implement client-side theme switcher:
+  - Default to system preferences (`prefers-color-scheme`)
+  - Allow user override via toggle button in header/nav
+  - Persist choice in localStorage under `theme-preference` key
+  - Add `ThemeToggle` component in `src/components/`
+  - Inject theme script in BaseLayout before page render to prevent flash of unstyled content
+  - Store values: `'light'`, `'dark'`, `'system'` (system = use OS preference)
+  - Implementation: Created `src/components/ThemeToggle.astro` with inline theme initialization script in BaseLayout
+  - Styling: Uses CSS variables (`--text`, `--bg-hover`), svg icons for light/dark, smooth transitions
+  - Cycles through themes: light → dark → system (repeats)
+  - Accessible: ARIA labels, semantic button, keyboard-navigable

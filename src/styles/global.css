@@ -77,6 +77,10 @@
 	--color-border: rgba(127, 127, 127, 0.25);
 	--color-border-light: rgba(127, 127, 127, 0.15);
 	--color-border-dark: rgba(127, 127, 127, 0.35);
+
+	/* Text and background colors for components */
+	--text: rgb(var(--black));
+	--bg-hover: rgba(var(--gray-light), 0.5);
 }
 @font-face {
 	font-family: "Atkinson";
@@ -309,6 +313,10 @@ hr {
 		--color-warning-light: #78350f;
 		--color-info: #60a5fa;
 		--color-info-light: #1e3a8a;
+
+		/* Text and background colors for dark mode */
+		--text: rgb(var(--black));
+		--bg-hover: rgba(var(--gray-dark), 0.5);
 	}
 
 	h1,

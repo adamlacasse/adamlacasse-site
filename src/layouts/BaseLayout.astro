@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/layout.css';
 import { AUTHOR, SITE_DESCRIPTION } from '../consts';
+import ThemeToggle from '../components/ThemeToggle.astro';
 
 const {
   title = AUTHOR,
@@ -47,6 +48,35 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       crossorigin
     />
     <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+
+    <!-- Theme initialization script (runs before page render to prevent flash) -->
+    <script is:inline>
+      const STORAGE_KEY = 'theme-preference';
+
+      function getThemePreference() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored === 'light' || stored === 'dark' || stored === 'system') {
+          return stored;
+        }
+        return 'system';
+      }
+
+      function getEffectiveTheme(preference) {
+        if (preference === 'light' || preference === 'dark') {
+          return preference;
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function applyTheme(preference) {
+        const effective = getEffectiveTheme(preference);
+        document.documentElement.style.colorScheme = effective;
+        document.documentElement.setAttribute('data-theme', preference);
+      }
+
+      const preference = getThemePreference();
+      applyTheme(preference);
+    </script>
   </head>
 
   <body>
@@ -59,6 +89,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <a href="/about">About</a>
           <a href="/now">Now</a>
           <a href="/contact">Contact</a>
+          <ThemeToggle />
         </div>
       </nav>
     </header>
