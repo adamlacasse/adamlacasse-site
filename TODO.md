@@ -225,9 +225,33 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 
 ---
 
-## 🔄 In Progress (All Complete ✅)
+## 🔄 In Progress
 
 ### Features
+
+- [ ] **Fix theme toggle two-click bug** - Theme button requires two clicks to register change:
+  - **Issue description:** Clicking the theme toggle button sometimes takes two clicks before the dark/light mode change appears
+  - **Root cause investigation needed:** Multiple potential issues:
+    1. Event listener attached multiple times (removed one duplicate `<script src="/theme.js">` from BaseLayout, but issue persists)
+    2. Race condition between script initialization and DOM readiness
+    3. Possible event delegation or event handler cleanup issues
+    4. State synchronization problem between `src/scripts/theme.ts` and `public/theme.js` (two separate implementations)
+  - **Affected files:**
+    - `src/components/ThemeToggle.astro` - Button markup with id="theme-toggle"
+    - `src/layouts/BaseLayout.astro` - Loads `/theme.js` script
+    - `public/theme.js` - Public script that initializes theme toggle (uses `initThemeToggle()`)
+    - `src/scripts/theme.ts` - TypeScript module with exported functions (appears unused in build)
+  - **Key observations:**
+    - Theme script loads in `<head>` once, runs immediately and on DOMContentLoaded
+    - Button rendered in nav via ThemeToggle component
+    - localStorage persistence works correctly (theme change does persist)
+    - Issue is intermittent—sometimes single click works, sometimes needs two clicks
+  - **Next steps:**
+    1. Add debug logging to `public/theme.js` to track event listener attachment and click event firing
+    2. Check if `initThemeToggle()` is being called multiple times despite `{ once: true }` flag
+    3. Verify the click handler is added with proper event listener cleanup
+    4. Consider consolidating `src/scripts/theme.ts` and `public/theme.js` to single source of truth
+    5. Test with browser DevTools to verify event listener count on button element
 
 - [x] **Dark mode toggle** - Implement client-side theme switcher:
   - Default to system preferences (`prefers-color-scheme`)
