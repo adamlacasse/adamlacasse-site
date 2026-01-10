@@ -2,7 +2,7 @@
 
 > **Last updated:** January 10, 2026
 >
-> High Priority: 5/5 ✅ | Medium Priority: 6/6 ✅ | Low Priority: 7/7 ✅ | **In Progress: 0**
+> High Priority: 5/5 ✅ | Medium Priority: 6/6 ✅ | Low Priority: 7/7 ✅ | **All Complete! 🎉**
 
 This file tracks identified issues and improvements for adamlacasse.dev. Items are organized by priority and category.
 
@@ -227,9 +227,15 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 
 ## 🔄 In Progress
 
+*No items currently in progress.*
+
+---
+
+## ✅ Recently Completed
+
 ### Features
 
-- [ ] **Fix theme toggle two-click bug** - Theme button requires two clicks to register change:
+- [x] **Fix theme toggle two-click bug** - Theme button requires two clicks to register change:
   - **Issue description:** Clicking the theme toggle button sometimes takes two clicks before the dark/light mode change appears
   - **Root cause investigation needed:** Multiple potential issues:
     1. Event listener attached multiple times (removed one duplicate `<script src="/theme.js">` from BaseLayout, but issue persists)
