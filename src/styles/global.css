@@ -372,3 +372,170 @@ hr {
 		border-top: 1px solid rgb(var(--gray-light));
 	}
 }
+
+/* Attribute-driven dark theme for user toggle */
+:root[data-theme='dark'] {
+	--accent: #64b5f6;
+	--accent-dark: #90caf9;
+	--black: 240, 240, 245;
+	--gray: 176, 190, 197;
+	--gray-light: 66, 66, 81;
+	--gray-dark: 229, 229, 240;
+	--gray-gradient: rgba(var(--gray-light), 50%), #1a1a2e;
+	--color-border: rgba(200, 200, 200, 0.15);
+
+	/* Dark mode semantic colors */
+	--color-success: #34d399;
+	--color-success-light: #064e3b;
+	--color-error: #f87171;
+	--color-error-light: #7f1d1d;
+	--color-warning: #fbbf24;
+	--color-warning-light: #78350f;
+	--color-info: #60a5fa;
+	--color-info-light: #1e3a8a;
+
+	/* Text and background colors for dark mode */
+	--text: rgb(var(--black));
+	--bg-hover: rgba(var(--gray-dark), 0.5);
+}
+
+[data-theme='dark'] body {
+	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	background-color: #1a1a1a;
+}
+
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3,
+[data-theme='dark'] h4,
+[data-theme='dark'] h5,
+[data-theme='dark'] h6 {
+	color: rgb(var(--black));
+}
+
+[data-theme='dark'] a {
+	color: #64b5f6;
+}
+
+[data-theme='dark'] a:hover {
+	color: #90caf9;
+}
+
+[data-theme='dark'] code {
+	background-color: rgb(var(--gray-light));
+}
+
+[data-theme='dark'] blockquote {
+	border-left-color: #64b5f6;
+}
+
+[data-theme='dark'] input,
+[data-theme='dark'] textarea {
+	background-color: rgba(var(--gray-light), 0.8);
+	color: rgb(var(--black));
+	border: 1px solid var(--color-border);
+}
+
+[data-theme='dark'] .prose pre {
+	background: rgb(var(--gray-light));
+	border: 1px solid rgba(var(--gray), 0.25);
+}
+
+[data-theme='dark'] .prose blockquote {
+	color: rgba(var(--gray-dark), 0.85);
+}
+
+[data-theme='dark'] .prose th {
+	background: rgba(var(--gray-light), 0.4);
+}
+
+[data-theme='dark'] .site-footer {
+	border-top: 1px solid rgba(127, 127, 127, 0.5);
+}
+
+[data-theme='dark'] hr {
+	border-top: 1px solid rgb(var(--gray-light));
+}
+
+/* Attribute-driven light theme to override OS-dark media query when user selects light */
+:root[data-theme='light'] {
+	--accent: #2337ff;
+	--accent-dark: #000d8a;
+	--black: 15, 18, 25;
+	--gray: 96, 115, 159;
+	--gray-light: 229, 233, 240;
+	--gray-dark: 34, 41, 57;
+	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	--color-border: rgba(127, 127, 127, 0.25);
+
+	--color-success: #10b981;
+	--color-success-light: #d1fae5;
+	--color-error: #ef4444;
+	--color-error-light: #fee2e2;
+	--color-warning: #f59e0b;
+	--color-warning-light: #fef3c7;
+	--color-info: #3b82f6;
+	--color-info-light: #dbeafe;
+
+	--text: rgb(var(--black));
+	--bg-hover: rgba(var(--gray-light), 0.5);
+}
+
+[data-theme='light'] body {
+	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	background-size: 100% 600px;
+	color: rgb(var(--gray-dark));
+}
+
+[data-theme='light'] h1,
+[data-theme='light'] h2,
+[data-theme='light'] h3,
+[data-theme='light'] h4,
+[data-theme='light'] h5,
+[data-theme='light'] h6 {
+	color: rgb(var(--black));
+}
+
+[data-theme='light'] a {
+	color: var(--accent);
+}
+
+[data-theme='light'] a:hover {
+	color: var(--accent);
+}
+
+[data-theme='light'] code {
+	background-color: rgb(var(--gray-light));
+}
+
+[data-theme='light'] blockquote {
+	border-left-color: var(--accent);
+}
+
+[data-theme='light'] input,
+[data-theme='light'] textarea {
+	background-color: white;
+	color: rgb(var(--black));
+	border: 1px solid var(--color-border);
+}
+
+[data-theme='light'] .prose pre {
+	background: rgb(var(--gray-light));
+	border: 1px solid rgba(var(--gray), 0.25);
+}
+
+[data-theme='light'] .prose blockquote {
+	color: rgba(var(--black), 0.85);
+}
+
+[data-theme='light'] .prose th {
+	background: rgba(var(--gray-light), 0.6);
+}
+
+[data-theme='light'] .site-footer {
+	border-top: 1px solid var(--color-border);
+}
+
+[data-theme='light'] hr {
+	border-top: 1px solid var(--color-border);
+}

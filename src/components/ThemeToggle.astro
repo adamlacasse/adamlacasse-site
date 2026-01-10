@@ -40,16 +40,7 @@
   <span class="theme-toggle-label">Theme</span>
 </button>
 
-<script>
-  import { initThemeToggle } from '../scripts/theme';
-
-  // Run on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initThemeToggle);
-  } else {
-    initThemeToggle();
-  }
-</script>
+<!-- Behavior lives in BaseLayout to guarantee execution after DOM -->
 
 <style>
   .theme-toggle {

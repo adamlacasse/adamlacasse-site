@@ -1,58 +1,27 @@
-/**
- * Theme management module
- * Handles dark mode toggling with localStorage persistence
- * Supports: light, dark, system (OS preference)
- */
-
-type ThemePreference = 'light' | 'dark' | 'system';
+/* eslint-env browser */
 
 const STORAGE_KEY = 'theme-preference';
 
-export function getThemePreference(): ThemePreference {
+const getThemePreference = () => {
   const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === 'light' || stored === 'dark' || stored === 'system') {
-    return stored;
-  }
+  if (stored === 'light' || stored === 'dark' || stored === 'system') return stored;
   return 'system';
-}
+};
 
-export function getEffectiveTheme(preference: ThemePreference): 'light' | 'dark' {
-  if (preference === 'light' || preference === 'dark') {
-    return preference;
-  }
+const getEffectiveTheme = (preference) => {
+  if (preference === 'light' || preference === 'dark') return preference;
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
+};
 
-export function applyTheme(preference: ThemePreference): void {
+const applyTheme = (preference) => {
   const effective = getEffectiveTheme(preference);
   const root = document.documentElement;
   root.style.colorScheme = effective;
   root.setAttribute('data-theme', effective);
   root.setAttribute('data-theme-preference', preference);
-}
+};
 
-export function toggleTheme(): void {
-  const current = getThemePreference();
-  let next: ThemePreference;
-
-  switch (current) {
-    case 'light':
-      next = 'dark';
-      break;
-    case 'dark':
-      next = 'system';
-      break;
-    case 'system':
-    default:
-      next = 'light';
-  }
-
-  localStorage.setItem(STORAGE_KEY, next);
-  applyTheme(next);
-  updateButton(next);
-}
-
-export function updateButton(preference: ThemePreference): void {
+const updateButton = (preference) => {
   const button = document.getElementById('theme-toggle');
   if (!button) return;
 
@@ -61,21 +30,27 @@ export function updateButton(preference: ThemePreference): void {
 
   button.setAttribute('aria-pressed', effective === 'dark' ? 'true' : 'false');
   button.setAttribute('aria-label', `Switch to ${next} theme`);
-}
+};
 
-export function initThemeToggle(): void {
-  // Initialize on first load
+const toggleTheme = () => {
+  const current = getThemePreference();
+  const next = current === 'light' ? 'dark' : current === 'dark' ? 'system' : 'light';
+
+  localStorage.setItem(STORAGE_KEY, next);
+  applyTheme(next);
+  updateButton(next);
+};
+
+const initThemeToggle = () => {
   const preference = getThemePreference();
   applyTheme(preference);
   updateButton(preference);
 
-  // Attach click handler to toggle button
   const button = document.getElementById('theme-toggle');
   if (button) {
     button.addEventListener('click', toggleTheme);
   }
 
-  // Listen for system theme changes
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     const current = getThemePreference();
     if (current === 'system') {
@@ -83,4 +58,13 @@ export function initThemeToggle(): void {
       updateButton('system');
     }
   });
+};
+
+// Apply immediately to avoid flashes
+applyTheme(getThemePreference());
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initThemeToggle, { once: true });
+} else {
+  initThemeToggle();
 }

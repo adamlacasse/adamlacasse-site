@@ -12,7 +12,7 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 
 ### Features
 
-- [ ] **Wire theme toggle to CSS** - Add `[data-theme]` variable overrides so clicking the header Theme button actually changes the palette (currently only `prefers-color-scheme` media query responds)
+- [x] **Wire theme toggle to CSS** - Add `[data-theme]` variable overrides so clicking the header Theme button actually changes the palette (currently only `prefers-color-scheme` media query responds)
 
 ### Setup & Configuration
 
@@ -200,7 +200,7 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 
 - Dark styles are present via `@media (prefers-color-scheme: dark)` in global/layout CSS.
 - Decision: keep `<meta name="color-scheme" content="light dark">` and support user override via the Theme toggle.
-- Remaining gap: wire `[data-theme]` overrides so the toggle updates palettes (tracked in High Priority).
+- Toggle wiring completed: `[data-theme]` overrides now mirror dark palette for explicit user selections.
 
 ---
 

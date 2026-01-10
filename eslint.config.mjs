@@ -19,4 +19,14 @@ export default [
       'prettier/prettier': 'error',
     },
   },
+  {
+    files: ['public/**/*.js'],
+    languageOptions: {
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        localStorage: 'readonly',
+      },
+    },
+  },
 ];
