@@ -1,46 +1,46 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { AUTHOR } from "../consts";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AUTHOR } from '../consts';
 
 const projects = [
   {
-    name: "Freq Show",
-    description: "Music discovery for nerds (metadata, discographies, deep cuts).",
-    href: "https://freq-show.adamlacasse.dev",
-    repo: "https://github.com/adamlacasse/freq-show",
-    status: "Active",
+    name: 'Freq Show',
+    description: 'Music discovery for nerds (metadata, discographies, deep cuts).',
+    href: 'https://freq-show.adamlacasse.dev',
+    repo: 'https://github.com/adamlacasse/freq-show',
+    status: 'Active',
   },
   {
-    name: "North Flow",
-    description: "Mindfulness/gratitude check-ins (DB-focused learning project).",
-    href: "https://northflow.adamlacasse.dev",
-    repo: "https://github.com/adamlacasse/northflow",
-    status: "Active",
+    name: 'North Flow',
+    description: 'Mindfulness/gratitude check-ins (DB-focused learning project).',
+    href: 'https://northflow.adamlacasse.dev',
+    repo: 'https://github.com/adamlacasse/northflow',
+    status: 'Active',
   },
 ];
-
 ---
-
 
 <BaseLayout title={`Projects — ${AUTHOR}`}>
   <h1 class="page-title">Projects</h1>
-  <p class="page-intro">
-    A living list. The hub stays stable; projects can come and go.
-  </p>
+  <p class="page-intro">A living list. The hub stays stable; projects can come and go.</p>
 
   <div class="project-grid">
-    {projects.map((p) => (
-      <article class="project-card">
-        <div class="project-header">
-          <h2 class="project-title">{p.name}</h2>
-          <small class="project-status">{p.status}</small>
-        </div>
-        <p class="project-description">{p.description}</p>
-        <div class="project-links">
-          <a href={p.href}>Live →</a>
-          <a href={p.repo} target="_blank" rel="noreferrer">Repo →</a>
-        </div>
-      </article>
-    ))}
+    {
+      projects.map((p) => (
+        <article class="project-card">
+          <div class="project-header">
+            <h2 class="project-title">{p.name}</h2>
+            <small class="project-status">{p.status}</small>
+          </div>
+          <p class="project-description">{p.description}</p>
+          <div class="project-links">
+            <a href={p.href}>Live →</a>
+            <a href={p.repo} target="_blank" rel="noreferrer">
+              Repo →
+            </a>
+          </div>
+        </article>
+      ))
+    }
   </div>
 </BaseLayout>

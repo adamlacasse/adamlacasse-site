@@ -1,15 +1,15 @@
-import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
-import { AUTHOR } from "../consts";
+import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
+import { AUTHOR } from '../consts';
 
 export async function GET(context) {
-  const posts = (await getCollection("blog"))
+  const posts = (await getCollection('blog'))
     .filter((p) => !p.data.draft)
     .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
   return rss({
     title: `${AUTHOR} — Writing`,
-    description: "Notes on software, systems, and projects.",
+    description: 'Notes on software, systems, and projects.',
     site: context.site,
     items: posts.map((p) => ({
       title: p.data.title,

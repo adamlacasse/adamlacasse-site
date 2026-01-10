@@ -3,4 +3,5 @@
 
 export const AUTHOR = 'Adam LaCasse';
 export const SITE_TITLE = 'Adam LaCasse';
-export const SITE_DESCRIPTION = 'Software engineer. Building projects, writing notes, shipping things.';
+export const SITE_DESCRIPTION =
+  'Software engineer. Building projects, writing notes, shipping things.';

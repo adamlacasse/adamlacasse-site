@@ -1,9 +1,15 @@
 ---
 import '../styles/global.css';
 import '../styles/layout.css';
-import { AUTHOR, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { AUTHOR, SITE_DESCRIPTION } from '../consts';
 
-const { title = AUTHOR, description = SITE_DESCRIPTION, ogTitle, ogDescription, ogImage } = Astro.props;
+const {
+  title = AUTHOR,
+  description = SITE_DESCRIPTION,
+  ogTitle,
+  ogDescription,
+  ogImage,
+} = Astro.props;
 const siteUrl = new URL(Astro.url.pathname, Astro.site);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -16,51 +22,57 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={siteUrl.toString()} />
     <meta property="og:title" content={ogTitle || title} />
     <meta property="og:description" content={ogDescription || description} />
     {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />}
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={siteUrl.toString()} />
     <meta property="twitter:title" content={ogTitle || title} />
     <meta property="twitter:description" content={ogDescription || description} />
     {ogImage && <meta property="twitter:image" content={new URL(ogImage, Astro.site).toString()} />}
-    
+
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="/favicon.svg" />
-    <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/atkinson-regular.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
     <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
   </head>
 
   <body>
-<header class="site-header">
-  <nav class="site-nav">
-    <a href="/" class="site-brand">{AUTHOR}</a>
-    <div class="site-links">
-      <a href="/projects">Projects</a>
-      <a href="/blog">Writing</a>
-      <a href="/about">About</a>
-      <a href="/now">Now</a>
-      <a href="/contact">Contact</a>
-    </div>
-  </nav>
-</header>
+    <header class="site-header">
+      <nav class="site-nav">
+        <a href="/" class="site-brand">{AUTHOR}</a>
+        <div class="site-links">
+          <a href="/projects">Projects</a>
+          <a href="/blog">Writing</a>
+          <a href="/about">About</a>
+          <a href="/now">Now</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </nav>
+    </header>
 
-<main class="site-main">
-  <slot />
-</main>
+    <main class="site-main">
+      <slot />
+    </main>
 
     <footer class="site-footer">
       <div>
         <small>© {new Date().getFullYear()} {AUTHOR}</small>
         <small>
           <a href="https://github.com/adamlacasse" target="_blank" rel="noreferrer">GitHub</a>
-          {" · "}
+          {' · '}
           <a href="/rss.xml">RSS</a>
         </small>
       </div>
