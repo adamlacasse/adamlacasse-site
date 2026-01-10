@@ -3,38 +3,38 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Adam LaCasse">
-  <section style="padding: 28px 0;">
-    <h1 style="font-size: 2.2rem; margin: 0 0 8px;">Hi, I’m Adam.</h1>
-    <p style="max-width: 70ch; font-size: 1.05rem; line-height: 1.6;">
+  <section class="hero-section">
+    <h1 class="hero-title">Hi, I'm Adam.</h1>
+    <p class="hero-intro">
       I build software, ship side projects, and write notes about engineering, systems, and whatever I’m learning.
       This site is the hub for everything public-facing.
     </p>
 
-    <div style="display:flex; gap: 12px; flex-wrap:wrap; margin-top: 16px;">
+    <div class="hero-cta">
       <a href="/projects">Explore projects →</a>
       <a href="/blog">Read writing →</a>
     </div>
   </section>
 
-  <section style="padding: 18px 0;">
-    <h2 style="margin: 0 0 10px;">Featured</h2>
+  <section class="featured-section">
+    <h2 class="section-title">Featured</h2>
 
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
-      <article style="padding: 14px; border: 1px solid rgba(127,127,127,.25); border-radius: 12px;">
-        <h3 style="margin: 0 0 6px;">Freq Show</h3>
-        <p style="margin: 0 0 10px; opacity: .85;">A music-nerd app for deep artist/album/song discovery.</p>
+    <div class="card-grid">
+      <article class="card">
+        <h3 class="card-title">Freq Show</h3>
+        <p class="card-description">A music-nerd app for deep artist/album/song discovery.</p>
         <a href="https://freq-show.adamlacasse.dev">freq-show.adamlacasse.dev →</a>
       </article>
 
-      <article style="padding: 14px; border: 1px solid rgba(127,127,127,.25); border-radius: 12px;">
-        <h3 style="margin: 0 0 6px;">North Flow</h3>
-        <p style="margin: 0 0 10px; opacity: .85;">A mindfulness/gratitude check-in project.</p>
+      <article class="card">
+        <h3 class="card-title">North Flow</h3>
+        <p class="card-description">A mindfulness/gratitude check-in project.</p>
         <a href="https://northflow.adamlacasse.dev">northflow.adamlacasse.dev →</a>
       </article>
 
-      <article style="padding: 14px; border: 1px solid rgba(127,127,127,.25); border-radius: 12px;">
-        <h3 style="margin: 0 0 6px;">Writing</h3>
-        <p style="margin: 0 0 10px; opacity: .85;">Notes on engineering, learning, and building.</p>
+      <article class="card">
+        <h3 class="card-title">Writing</h3>
+        <p class="card-description">Notes on engineering, learning, and building.</p>
         <a href="/blog">Go to /blog →</a>
       </article>
     </div>

@@ -43,12 +43,6 @@ body {
 	font-size: 20px;
 	line-height: 1.7;
 }
-main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
-}
 h1,
 h2,
 h3,
@@ -152,4 +146,60 @@ hr {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+/* Links: keep your accent, add subtle underline behavior */
+.prose a {
+	text-decoration: underline;
+	text-underline-offset: 0.18em;
+	text-decoration-thickness: 0.08em;
+}
+
+.prose a:hover {
+	text-decoration-thickness: 0.12em;
+}
+
+/* Blockquotes: match your style but reduce “shouty” size */
+.prose blockquote {
+	font-size: 1.1em; /* global blockquote is 1.333em */
+	color: rgba(var(--black), 0.85);
+}
+
+/* Better inline code + code blocks for markdown pages */
+.prose code {
+	font-size: 0.95em;
+	border-radius: 6px;
+}
+
+.prose pre {
+	background: rgb(var(--gray-light));
+	border: 1px solid rgba(var(--gray), 0.25);
+	overflow-x: auto;
+}
+
+/* Optional: nicer tables in prose */
+.prose table {
+	border-collapse: collapse;
+	font-size: 0.95em;
+}
+
+.prose th,
+.prose td {
+	border: 1px solid rgba(var(--gray), 0.25);
+	padding: 0.5rem 0.65rem;
+	vertical-align: top;
+}
+
+.prose th {
+	background: rgba(var(--gray-light), 0.6);
+	text-align: left;
+}
+
+/* Optional: nicer horizontal rule spacing in prose */
+.prose hr {
+	margin: 2em 0;
+}
+.prose a {
+
+	text-decoration: underline;
 }

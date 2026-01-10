@@ -5,22 +5,23 @@ import { getCollection } from "astro:content";
 const posts = (await getCollection("blog"))
   .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
 ---
 
 <BaseLayout title="Writing — Adam LaCasse">
-  <h1 style="margin: 24px 0 10px;">Writing</h1>
-  <p style="max-width: 75ch; line-height:1.7; opacity:.9;">
+  <h1 class="page-title">Writing</h1>
+  <p class="page-intro">
     Notes on software, projects, and whatever I’m learning.
   </p>
 
-  <ul style="list-style:none; padding:0; margin: 18px 0; display:grid; gap: 14px;">
+  <ul class="blog-list">
     {posts.map((p) => (
-      <li style="padding: 14px; border: 1px solid rgba(127,127,127,.25); border-radius: 12px;">
-        <a href={`/blog/${p.slug}/`} style="font-weight:700; text-decoration:none;">{p.data.title}</a>
-        <div style="opacity:.7; margin-top: 4px;">
+      <li class="blog-item">
+        <a href={`/blog/${p.slug}/`} class="blog-item-link">{p.data.title}</a>
+        <div class="blog-date">
           {p.data.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
         </div>
-        <p style="margin: 8px 0 0; opacity:.85;">{p.data.description}</p>
+        <p class="blog-description">{p.data.description}</p>
       </li>
     ))}
   </ul>

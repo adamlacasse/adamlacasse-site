@@ -5,10 +5,10 @@ const { title, description, pubDate, updatedDate, tags = [] } = Astro.props;
 ---
 
 <BaseLayout title={`${title} — Adam LaCasse`} description={description}>
-  <article style="max-width: 75ch; margin: 28px auto;">
-    <header style="margin-bottom: 18px;">
-      <h1 style="margin: 0 0 8px;">{title}</h1>
-      <div style="opacity:.7;">
+  <article class="prose">
+    <header>
+      <h1>{title}</h1>
+      <div class="post-meta">
         <time datetime={pubDate?.toISOString()}>
           {pubDate?.toLocaleDateString("en-US", { year:"numeric", month:"short", day:"numeric" })}
         </time>
@@ -22,9 +22,9 @@ const { title, description, pubDate, updatedDate, tags = [] } = Astro.props;
         )}
       </div>
       {tags.length > 0 && (
-        <div style="margin-top: 10px; display:flex; gap:8px; flex-wrap:wrap;">
+        <div class="post-tags">
           {tags.map((t: any) => (
-            <span style="border: 1px solid rgba(127,127,127,.25); border-radius: 999px; padding: 2px 10px; font-size: .9rem; opacity:.85;">
+            <span class="post-tag">
               {t}
             </span>
           ))}
@@ -32,7 +32,7 @@ const { title, description, pubDate, updatedDate, tags = [] } = Astro.props;
       )}
     </header>
 
-    <div style="line-height:1.75;">
+    <div class="prose-content">
       <slot />
     </div>
   </article>

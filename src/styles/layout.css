@@ -1,0 +1,257 @@
+/* =========================
+   Site Structure & Layout
+   ========================= */
+
+.site-header,
+.site-main,
+.site-footer {
+	max-width: 980px;
+	margin: 0 auto;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+.site-header {
+	padding-top: 24px;
+	padding-bottom: 24px;
+}
+
+.site-main {
+	padding-bottom: 56px;
+}
+
+.site-footer {
+	padding-top: 24px;
+	padding-bottom: 24px;
+	border-top: 1px solid rgba(127, 127, 127, 0.25);
+}
+
+.site-nav {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+
+.site-brand {
+	font-weight: 700;
+	text-decoration: none;
+	color: rgb(var(--black));
+}
+
+.site-links {
+	display: flex;
+	gap: 14px;
+	flex-wrap: wrap;
+}
+
+/* =========================
+   Prose / Blog Content
+   ========================= */
+
+.prose {
+	max-width: 75ch;
+	margin: 28px auto;
+}
+
+.prose-content {
+	line-height: 1.75;
+}
+
+/* Give headings better spacing in long-form content */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+	margin-top: 1.6em;
+	margin-bottom: 0.6em;
+}
+
+/* Avoid giant H1 on content pages */
+.prose h1 {
+	font-size: 2.2em;
+	margin-top: 0;
+}
+
+/* Tighter, consistent rhythm across paragraphs + lists */
+.prose p {
+	margin: 0 0 1.25em 0;
+}
+
+.prose ul,
+.prose ol {
+	margin: 0 0 1.25em 0;
+	padding-left: 1.25em;
+}
+
+.prose li {
+	margin: 0.35em 0;
+}
+
+.prose li > ul,
+.prose li > ol {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+/* =========================
+   Layout & Page Components
+   ========================= */
+
+/* Hero / Intro section on homepage */
+.hero-section {
+	padding: 28px 0;
+}
+
+.hero-title {
+	font-size: 2.2rem;
+	margin: 0 0 8px;
+}
+
+.hero-intro {
+	max-width: 70ch;
+	font-size: 1.05rem;
+	line-height: 1.6;
+}
+
+.hero-cta {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+	margin-top: 16px;
+}
+
+/* Featured tiles / card grid */
+.featured-section {
+	padding: 18px 0;
+}
+
+.section-title {
+	margin: 0 0 10px;
+}
+
+.card-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 12px;
+}
+
+.card {
+	padding: 14px;
+	border: 1px solid rgba(127, 127, 127, 0.25);
+	border-radius: 12px;
+}
+
+.card-title {
+	margin: 0 0 6px;
+}
+
+.card-description {
+	margin: 0 0 10px;
+	opacity: 0.85;
+}
+
+/* Project card specific styling */
+.project-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 12px;
+	margin-top: 18px;
+}
+
+.project-card {
+	padding: 14px;
+	border: 1px solid rgba(127, 127, 127, 0.25);
+	border-radius: 12px;
+}
+
+.project-header {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+	align-items: baseline;
+}
+
+.project-title {
+	margin: 0;
+	font-size: 1.2rem;
+}
+
+.project-status {
+	opacity: 0.7;
+}
+
+.project-description {
+	margin: 8px 0 12px;
+	opacity: 0.85;
+}
+
+.project-links {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+/* Blog listing */
+.blog-list {
+	list-style: none;
+	padding: 0;
+	margin: 18px 0;
+	display: grid;
+	gap: 14px;
+}
+
+.blog-item {
+	padding: 14px;
+	border: 1px solid rgba(127, 127, 127, 0.25);
+	border-radius: 12px;
+}
+
+.blog-item-link {
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.blog-date {
+	opacity: 0.7;
+	margin-top: 4px;
+}
+
+.blog-description {
+	margin: 8px 0 0;
+	opacity: 0.85;
+}
+
+/* Page headers */
+.page-title {
+	margin: 24px 0 10px;
+}
+
+.page-intro {
+	max-width: 75ch;
+	line-height: 1.6;
+	opacity: 0.9;
+}
+
+/* Blog post header/meta */
+.post-meta {
+	opacity: 0.8;
+	margin: 12px 0;
+}
+
+.post-tags {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+	margin: 12px 0;
+}
+
+.post-tag {
+	padding: 4px 10px;
+	background: rgba(var(--gray-light), 0.5);
+	border-radius: 6px;
+	font-size: 0.875rem;
+}
