@@ -1,7 +1,7 @@
 # Project TODO
 
 > **Last updated:** January 10, 2026 - ✅ **ALL ITEMS COMPLETE!**
-> 
+>
 > High Priority: 5/5 ✅ | Medium Priority: 6/6 ✅ | Low Priority: 7/7 ✅
 
 This file tracks identified issues and improvements for adamlacasse.dev. Items are organized by priority and category.
@@ -88,82 +88,82 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 ### Spacing System Consolidation
 
 - [x] **Unify spacing scale** - Replace scattered `px` values with consistent `rem`-based scale:
-	- `xs: 0.25rem` (4px), `sm: 0.5rem` (8px), `md: 1rem` (16px), `lg: 1.5rem` (24px), `xl: 2rem` (32px)
-	- Updated all component padding/margin in `layout.css` to use scale
-	- Converted hardcoded `14px`, `16px`, `18px`, `12px`, `24px` values
+ 	- `xs: 0.25rem` (4px), `sm: 0.5rem` (8px), `md: 1rem` (16px), `lg: 1.5rem` (24px), `xl: 2rem` (32px)
+ 	- Updated all component padding/margin in `layout.css` to use scale
+ 	- Converted hardcoded `14px`, `16px`, `18px`, `12px`, `24px` values
 
 - [x] **Standardize gap values** - Replace `gap: 12px`, `14px`, `16px`, `18px` with consistent `gap` values from spacing scale
-	- `.site-nav`: `gap: 1rem` instead of `16px`
-	- `.card-grid`, `.project-grid`: standardized gap across components
-	- `.site-links`: `gap: 1rem` instead of `14px`
+ 	- `.site-nav`: `gap: 1rem` instead of `16px`
+ 	- `.card-grid`, `.project-grid`: standardized gap across components
+ 	- `.site-links`: `gap: 1rem` instead of `14px`
 
 - [x] **Fix container max-widths** - Resolve inconsistency between:
-	- Layout containers: `max-width: 980px` in `layout.css`
-	- Prose content: `max-width: 75ch` in `layout.css`
-	- Documented for future review
+ 	- Layout containers: `max-width: 980px` in `layout.css`
+ 	- Prose content: `max-width: 75ch` in `layout.css`
+ 	- Documented for future review
 
 - [x] **Create modular font scale** - Establish ratio-based scale tied to `20px` root:
-	- Use 1.25 ratio for consistency
-	- Defined CSS variables: `--fs-xs`, `--fs-sm`, `--fs-base`, `--fs-lg`, `--fs-xl`, `--fs-2xl`, `--fs-3xl`, `--fs-4xl`
-	- Updated all `font-size` declarations to use variables
+ 	- Use 1.25 ratio for consistency
+ 	- Defined CSS variables: `--fs-xs`, `--fs-sm`, `--fs-base`, `--fs-lg`, `--fs-xl`, `--fs-2xl`, `--fs-3xl`, `--fs-4xl`
+ 	- Updated all `font-size` declarations to use variables
 
 - [x] **Review heading hierarchy** - Current h1–h6 sizes now use modular scale; audit complete
-	- h1: `var(--fs-4xl)` (2.813rem)
-	- h2: `var(--fs-3xl)` (2.25rem)
-	- h3: `var(--fs-2xl)` (1.875rem)
-	- h4–h5: mapped consistently
+ 	- h1: `var(--fs-4xl)` (2.813rem)
+ 	- h2: `var(--fs-3xl)` (2.25rem)
+ 	- h3: `var(--fs-2xl)` (1.875rem)
+ 	- h4–h5: mapped consistently
 
 - [x] **Standardize button/link sizing** - Applied consistent font sizes via variables to CTAs and interactive elements
 
 - [x] **Replace hardcoded colors** - Replace `rgba(127, 127, 127, 0.25)` border values with CSS variables:
-	- Added `--color-border`, `--color-border-light`, `--color-border-dark` variables to `:root`
-	- Updated `.card`, `.project-card`, `.blog-item`, `.site-footer`, `hr` border declarations
+ 	- Added `--color-border`, `--color-border-light`, `--color-border-dark` variables to `:root`
+ 	- Updated `.card`, `.project-card`, `.blog-item`, `.site-footer`, `hr` border declarations
 
 - [x] **Extend semantic tokens** - All semantic color variables have `-light` backgrounds:
-	- `--color-success-light`, `--color-error-light`, `--color-warning-light`, `--color-info-light` defined
-	- Dark mode overrides included in `@media (prefers-color-scheme: dark)`
+ 	- `--color-success-light`, `--color-error-light`, `--color-warning-light`, `--color-info-light` defined
+ 	- Dark mode overrides included in `@media (prefers-color-scheme: dark)`
 
 - [x] **Document color palette** - Added comments explaining color system in global.css
 
 - [x] **Fix card styling inconsistencies**:
-	- `.card` and `.project-card` now use identical styles (documented in CSS)
-	- `.card-grid` and `.project-grid` maintain different min-widths per design
-	- Added inline comment explaining intentional consistency
+ 	- `.card` and `.project-card` now use identical styles (documented in CSS)
+ 	- `.card-grid` and `.project-grid` maintain different min-widths per design
+ 	- Added inline comment explaining intentional consistency
 
 - [x] **Clean up margin/padding patterns**:
-	- Replaced `margin: X 0 Y 0` with margin-block patterns using spacing variables
-	- Applied consistently across `.prose` elements
+ 	- Replaced `margin: X 0 Y 0` with margin-block patterns using spacing variables
+ 	- Applied consistently across `.prose` elements
 
 - [x] **Heading spacing in prose**:
-	- Review of `.prose h1–h6` margins complete (margin-top: 1.6em, margin-bottom: 0.6em)
-	- Rhythm verified; all use em units for proportional scaling
+ 	- Review of `.prose h1–h6` margins complete (margin-top: 1.6em, margin-bottom: 0.6em)
+ 	- Rhythm verified; all use em units for proportional scaling
 
 - [x] **Audit existing breakpoint** - Single `@media (max-width: 720px)` expanded:
-	- Added tablet breakpoint (`768px`) for layout adjustments
-	- Mobile heading sizes reduced (h1–h3 scale down)
-	- Navigation stacks on mobile/tablet
+ 	- Added tablet breakpoint (`768px`) for layout adjustments
+ 	- Mobile heading sizes reduced (h1–h3 scale down)
+ 	- Navigation stacks on mobile/tablet
 
 - [x] **Improve responsive typography**:
-	- Mobile font-size reduction added (20px → 18px on body)
-	- Heading sizes scale down appropriately on mobile
+ 	- Mobile font-size reduction added (20px → 18px on body)
+ 	- Heading sizes scale down appropriately on mobile
 
 - [x] **Mobile-specific spacing**:
-	- Reduced padding on `.site-header`, `.site-main`, `.site-footer` on tablet
-	- Grids stack to single column on mobile
-	- CTA buttons stack vertically
+ 	- Reduced padding on `.site-header`, `.site-main`, `.site-footer` on tablet
+ 	- Grids stack to single column on mobile
+ 	- CTA buttons stack vertically
 
 - [x] **Add dark mode CSS** - Implemented `@media (prefers-color-scheme: dark)` overrides:
-	- Inverted color variables (--black, --gray, --gray-light, --gray-dark)
-	- Updated link colors to light blue (#64b5f6)
-	- Form inputs styled with dark backgrounds
-	- Blockquote border adapted
-	- All components render correctly in dark mode
+ 	- Inverted color variables (--black, --gray, --gray-light, --gray-dark)
+ 	- Updated link colors to light blue (#64b5f6)
+ 	- Form inputs styled with dark backgrounds
+ 	- Blockquote border adapted
+ 	- All components render correctly in dark mode
 
 - [x] **Test color accessibility** - Color system includes:
-	- WCAG-compliant semantic colors (success, error, warning, info)
-	- Dark mode link colors with sufficient contrast
-	- Border colors adapted for dark backgrounds
-	- Input field styling optimized for readability
+ 	- WCAG-compliant semantic colors (success, error, warning, info)
+ 	- Dark mode link colors with sufficient contrast
+ 	- Border colors adapted for dark backgrounds
+ 	- Input field styling optimized for readability
 
 - [x] **Remove unused CSS** - Audited all CSS classes against page/component usage:
   - Result: All classes actively used across site
@@ -182,15 +182,18 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 ## 📝 Notes
 
 ### CSS Architecture ✅ Verified
+
 - **Active approach:** Global CSS files (`global.css` + `layout.css`) imported in BaseLayout
 - **Status:** Working correctly—all layout classes are applied and necessary
 - **Decision:** No action needed; documentation in copilot-instructions is accurate
 
 ### Asset Reference ✅ Verified
+
 - Placeholder images exist: `blog-placeholder-1.jpg` through `blog-placeholder-5.jpg` and `blog-placeholder-about.jpg`
 - **Status:** Assets ready for use when blog posts need featured images
 
 ### Dark Mode Decision ⚠️ Needs Choice
+
 The `<meta name="color-scheme" content="light dark">` tag tells browsers the site supports both themes, but no dark mode CSS exists. Choose one:
 
 1. **Option A (Implement dark mode):** Add `@media (prefers-color-scheme: dark)` styles to `global.css` and `layout.css`
@@ -201,6 +204,7 @@ The `<meta name="color-scheme" content="light dark">` tag tells browsers the sit
 ## ✅ Completed
 
 ### High Priority (All Complete ✅)
+
 - ✅ Fix site constants
 - ✅ Fix now.md double H1
 - ✅ Remove unused CSS imports
@@ -208,6 +212,7 @@ The `<meta name="color-scheme" content="light dark">` tag tells browsers the sit
 - ✅ Fix CSS duplication
 
 ### Medium Priority (All Complete ✅)
+
 - ✅ Implement image optimization (no `<img>` tags found to optimize)
 - ✅ Configure cache headers (cache strategy configured in `public/_headers`)
 - ✅ Add Open Graph meta tags (implemented in BaseLayout)
