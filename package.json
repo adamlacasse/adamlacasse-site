@@ -1,5 +1,12 @@
 {
-  "name": "src",
+  "name": "adamlacasse-site",
+  "description": "Adam LaCasse's personal site - a static blog built with Astro 5, MDX, and Sitemap integrations",
+  "author": "Adam LaCasse",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adamlacasse/adamlacasse-site"
+  },
   "type": "module",
   "version": "0.0.1",
   "scripts": {

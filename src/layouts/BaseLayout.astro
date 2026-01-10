@@ -1,9 +1,11 @@
 ---
 import '../styles/global.css';
 import '../styles/layout.css';
-import { AUTHOR, SITE_DESCRIPTION } from '../consts';
+import { AUTHOR, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
-const { title = AUTHOR, description = SITE_DESCRIPTION } = Astro.props;
+const { title = AUTHOR, description = SITE_DESCRIPTION, ogTitle, ogDescription, ogImage } = Astro.props;
+const siteUrl = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -13,6 +15,22 @@ const { title = AUTHOR, description = SITE_DESCRIPTION } = Astro.props;
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl.toString()} />
+    <meta property="og:title" content={ogTitle || title} />
+    <meta property="og:description" content={ogDescription || description} />
+    {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />}
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={siteUrl.toString()} />
+    <meta property="twitter:title" content={ogTitle || title} />
+    <meta property="twitter:description" content={ogDescription || description} />
+    {ogImage && <meta property="twitter:image" content={new URL(ogImage, Astro.site).toString()} />}
+    
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="/favicon.svg" />
     <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />

@@ -1,62 +1,95 @@
-# Astro Starter Kit: Blog
+# adamlacasse.dev
 
-```sh
-npm create astro@latest -- --template blog
-```
+Static site for Adam LaCasse built with Astro 5 + MDX. Ships as a static build (no SSR) with sitemap, RSS, and Open Graph defaults baked in.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Overview
 
-Features:
+- Content lives in `src/content/blog` (Markdown/MDX) and is validated by `src/content/config.ts` (requires `title`, `description`, `pubDate`; optional `updatedDate`, `tags`, `draft`).
+- Site metadata is defined in `src/consts.ts` (`AUTHOR`, `SITE_TITLE`, `SITE_DESCRIPTION`) and consumed by layouts/pages.
+- Layouts: `BaseLayout.astro` (chrome, meta, OG/Twitter tags, font preloads, nav/footer) and `BlogPostLayout.astro` (post wrapper).
+- SEO & perf: sitemap + robots.txt, RSS feed, OG/Twitter meta, font preloading, `_headers` with cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
+- Styling: `src/styles/global.css` and `src/styles/layout.css` are active. Unused starter components are archived in `src/components/archive/` for reference.
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure (essentials)
 
 ```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+public/          static assets, robots.txt, _headers
+src/
+	consts.ts      site metadata constants
+	assets/        images (e.g., blog placeholders)
+	styles/        global + layout CSS
+	layouts/       BaseLayout, BlogPostLayout
+	pages/         static pages (about, contact, now, projects, blog, rss)
+	content/       blog posts + content config (Zod schema)
+	components/    (archive/ holds unused starter components)
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Command       | Action                                           |
+| :------------ | :----------------------------------------------- |
+| `npm install` | Install dependencies                             |
+| `npm run dev` | Start dev server at `localhost:4321`             |
+| `npm run build` | Build static site to `dist/`                   |
+| `npm run preview` | Preview the production build                 |
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+## Notes & Conventions
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Draft posts: set `draft: true` in frontmatter to exclude from listings/RSS/paths.
+- Images: prefer Astro `<Image />` when adding real images (none live today besides placeholders).
+- Open Graph: layouts accept `ogTitle`, `ogDescription`, `ogImage`; defaults to page title/description.
+- Caching: adjust `public/_headers` if deployment target handles headers differently.
 
-## 🧞 Commands
+## Content Authoring
 
-All commands are run from the root of the project, from a terminal:
+- Blog schema (validated in `src/content/config.ts`):
+	- Required: `title` (string), `description` (string), `pubDate` (Date)
+	- Optional: `updatedDate` (Date), `tags` (string[]), `draft` (boolean, defaults false)
+- Draft workflow: set `draft: true`; drafts stay out of listings, RSS, and static paths. Clear the flag to publish.
+- Images: place in `src/assets/` or `public/`; prefer Astro `<Image />` for optimization when adding new images.
+- Open Graph per page: pass `ogTitle`, `ogDescription`, `ogImage` to `BaseLayout`; otherwise falls back to `title`/`description`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Add a Blog Post (checklist)
 
-## 👀 Want to learn more?
+1) Create `src/content/blog/my-post.md` (or `.mdx`).
+2) Add frontmatter: `title`, `description`, `pubDate`; optional `updatedDate`, `tags`, `draft`.
+3) Write content; use `<Image />` for new images; keep links absolute where needed.
+4) For drafts, set `draft: true`; remove to publish.
+5) Build locally: `npm run build` (schema validation will catch bad frontmatter/dates).
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Release Checklist
 
-## Credit
+- `npm run build` passes locally.
+- New/updated posts have valid frontmatter and correct dates.
+- OG/Twitter image specified if needed (`ogImage`) or acceptable fallback.
+- Cache headers still appropriate for new assets (`public/_headers`).
+- Robots/sitemap unchanged unless routes change.
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+### Add / Update Static Page (checklist)
+
+1) Create or edit page under `src/pages/` (e.g., `about.astro`, `projects.astro`).
+2) Use `BaseLayout` and pass `title`/`description`; add `ogTitle`/`ogDescription`/`ogImage` if page-specific OG is needed.
+3) Keep links and nav consistent; update nav only in `BaseLayout` if needed.
+4) If adding assets, place in `public/` or `src/assets/` and consider `<Image />` for optimization.
+5) Run `npm run build` to validate.
+
+### Update Site Metadata (checklist)
+
+1) Edit `src/consts.ts` (`AUTHOR`, `SITE_TITLE`, `SITE_DESCRIPTION`).
+2) Verify pages/layouts that pass explicit titles still make sense (e.g., `BaseLayout` title props).
+3) If nav text changes, update links in `BaseLayout.astro`.
+4) If social profiles change, update footer links in `BaseLayout.astro`.
+5) Run `npm run build` to ensure meta/OG render without errors.
+
+## Working With AI Agents (solo + AI team)
+
+- Source of truth for site meta: `src/consts.ts` (`AUTHOR`, `SITE_TITLE`, `SITE_DESCRIPTION`).
+- Layouts:
+	- `BaseLayout.astro`: nav/footer, global meta, OG/Twitter tags, canonical, font preloads.
+	- `BlogPostLayout.astro`: wraps posts, uses `BaseLayout` and frontmatter for title/description/dates/tags.
+- Styling: `src/styles/global.css` and `src/styles/layout.css` are active; starter components are archived under `src/components/archive/` to avoid accidental use.
+- Performance/SEO:
+	- `_headers` sets cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
+	- `robots.txt` and sitemap are in `public/`; RSS at `/rss.xml`.
+- Commands: `npm install`, `npm run dev`, `npm run build`, `npm run preview`.
+- Error triage: run `npm run build`; archived components should not be imported except from `components/archive/*` if needed for demos.
