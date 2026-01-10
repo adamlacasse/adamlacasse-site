@@ -7,30 +7,30 @@
 .site-footer {
 	max-width: 980px;
 	margin: 0 auto;
-	padding-left: 16px;
-	padding-right: 16px;
+	padding-left: var(--space-md);
+	padding-right: var(--space-md);
 }
 
 .site-header {
-	padding-top: 24px;
-	padding-bottom: 24px;
+	padding-top: var(--space-lg);
+	padding-bottom: var(--space-lg);
 }
 
 .site-main {
-	padding-bottom: 56px;
+	padding-bottom: 3.5rem;
 }
 
 .site-footer {
-	padding-top: 24px;
-	padding-bottom: 24px;
-	border-top: 1px solid rgba(127, 127, 127, 0.25);
+	padding-top: var(--space-lg);
+	padding-bottom: var(--space-lg);
+	border-top: 1px solid var(--color-border);
 }
 
 .site-nav {
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
-	gap: 16px;
+	gap: var(--space-md);
 	flex-wrap: wrap;
 }
 
@@ -42,7 +42,7 @@
 
 .site-links {
 	display: flex;
-	gap: 14px;
+	gap: var(--space-md);
 	flex-wrap: wrap;
 }
 
@@ -52,7 +52,7 @@
 
 .prose {
 	max-width: 75ch;
-	margin: 28px auto;
+	margin: var(--space-xl) auto;
 }
 
 .prose-content {
@@ -72,7 +72,7 @@
 
 /* Avoid giant H1 on content pages */
 .prose h1 {
-	font-size: 2.2em;
+	font-size: var(--fs-2xl);
 	margin-top: 0;
 }
 
@@ -103,54 +103,55 @@
 
 /* Hero / Intro section on homepage */
 .hero-section {
-	padding: 28px 0;
+	padding: var(--space-md-lg) 0;
 }
 
 .hero-title {
-	font-size: 2.2rem;
-	margin: 0 0 8px;
+	font-size: var(--fs-2xl);
+	margin: 0 0 var(--space-xs);
 }
 
 .hero-intro {
 	max-width: 70ch;
-	font-size: 1.05rem;
+	font-size: var(--fs-lg);
 	line-height: 1.6;
 }
 
 .hero-cta {
 	display: flex;
-	gap: 12px;
+	gap: var(--space-sm-md);
 	flex-wrap: wrap;
-	margin-top: 16px;
+	margin-top: var(--space-md);
 }
 
 /* Featured tiles / card grid */
 .featured-section {
-	padding: 18px 0;
+	padding: var(--space-md-lg) 0;
 }
 
 .section-title {
-	margin: 0 0 10px;
+	margin: 0 0 var(--space-sm-md) 0;
 }
 
 .card-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	gap: 12px;
+	gap: var(--space-sm-md);
 }
 
+/* Card and project-card use identical styling intentionally for consistent component look */
 .card {
-	padding: 14px;
-	border: 1px solid rgba(127, 127, 127, 0.25);
+	padding: var(--space-sm-md);
+	border: 1px solid var(--color-border);
 	border-radius: 12px;
 }
 
 .card-title {
-	margin: 0 0 6px;
+	margin: 0 0 var(--space-xs) 0;
 }
 
 .card-description {
-	margin: 0 0 10px;
+	margin: 0 0 var(--space-sm);
 	opacity: 0.85;
 }
 
@@ -158,26 +159,26 @@
 .project-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	gap: 12px;
-	margin-top: 18px;
+	gap: var(--space-sm-md);
+	margin-top: var(--space-md-lg);
 }
 
 .project-card {
-	padding: 14px;
-	border: 1px solid rgba(127, 127, 127, 0.25);
+	padding: var(--space-sm-md);
+	border: 1px solid var(--color-border);
 	border-radius: 12px;
 }
 
 .project-header {
 	display: flex;
 	justify-content: space-between;
-	gap: 10px;
+	gap: var(--space-sm);
 	align-items: baseline;
 }
 
 .project-title {
 	margin: 0;
-	font-size: 1.2rem;
+	font-size: var(--fs-xl);
 }
 
 .project-status {
@@ -185,13 +186,13 @@
 }
 
 .project-description {
-	margin: 8px 0 12px;
+	margin: var(--space-sm) 0 var(--space-sm-md);
 	opacity: 0.85;
 }
 
 .project-links {
 	display: flex;
-	gap: 12px;
+	gap: var(--space-sm-md);
 	flex-wrap: wrap;
 }
 
@@ -199,14 +200,14 @@
 .blog-list {
 	list-style: none;
 	padding: 0;
-	margin: 18px 0;
+	margin: var(--space-md-lg) 0;
 	display: grid;
-	gap: 14px;
+	gap: var(--space-md);
 }
 
 .blog-item {
-	padding: 14px;
-	border: 1px solid rgba(127, 127, 127, 0.25);
+	padding: var(--space-sm-md);
+	border: 1px solid var(--color-border);
 	border-radius: 12px;
 }
 
@@ -217,17 +218,17 @@
 
 .blog-date {
 	opacity: 0.7;
-	margin-top: 4px;
+	margin-top: var(--space-xs);
 }
 
 .blog-description {
-	margin: 8px 0 0;
+	margin: var(--space-sm) 0 0;
 	opacity: 0.85;
 }
 
 /* Page headers */
 .page-title {
-	margin: 24px 0 10px;
+	margin: var(--space-lg) 0 var(--space-sm);
 }
 
 .page-intro {
@@ -239,21 +240,21 @@
 /* Blog post header/meta */
 .post-meta {
 	opacity: 0.8;
-	margin: 12px 0;
+	margin: var(--space-sm-md) 0;
 }
 
 .post-tags {
 	display: flex;
-	gap: 8px;
+	gap: var(--space-sm);
 	flex-wrap: wrap;
-	margin: 12px 0;
+	margin: var(--space-sm-md) 0;
 }
 
 .post-tag {
-	padding: 4px 10px;
+	padding: var(--space-xs) var(--space-sm);
 	background: rgba(var(--gray-light), 0.5);
 	border-radius: 6px;
-	font-size: 0.875rem;
+	font-size: var(--fs-sm);
 }
 
 /* Dark mode layout adjustments */
@@ -277,5 +278,35 @@
 	.post-tag {
 		background: rgba(var(--gray-light), 0.3);
 		color: rgb(var(--gray-dark));
+	}
+}
+
+/* Tablet breakpoint: adjust spacing and grid layouts */
+@media (max-width: 768px) {
+	.site-header,
+	.site-main,
+	.site-footer {
+		padding-left: var(--space-sm-md);
+		padding-right: var(--space-sm-md);
+	}
+
+	.site-nav {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-sm);
+	}
+
+	.card-grid,
+	.project-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.hero-cta {
+		flex-direction: column;
+	}
+
+	.hero-cta a {
+		display: block;
+		text-align: center;
 	}
 }

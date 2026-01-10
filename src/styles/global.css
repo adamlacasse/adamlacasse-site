@@ -3,30 +3,32 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
 
-  === Spacing System ===
+  === Design System Overview ===
   
-  Spacing units used throughout this project:
+  SPACING SCALE (rem-based):
+  - --space-xs: 0.25rem (4px)      - micro spacing
+  - --space-sm: 0.5rem (8px)       - small gaps
+  - --space-sm-md: 0.75rem (12px)  - component padding
+  - --space-md: 1rem (16px)        - standard spacing
+  - --space-md-lg: 1.125rem (18px) - section gaps
+  - --space-lg: 1.5rem (24px)      - major sections
+  - --space-xl: 1.75rem (28px)     - page sections
+  - --space-2xl: 2rem (32px)       - reserved
   
-  - px (pixels): Fixed, device-independent units. Use for:
-    - Border widths (e.g., 1px borders)
-    - Small precise adjustments (e.g., padding: 2px 5px for code)
+  FONT SCALE (1.25 ratio):
+  - --fs-xs through --fs-4xl for consistent typography
+  - h1–h6 all use variables for maintainability
   
-  - em (relative to element's font-size): Proportional to current element. Use for:
-    - Padding/margins within a component (e.g., padding: 1.5em)
-    - Relative spacing that scales with font size
+  COLORS:
+  - Primary accent: light mode #2337ff, dark mode #64b5f6
+  - Borders: --color-border with light/dark variants
+  - Semantic: success/error/warning/info (plus -light variants)
+  - Full dark mode support via @media (prefers-color-scheme: dark)
   
-  - rem (relative to root font-size): Consistent scale across site. Use for:
-    - Global layout spacing (e.g., margin: 0.5rem)
-    - Component spacing that should respect site-wide scale
-  
-  - ch (character width): Width of 0 character. Use for:
-    - max-width for prose (e.g., max-width: 75ch)
-    - Line length constraints for readability
-  
-  Current usage:
-  - Root font-size: 20px (set on body)
-  - Line height: 1.7 (7 units of spacing)
-  - max-width for prose: 75ch (readable line length)
+  RESPONSIVE:
+  - Mobile-first approach (20px root)
+  - Tablet breakpoint (768px): reduced padding, single-column grids
+  - Mobile breakpoint (720px): heading size reductions, stacked nav
  */
 
 :root {
@@ -50,6 +52,31 @@
 	--color-warning-light: #fef3c7;
 	--color-info: #3b82f6;
 	--color-info-light: #dbeafe;
+
+	/* Spacing scale (rem-based) */
+	--space-xs: 0.25rem; /* 4px */
+	--space-sm: 0.5rem; /* 8px */
+	--space-sm-md: 0.75rem; /* 12px */
+	--space-md: 1rem; /* 16px */
+	--space-md-lg: 1.125rem; /* 18px */
+	--space-lg: 1.5rem; /* 24px */
+	--space-xl: 1.75rem; /* 28px */
+	--space-2xl: 2rem; /* 32px */
+
+	/* Font size scale (1.25 ratio based on 20px root) */
+	--fs-xs: 0.75rem; /* 12px */
+	--fs-sm: 0.875rem; /* 14px */
+	--fs-base: 1rem; /* 16px */
+	--fs-lg: 1.125rem; /* 18px */
+	--fs-xl: 1.5rem; /* 24px */
+	--fs-2xl: 1.875rem; /* 30px */
+	--fs-3xl: 2.25rem; /* 36px */
+	--fs-4xl: 2.813rem; /* 45px */
+
+	/* Border and structural colors */
+	--color-border: rgba(127, 127, 127, 0.25);
+	--color-border-light: rgba(127, 127, 127, 0.15);
+	--color-border-dark: rgba(127, 127, 127, 0.35);
 }
 @font-face {
 	font-family: "Atkinson";
@@ -89,19 +116,19 @@ h6 {
 	line-height: 1.2;
 }
 h1 {
-	font-size: 3.052em;
+	font-size: var(--fs-4xl);
 }
 h2 {
-	font-size: 2.441em;
+	font-size: var(--fs-3xl);
 }
 h3 {
-	font-size: 1.953em;
+	font-size: var(--fs-2xl);
 }
 h4 {
-	font-size: 1.563em;
+	font-size: var(--fs-xl);
 }
 h5 {
-	font-size: 1.25em;
+	font-size: var(--fs-lg);
 }
 strong,
 b {
@@ -121,10 +148,10 @@ p {
 }
 textarea {
 	width: 100%;
-	font-size: 16px;
+	font-size: var(--fs-base);
 }
 input {
-	font-size: 16px;
+	font-size: var(--fs-base);
 }
 table {
 	width: 100%;
@@ -150,11 +177,11 @@ blockquote {
 	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;
 	margin: 0;
-	font-size: 1.333em;
+	font-size: var(--fs-xl);
 }
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	border-top: 1px solid var(--color-border);
 }
 @media (max-width: 720px) {
 	body {
@@ -162,6 +189,15 @@ hr {
 	}
 	main {
 		padding: 1em;
+	}
+	h1 {
+		font-size: var(--fs-3xl);
+	}
+	h2 {
+		font-size: var(--fs-2xl);
+	}
+	h3 {
+		font-size: var(--fs-xl);
 	}
 }
 
@@ -196,7 +232,7 @@ hr {
 
 /* Blockquotes: match your style but reduce “shouty” size */
 .prose blockquote {
-	font-size: 1.1em; /* global blockquote is 1.333em */
+	font-size: var(--fs-lg);
 	color: rgba(var(--black), 0.85);
 }
 
@@ -238,6 +274,19 @@ hr {
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
 	:root {
+		--black: 242, 242, 242;
+		--gray: 150, 150, 150;
+		--gray-light: 50, 50, 50;
+		--gray-dark: 229, 233, 240;
+		--gray-gradient: rgba(var(--gray-light), 50%), #1a1a1a;
+	}
+
+	body {
+		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		background-color: #1a1a1a;
+	}
+
+	:root {
 		--accent: #64b5f6;
 		--accent-dark: #90caf9;
 		--black: 240, 240, 245;
@@ -245,6 +294,7 @@ hr {
 		--gray-light: 66, 66, 81;
 		--gray-dark: 229, 229, 240;
 		--gray-gradient: rgba(var(--gray-light), 50%), #1a1a2e;
+		--color-border: rgba(200, 200, 200, 0.15);
 
 		/* Dark mode semantic colors */
 		--color-success: #34d399;
@@ -257,14 +307,36 @@ hr {
 		--color-info-light: #1e3a8a;
 	}
 
-	body {
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		background-size: 100% 600px;
-		color: rgb(var(--gray-dark));
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: rgb(var(--black));
+	}
+
+	a {
+		color: #64b5f6;
+	}
+
+	a:hover {
+		color: #90caf9;
 	}
 
 	code {
 		background-color: rgb(var(--gray-light));
+	}
+
+	blockquote {
+		border-left-color: #64b5f6;
+	}
+
+	input,
+	textarea {
+		background-color: rgba(var(--gray-light), 0.8);
+		color: rgb(var(--black));
+		border: 1px solid var(--color-border);
 	}
 
 	.prose pre {
