@@ -5,6 +5,10 @@
 .site-header,
 .site-main,
 .site-footer {
+  width: 100%;
+}
+
+.site-container {
   max-width: 980px;
   margin: 0 auto;
   padding-left: var(--space-md);
@@ -297,9 +301,7 @@
 
 /* Tablet breakpoint: adjust spacing and grid layouts */
 @media (max-width: 768px) {
-  .site-header,
-  .site-main,
-  .site-footer {
+  .site-container {
     padding-left: var(--space-sm-md);
     padding-right: var(--space-sm-md);
   }

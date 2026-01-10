@@ -69,39 +69,45 @@ const siteUrl = new URL(canonicalURL);
 
   <body>
     <header class="site-header">
-      <nav class="site-nav">
-        <a href="/" class="site-brand">{AUTHOR}</a>
-        <div class="site-links">
-          <a href="/projects">Projects</a>
-          <a href="/blog">Writing</a>
-          <a href="/about">About</a>
-          <a href="/now">Now</a>
-          <a href="/contact">Contact</a>
-          <ThemeToggle />
-        </div>
-      </nav>
+      <div class="site-container">
+        <nav class="site-nav">
+          <a href="/" class="site-brand">{AUTHOR}</a>
+          <div class="site-links">
+            <a href="/projects">Projects</a>
+            <a href="/blog">Writing</a>
+            <a href="/about">About</a>
+            <a href="/now">Now</a>
+            <a href="/contact">Contact</a>
+            <ThemeToggle />
+          </div>
+        </nav>
+      </div>
     </header>
 
     <main class="site-main">
-      {
-        contentWidth === 'narrow' ? (
-          <div class="content content--narrow">
+      <div class="site-container">
+        {
+          contentWidth === 'narrow' ? (
+            <div class="content content--narrow">
+              <slot />
+            </div>
+          ) : (
             <slot />
-          </div>
-        ) : (
-          <slot />
-        )
-      }
+          )
+        }
+      </div>
     </main>
 
     <footer class="site-footer">
-      <div>
-        <small>© {new Date().getFullYear()} {AUTHOR}</small>
-        <small>
-          <a href="https://github.com/adamlacasse" target="_blank" rel="noreferrer">GitHub</a>
-          {' · '}
-          <a href="/rss.xml">RSS</a>
-        </small>
+      <div class="site-container">
+        <div>
+          <small>© {new Date().getFullYear()} {AUTHOR}</small>
+          <small>
+            <a href="https://github.com/adamlacasse" target="_blank" rel="noreferrer">GitHub</a>
+            {' · '}
+            <a href="/rss.xml">RSS</a>
+          </small>
+        </div>
       </div>
     </footer>
   </body>

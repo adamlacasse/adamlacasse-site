@@ -2,7 +2,7 @@
 
 > **Last updated:** January 10, 2026
 >
-> High Priority: 5/5 ✅ | Medium Priority: 6/6 ✅ | Low Priority: 7/7 ✅ | **All Complete! 🎉**
+> High Priority: 5/6 | Medium Priority: 6/6 ✅ | Low Priority: 7/7 ✅
 
 This file tracks identified issues and improvements for adamlacasse.dev. Items are organized by priority and category.
 
@@ -13,7 +13,7 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 ### Features
 
 - [x] **Wire theme toggle to CSS** - Add `[data-theme]` variable overrides so clicking the header Theme button actually changes the palette
-(currently only `prefers-color-scheme` media query responds)
+      (currently only `prefers-color-scheme` media query responds)
 
 ### Setup & Configuration
 
@@ -23,12 +23,13 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 ### Performance
 
 - [x] **Remove unused CSS imports** - `src/layouts/BaseLayout.astro` loads `global.css` + `layout.css` (~450 lines) but docs claim inline styles are used.
-Either remove imports or document why they're needed
+      Either remove imports or document why they're needed
 - [x] **Add font preloading** - Implement `<link rel="preload">` in BaseLayout for `/fonts/atkinson-*.woff` files to prevent late waterfall loading
 
 ### Styling
 
 - [x] **Fix CSS duplication** - Remove duplicate `.prose a` rules in `src/styles/global.css` (lines 152-159 and 195-198)
+- [ ] **Unify page gutters + theme parity** - `/projects` and `/contact` have correct left/right gutters but other pages don’t. Audit all pages to ensure consistent container/padding, typography, and component spacing across templates; verify dark/light theming parity (including `prefers-color-scheme` and theme toggle), contrast, focus states, link/hover styles, and responsive breakpoints.
 
 ---
 
@@ -229,7 +230,7 @@ Either remove imports or document why they're needed
 
 ## 🔄 In Progress
 
-*No items currently in progress.*
+_No items currently in progress._
 
 ---
 
