@@ -255,3 +255,27 @@
 	border-radius: 6px;
 	font-size: 0.875rem;
 }
+
+/* Dark mode layout adjustments */
+@media (prefers-color-scheme: dark) {
+	.site-brand {
+		color: rgb(var(--black));
+	}
+
+	.site-nav {
+		border-bottom: none;
+	}
+
+	a {
+		color: var(--accent);
+	}
+
+	a:hover {
+		color: var(--accent-dark);
+	}
+
+	.post-tag {
+		background: rgba(var(--gray-light), 0.3);
+		color: rgb(var(--gray-dark));
+	}
+}

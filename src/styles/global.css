@@ -2,6 +2,31 @@
   The CSS in this style tag is based off of Bear Blog's default CSS.
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+
+  === Spacing System ===
+  
+  Spacing units used throughout this project:
+  
+  - px (pixels): Fixed, device-independent units. Use for:
+    - Border widths (e.g., 1px borders)
+    - Small precise adjustments (e.g., padding: 2px 5px for code)
+  
+  - em (relative to element's font-size): Proportional to current element. Use for:
+    - Padding/margins within a component (e.g., padding: 1.5em)
+    - Relative spacing that scales with font size
+  
+  - rem (relative to root font-size): Consistent scale across site. Use for:
+    - Global layout spacing (e.g., margin: 0.5rem)
+    - Component spacing that should respect site-wide scale
+  
+  - ch (character width): Width of 0 character. Use for:
+    - max-width for prose (e.g., max-width: 75ch)
+    - Line length constraints for readability
+  
+  Current usage:
+  - Root font-size: 20px (set on body)
+  - Line height: 1.7 (7 units of spacing)
+  - max-width for prose: 75ch (readable line length)
  */
 
 :root {
@@ -15,6 +40,16 @@
 	--box-shadow:
 		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
 		rgba(var(--gray), 33%);
+
+	/* Semantic color tokens */
+	--color-success: #10b981;
+	--color-success-light: #d1fae5;
+	--color-error: #ef4444;
+	--color-error-light: #fee2e2;
+	--color-warning: #f59e0b;
+	--color-warning-light: #fef3c7;
+	--color-info: #3b82f6;
+	--color-info-light: #dbeafe;
 }
 @font-face {
 	font-family: "Atkinson";
@@ -198,4 +233,58 @@ hr {
 /* Optional: nicer horizontal rule spacing in prose */
 .prose hr {
 	margin: 2em 0;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--accent: #64b5f6;
+		--accent-dark: #90caf9;
+		--black: 240, 240, 245;
+		--gray: 176, 190, 197;
+		--gray-light: 66, 66, 81;
+		--gray-dark: 229, 229, 240;
+		--gray-gradient: rgba(var(--gray-light), 50%), #1a1a2e;
+
+		/* Dark mode semantic colors */
+		--color-success: #34d399;
+		--color-success-light: #064e3b;
+		--color-error: #f87171;
+		--color-error-light: #7f1d1d;
+		--color-warning: #fbbf24;
+		--color-warning-light: #78350f;
+		--color-info: #60a5fa;
+		--color-info-light: #1e3a8a;
+	}
+
+	body {
+		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		background-size: 100% 600px;
+		color: rgb(var(--gray-dark));
+	}
+
+	code {
+		background-color: rgb(var(--gray-light));
+	}
+
+	.prose pre {
+		background: rgb(var(--gray-light));
+		border: 1px solid rgba(var(--gray), 0.25);
+	}
+
+	.prose blockquote {
+		color: rgba(var(--gray-dark), 0.85);
+	}
+
+	.prose th {
+		background: rgba(var(--gray-light), 0.4);
+	}
+
+	.site-footer {
+		border-top: 1px solid rgba(127, 127, 127, 0.5);
+	}
+
+	hr {
+		border-top: 1px solid rgb(var(--gray-light));
+	}
 }

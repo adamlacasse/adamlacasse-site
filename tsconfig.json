@@ -1,8 +1,32 @@
 {
+  // Extends Astro's strict TypeScript configuration preset
+  // https://docs.astro.build/en/guides/typescript/
   "extends": "astro/tsconfigs/strict",
+  
+  // Includes all files and Astro's generated types
   "include": [".astro/types.d.ts", "**/*"],
+  
+  // Excludes build output
   "exclude": ["dist"],
+  
   "compilerOptions": {
+    // STRICT TYPE CHECKING ENABLED:
+    // - Enabled via "astro/tsconfigs/strict" which sets:
+    //   * strict: true (enables all strict options below)
+    //   * noImplicitAny: true (error on any types)
+    //   * strictNullChecks: true (error on null/undefined)
+    //   * strictFunctionTypes: true (enforce function parameter types)
+    //   * strictBindCallApply: true (enforce bind/call/apply)
+    //   * strictPropertyInitialization: true (enforce property initialization)
+    //   * noImplicitThis: true (error on implicit this)
+    //   * alwaysStrict: true (use 'use strict')
+    //   * noUnusedLocals: true (error on unused variables)
+    //   * noUnusedParameters: true (error on unused parameters)
+    //   * noImplicitReturns: true (error on missing returns)
+    //   * noFallthroughCasesInSwitch: true (error on fallthrough cases)
+    //
+    // - Explicitly set: strictNullChecks already enabled by strict mode
+    //   (kept explicit for clarity about null/undefined handling)
     "strictNullChecks": true
   }
 }
