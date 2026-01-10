@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import { AUTHOR } from "../../consts";
 
 const posts = (await getCollection("blog"))
   .filter((p) => !p.data.draft)
@@ -8,7 +9,7 @@ const posts = (await getCollection("blog"))
 
 ---
 
-<BaseLayout title="Writing — Adam LaCasse">
+<BaseLayout title={`Writing — ${AUTHOR}`}>
   <h1 class="page-title">Writing</h1>
   <p class="page-intro">
     Notes on software, projects, and whatever I’m learning.

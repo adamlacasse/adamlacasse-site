@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { AUTHOR } from "../consts";
 ---
 
-<BaseLayout title="Contact — Adam LaCasse">
+<BaseLayout title={`Contact — ${AUTHOR}`}>
   <h1 class="page-title">Contact</h1>
   <p class="page-intro">
     Email: <a href="mailto:hello@adamlacasse.dev">hello@adamlacasse.dev</a>

@@ -3,7 +3,6 @@ title: Now
 description: What I’m focused on lately — work, learning, and side projects.
 ---
 
-# Now
 
 A quick snapshot of what I’m focused on these days — professionally, creatively, and intellectually.
 

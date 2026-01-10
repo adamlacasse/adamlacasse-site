@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { AUTHOR } from "../consts";
 
 const projects = [
   {
@@ -21,7 +22,7 @@ const projects = [
 ---
 
 
-<BaseLayout title="Projects — Adam LaCasse">
+<BaseLayout title={`Projects — ${AUTHOR}`}>
   <h1 class="page-title">Projects</h1>
   <p class="page-intro">
     A living list. The hub stays stable; projects can come and go.

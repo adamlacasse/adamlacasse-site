@@ -1,5 +1,6 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
+import { AUTHOR } from "../consts";
 
 export async function GET(context) {
   const posts = (await getCollection("blog"))
@@ -7,7 +8,7 @@ export async function GET(context) {
     .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
   return rss({
-    title: "Adam LaCasse — Writing",
+    title: `${AUTHOR} — Writing`,
     description: "Notes on software, systems, and projects.",
     site: context.site,
     items: posts.map((p) => ({

@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import { AUTHOR } from "../consts";
 
 const { title, description, pubDate, updatedDate, tags = [] } = Astro.props;
 ---
 
-<BaseLayout title={`${title} — Adam LaCasse`} description={description}>
+<BaseLayout title={`${title} — ${AUTHOR}`} description={description}>
   <article class="prose">
     <header>
       <h1>{title}</h1>
