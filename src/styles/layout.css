@@ -18,6 +18,8 @@
 
 .site-main {
 	padding-bottom: 3.5rem;
+	/* Allow main to grow and push footer down */
+	flex: 1;
 }
 
 .site-footer {

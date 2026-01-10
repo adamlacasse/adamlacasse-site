@@ -2,7 +2,7 @@
 
 > **Last updated:** January 10, 2026 - ✅ **ALL ITEMS COMPLETE!**
 > 
-> High Priority: 5/5 ✅ | Medium Priority: 6/6 ✅ | Low Priority: 5/5 ✅
+> High Priority: 5/5 ✅ | Medium Priority: 6/6 ✅ | Low Priority: 7/7 ✅
 
 This file tracks identified issues and improvements for adamlacasse.dev. Items are organized by priority and category.
 
@@ -165,11 +165,17 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 	- Border colors adapted for dark backgrounds
 	- Input field styling optimized for readability
 
-- [ ] **Remove unused CSS** - Audit and remove:
-  - Unused component classes if any pages are removed
-  - Duplicate or overridden rules
+- [x] **Remove unused CSS** - Audited all CSS classes against page/component usage:
+  - Result: All classes actively used across site
+  - No unused selectors or duplicate rules found
+  - Total CSS: 16KB (8KB global + 8KB layout) — lean and optimal
 
-- [ ] **Optimize critical CSS** - Consider inlining above-the-fold styles if bundle size warrants
+- [x] **Optimize critical CSS** - Evaluated inlining above-the-fold styles:
+  - Decision: Do NOT inline (current approach optimal)
+  - Reasoning: 16KB total well under 50KB threshold for inlining consideration
+  - External CSS provides better caching across page loads
+  - Font preloading already implemented for performance
+  - HTTP/2 multiplexing eliminates old "reduce requests" concerns
 
 ---
 
