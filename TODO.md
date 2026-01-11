@@ -29,7 +29,9 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 ### Styling
 
 - [x] **Fix CSS duplication** - Remove duplicate `.prose a` rules in `src/styles/global.css` (lines 152-159 and 195-198)
-- [x] **Unify page gutters + theme parity** - `/projects` and `/contact` have correct left/right gutters but other pages don't. Audit all pages to ensure consistent container/padding, typography, and component spacing across templates; verify dark/light theming parity (including `prefers-color-scheme` and theme toggle), contrast, focus states, link/hover styles, and responsive breakpoints.
+- [x] **Unify page gutters + theme parity** - `/projects` and `/contact` have correct left/right gutters but other pages don't. Audit all pages to ensure consistent
+container/padding, typography, and component spacing across templates; verify dark/light theming parity (including `prefers-color-scheme` and theme toggle),
+contrast, focus states, link/hover styles, and responsive breakpoints.
 
 ---
 

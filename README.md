@@ -4,7 +4,8 @@ Static site for Adam LaCasse built with Astro 5 + MDX. Ships as a static build (
 
 ## Overview
 
-- Content lives in `src/content/blog` (Markdown/MDX) and is validated by `src/content/config.ts` (requires `title`, `description`, `pubDate`; optional `updatedDate`, `tags`, `draft`).
+- Content lives in `src/content/blog` (Markdown/MDX) and is validated by `src/content/config.ts` (requires `title`, `description`, `pubDate`;
+optional `updatedDate`, `tags`, `draft`).
 - Site metadata is defined in `src/consts.ts` (`AUTHOR`, `SITE_TITLE`, `SITE_DESCRIPTION`) and consumed by layouts/pages.
 - Layouts: `BaseLayout.astro` (chrome, meta, OG/Twitter tags, font preloads, nav/footer) and `BlogPostLayout.astro` (post wrapper).
 - SEO & perf: sitemap + robots.txt, RSS feed, OG/Twitter meta, font preloading, `_headers` with cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
@@ -16,13 +17,13 @@ Static site for Adam LaCasse built with Astro 5 + MDX. Ships as a static build (
 ```text
 public/          static assets, robots.txt, _headers
 src/
-	consts.ts      site metadata constants
-	assets/        images (e.g., blog placeholders)
-	styles/        global + layout CSS
-	layouts/       BaseLayout, BlogPostLayout
-	pages/         static pages (about, contact, now, projects, blog, rss)
-	content/       blog posts + content config (Zod schema)
-	components/    active components (ThemeToggle, HeaderLink)
+ consts.ts      site metadata constants
+ assets/        images (e.g., blog placeholders)
+ styles/        global + layout CSS
+ layouts/       BaseLayout, BlogPostLayout
+ pages/         static pages (about, contact, now, projects, blog, rss)
+ content/       blog posts + content config (Zod schema)
+ components/    active components (ThemeToggle, HeaderLink)
 ```
 
 ## Commands
@@ -98,10 +99,10 @@ src/
 - Styling: `src/styles/global.css` and `src/styles/layout.css` are active.
 - Theme management: `public/theme.js` handles dark/light mode toggling with localStorage persistence; activated via script tag in `BaseLayout.astro`.
 - Performance/SEO:
-	- `_headers` sets cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
-	- `robots.txt` and sitemap are in `public/`; RSS at `/rss.xml`.
+  - `_headers` sets cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
+  - `robots.txt` and sitemap are in `public/`; RSS at `/rss.xml`.
 - Social integrations:
-	- LinkedIn MCP can be used to automate publishing updates; current site includes a client-side LinkedIn share link on posts.
-	- For automation, consider a small script or workflow invoking MCP on new content.
+  - LinkedIn MCP can be used to automate publishing updates; current site includes a client-side LinkedIn share link on posts.
+  - For automation, consider a small script or workflow invoking MCP on new content.
 - Commands: `npm install`, `npm run dev`, `npm run build`, `npm run preview`.
 - Error triage: run `npm run build` to catch TypeScript/Zod schema validation errors.
