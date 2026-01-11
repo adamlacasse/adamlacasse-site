@@ -43,6 +43,11 @@
   border-top: 1px solid var(--color-border);
 }
 
+/* Increase spacing around footer links for better tap targets */
+.site-footer a {
+  margin: 0 var(--space-sm);
+}
+
 .site-nav {
   display: flex;
   align-items: baseline;
@@ -282,6 +287,27 @@
   font-size: var(--fs-sm);
 }
 
+/* Post share CTA */
+.post-share {
+  margin: var(--space-sm-md) 0;
+}
+
+.post-share a {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* Social icon styling for footer links */
+.social-icon {
+  inline-size: 1em;
+  block-size: 1em;
+  vertical-align: -0.125em;
+  margin-right: var(--space-xs);
+}
+
 /* Dark mode layout adjustments */
 @media (prefers-color-scheme: dark) {
   .site-brand {
@@ -303,6 +329,12 @@
   .post-tag {
     background: rgba(var(--gray-light), 0.3);
     color: rgb(var(--gray-dark));
+  }
+  .post-share a {
+    color: var(--accent);
+  }
+  .social-icon {
+    color: var(--accent);
   }
 }
 
@@ -326,6 +358,14 @@
 [data-theme='dark'] .post-tag {
   background: rgba(var(--gray-light), 0.3);
   color: rgb(var(--gray-dark));
+}
+
+[data-theme='dark'] .post-share a {
+  color: var(--accent);
+}
+
+[data-theme='dark'] .social-icon {
+  color: var(--accent);
 }
 
 /* Tablet breakpoint: adjust spacing and grid layouts */

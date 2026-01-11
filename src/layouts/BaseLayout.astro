@@ -103,9 +103,71 @@ const siteUrl = new URL(canonicalURL);
         <div>
           <small>© {new Date().getFullYear()} {AUTHOR}</small>
           <small>
-            <a href="https://github.com/adamlacasse" target="_blank" rel="noreferrer">GitHub</a>
+            <a
+              href="https://github.com/adamlacasse"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub profile"
+            >
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M7 7L3 12L7 17"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M10 7L14 17"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M17 7L21 12L17 17"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              GitHub
+            </a>
             {' · '}
-            <a href="/rss.xml">RSS</a>
+            <a
+              href="https://www.linkedin.com/in/adamlacasse/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn profile"
+            >
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  fill="currentColor"
+                  d="M4.983 3.5a2.5 2.5 0 1 1-4.999.001A2.5 2.5 0 0 1 4.983 3.5zM.5 8h4.967v16H.5V8zm7.033 0h4.76v2.182h.066c.663-1.24 2.285-2.54 4.708-2.54 4.514 0 7.933 2.587 7.933 7.97V24H20.27v-8.153c0-1.949-.038-4.457-2.712-4.457-2.716 0-3.131 2.126-3.131 4.317V24H7.533V8z"
+                ></path>
+              </svg>
+              LinkedIn
+            </a>
+            {' · '}
+            <a href="/rss.xml" aria-label="RSS feed">
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="5" cy="19" r="2" fill="currentColor"></circle>
+                <path
+                  d="M5 13a6 6 0 0 1 6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"></path>
+                <path
+                  d="M5 9a10 10 0 0 1 10 10"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"></path>
+              </svg>
+              RSS
+            </a>
           </small>
         </div>
       </div>

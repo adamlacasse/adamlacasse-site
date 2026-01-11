@@ -9,6 +9,7 @@ Static site for Adam LaCasse built with Astro 5 + MDX. Ships as a static build (
 - Layouts: `BaseLayout.astro` (chrome, meta, OG/Twitter tags, font preloads, nav/footer) and `BlogPostLayout.astro` (post wrapper).
 - SEO & perf: sitemap + robots.txt, RSS feed, OG/Twitter meta, font preloading, `_headers` with cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
 - Styling: `src/styles/global.css` and `src/styles/layout.css` are active. Unused starter components are archived in `src/components/archive/` for reference.
+- Footer links: GitHub, LinkedIn, and RSS are available in the footer for quick navigation.
 
 ## Project Structure (essentials)
 
@@ -39,6 +40,13 @@ src/
 - Images: prefer Astro `<Image />` when adding real images (none live today besides placeholders).
 - Open Graph: layouts accept `ogTitle`, `ogDescription`, `ogImage`; defaults to page title/description.
 - Caching: adjust `public/_headers` if deployment target handles headers differently.
+
+### Social Sharing
+
+- Blog posts include a "Share on LinkedIn" CTA rendered by `BlogPostLayout.astro`.
+- The link uses the page's canonical URL (derived from `Astro.site` + `Astro.url.pathname`), the post `title`, and `description` (as summary).
+- No server runtime is required; the CTA opens LinkedIn's share flow in a new tab.
+- If you need to customize behavior per post, pass an explicit `description` (frontmatter) and ensure `Astro.site` is set for correct absolute URLs.
 
 ## Content Authoring
 
@@ -91,5 +99,8 @@ src/
 - Performance/SEO:
   - `_headers` sets cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
   - `robots.txt` and sitemap are in `public/`; RSS at `/rss.xml`.
+- Social integrations:
+	- LinkedIn MCP can be used to automate publishing updates; current site includes a client-side LinkedIn share link on posts.
+	- For automation, consider a small script or workflow invoking MCP on new content.
 - Commands: `npm install`, `npm run dev`, `npm run build`, `npm run preview`.
 - Error triage: run `npm run build`; archived components should not be imported except from `components/archive/*` if needed for demos.
