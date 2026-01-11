@@ -2,13 +2,13 @@
   // Extends Astro's strict TypeScript configuration preset
   // https://docs.astro.build/en/guides/typescript/
   "extends": "astro/tsconfigs/strict",
-  
+
   // Includes all files and Astro's generated types
   "include": [".astro/types.d.ts", "**/*"],
-  
+
   // Excludes build output
   "exclude": ["dist"],
-  
+
   "compilerOptions": {
     // STRICT TYPE CHECKING ENABLED:
     // - Enabled via "astro/tsconfigs/strict" which sets:

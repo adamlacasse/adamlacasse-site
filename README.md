@@ -26,12 +26,12 @@ src/
 
 ## Commands
 
-| Command       | Action                                           |
-| :------------ | :----------------------------------------------- |
-| `npm install` | Install dependencies                             |
-| `npm run dev` | Start dev server at `localhost:4321`             |
-| `npm run build` | Build static site to `dist/`                   |
-| `npm run preview` | Preview the production build                 |
+| Command           | Action                               |
+| :---------------- | :----------------------------------- |
+| `npm install`     | Install dependencies                 |
+| `npm run dev`     | Start dev server at `localhost:4321` |
+| `npm run build`   | Build static site to `dist/`         |
+| `npm run preview` | Preview the production build         |
 
 ## Notes & Conventions
 
@@ -43,19 +43,19 @@ src/
 ## Content Authoring
 
 - Blog schema (validated in `src/content/config.ts`):
-	- Required: `title` (string), `description` (string), `pubDate` (Date)
-	- Optional: `updatedDate` (Date), `tags` (string[]), `draft` (boolean, defaults false)
+  - Required: `title` (string), `description` (string), `pubDate` (Date)
+  - Optional: `updatedDate` (Date), `tags` (string[]), `draft` (boolean, defaults false)
 - Draft workflow: set `draft: true`; drafts stay out of listings, RSS, and static paths. Clear the flag to publish.
 - Images: place in `src/assets/` or `public/`; prefer Astro `<Image />` for optimization when adding new images.
 - Open Graph per page: pass `ogTitle`, `ogDescription`, `ogImage` to `BaseLayout`; otherwise falls back to `title`/`description`.
 
 ### Add a Blog Post (checklist)
 
-1) Create `src/content/blog/my-post.md` (or `.mdx`).
-2) Add frontmatter: `title`, `description`, `pubDate`; optional `updatedDate`, `tags`, `draft`.
-3) Write content; use `<Image />` for new images; keep links absolute where needed.
-4) For drafts, set `draft: true`; remove to publish.
-5) Build locally: `npm run build` (schema validation will catch bad frontmatter/dates).
+1. Create `src/content/blog/my-post.md` (or `.mdx`).
+2. Add frontmatter: `title`, `description`, `pubDate`; optional `updatedDate`, `tags`, `draft`.
+3. Write content; use `<Image />` for new images; keep links absolute where needed.
+4. For drafts, set `draft: true`; remove to publish.
+5. Build locally: `npm run build` (schema validation will catch bad frontmatter/dates).
 
 ### Release Checklist
 
@@ -67,29 +67,29 @@ src/
 
 ### Add / Update Static Page (checklist)
 
-1) Create or edit page under `src/pages/` (e.g., `about.astro`, `projects.astro`).
-2) Use `BaseLayout` and pass `title`/`description`; add `ogTitle`/`ogDescription`/`ogImage` if page-specific OG is needed.
-3) Keep links and nav consistent; update nav only in `BaseLayout` if needed.
-4) If adding assets, place in `public/` or `src/assets/` and consider `<Image />` for optimization.
-5) Run `npm run build` to validate.
+1. Create or edit page under `src/pages/` (e.g., `about.astro`, `projects.astro`).
+2. Use `BaseLayout` and pass `title`/`description`; add `ogTitle`/`ogDescription`/`ogImage` if page-specific OG is needed.
+3. Keep links and nav consistent; update nav only in `BaseLayout` if needed.
+4. If adding assets, place in `public/` or `src/assets/` and consider `<Image />` for optimization.
+5. Run `npm run build` to validate.
 
 ### Update Site Metadata (checklist)
 
-1) Edit `src/consts.ts` (`AUTHOR`, `SITE_TITLE`, `SITE_DESCRIPTION`).
-2) Verify pages/layouts that pass explicit titles still make sense (e.g., `BaseLayout` title props).
-3) If nav text changes, update links in `BaseLayout.astro`.
-4) If social profiles change, update footer links in `BaseLayout.astro`.
-5) Run `npm run build` to ensure meta/OG render without errors.
+1. Edit `src/consts.ts` (`AUTHOR`, `SITE_TITLE`, `SITE_DESCRIPTION`).
+2. Verify pages/layouts that pass explicit titles still make sense (e.g., `BaseLayout` title props).
+3. If nav text changes, update links in `BaseLayout.astro`.
+4. If social profiles change, update footer links in `BaseLayout.astro`.
+5. Run `npm run build` to ensure meta/OG render without errors.
 
 ## Working With AI Agents (solo + AI team)
 
 - Source of truth for site meta: `src/consts.ts` (`AUTHOR`, `SITE_TITLE`, `SITE_DESCRIPTION`).
 - Layouts:
-	- `BaseLayout.astro`: nav/footer, global meta, OG/Twitter tags, canonical, font preloads.
-	- `BlogPostLayout.astro`: wraps posts, uses `BaseLayout` and frontmatter for title/description/dates/tags.
+  - `BaseLayout.astro`: nav/footer, global meta, OG/Twitter tags, canonical, font preloads.
+  - `BlogPostLayout.astro`: wraps posts, uses `BaseLayout` and frontmatter for title/description/dates/tags.
 - Styling: `src/styles/global.css` and `src/styles/layout.css` are active; starter components are archived under `src/components/archive/` to avoid accidental use.
 - Performance/SEO:
-	- `_headers` sets cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
-	- `robots.txt` and sitemap are in `public/`; RSS at `/rss.xml`.
+  - `_headers` sets cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
+  - `robots.txt` and sitemap are in `public/`; RSS at `/rss.xml`.
 - Commands: `npm install`, `npm run dev`, `npm run build`, `npm run preview`.
 - Error triage: run `npm run build`; archived components should not be imported except from `components/archive/*` if needed for demos.

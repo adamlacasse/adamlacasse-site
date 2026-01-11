@@ -31,49 +31,57 @@
 ## Code Quality & Formatting
 
 **Tooling:**
+
 - ESLint: Configured with TypeScript, Astro, and Prettier integration in [eslint.config.mjs](eslint.config.mjs). Rules enforce recommended practices for JS/TS/Astro.
 - Prettier: Configured in [.prettierrc](.prettierrc) with 100 char line length, single quotes, trailing commas (es5), and Astro plugin.
 - Markdownlint: Configured in [.markdownlint.json](.markdownlint.json) with 100 char line length (matching Prettier), duplicate headings allowed, exceptions for code blocks/tables/headings.
 - EditorConfig: Configured in [.editorconfig](.editorconfig) with 2-space indents, LF line endings, UTF-8, trim trailing whitespace (except .md files).
 
 **When to run formatting/linting:**
+
 - **Before committing code:** Always run `npm run format` (or `npm run lint:fix` if you prefer ESLint auto-fix).
 - **AI agents should:** Run format/lint commands after making file changes if unsure about style compliance.
 - **Check without changes:** Use `npm run format:check` or `npm run lint` to verify without modifying files.
 - **IDE integration:** VS Code should auto-format on save if configured; respect .editorconfig and .prettierrc settings.
 
 **Import ordering (enforced by ESLint):**
+
 1. Astro components/layouts (e.g., `import BaseLayout from '../layouts/BaseLayout.astro'`)
 2. Node modules/packages (e.g., `import { getCollection } from 'astro:content'`)
 3. Local utilities/constants (e.g., `import { SITE_TITLE } from '../consts'`)
 4. CSS imports last (e.g., `import '../styles/global.css'`)
 
 **File naming conventions:**
+
 - Components: PascalCase (e.g., `BaseLayout.astro`, `BlogPostLayout.astro`)
 - Pages: kebab-case or lowercase (e.g., `index.astro`, `[slug].astro`, `rss.xml.js`)
 - Utilities/configs: kebab-case (e.g., `content/config.ts`, `consts.ts`)
 - Styles: kebab-case (e.g., `global.css`, `layout.css`)
 
 **Comments/JSDoc:**
+
 - Add JSDoc comments for exported functions/types where purpose is not immediately obvious from name.
-- Inline comments should explain *why*, not *what* (code should be self-documenting).
+- Inline comments should explain _why_, not _what_ (code should be self-documenting).
 - Use `// TODO:` for intentional tech debt; add these to [TODO.md](TODO.md) if they're significant.
 
 ## Git Workflow & Conventions
 
 **Branch naming:**
+
 - Features: `feature/description` (e.g., `feature/add-tags-page`)
 - Fixes: `fix/description` (e.g., `fix/broken-rss-feed`)
 - Docs: `docs/description` (e.g., `docs/update-readme`)
 - Chores: `chore/description` (e.g., `chore/update-dependencies`)
 
 **Commit messages:**
+
 - Format: `type: brief description` (e.g., `feat: add tags filtering to blog index`)
 - Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 - Keep first line under 72 chars; add detailed explanation in body if needed.
 - Reference issues if applicable (e.g., `fix: resolve dark mode contrast issue (#12)`)
 
 **AI agent guidance:**
+
 - Commit after completing logical units of work (e.g., one feature, one bug fix).
 - Do not commit formatting-only changes mixed with logic changes; separate them.
 - If uncertain about commit message, describe changes and ask user for preferred format.
@@ -81,15 +89,18 @@
 ## TODO.md Workflow
 
 **When to update [TODO.md](TODO.md):**
+
 - **User explicitly requests it:** Add, update, or mark items complete as instructed.
 - **Discovering new issues during work:** Add them to the appropriate section with clear description.
 - **Completing tracked items:** Mark as `[x]` when done; do not remove completed items (they serve as project history).
 
 **When NOT to update TODO.md:**
+
 - Simple one-off requests that don't require tracking (e.g., "fix this typo").
 - Work that's immediately completed in the same session without multi-step planning.
 
 **Structure:**
+
 - Items organized by priority/category (Completed, High Priority, Content, Performance, etc.).
 - Use `[x]` for completed, `[ ]` for pending.
 - Include file paths and line numbers where relevant for AI agent context.
@@ -99,11 +110,13 @@
 **Current state:** No automated tests configured. No test framework, no test files, no CI/CD testing pipeline.
 
 **Approach:**
+
 - Manual testing via `npm run dev` (development server) and `npm run preview` (production build preview).
 - Build-time validation via TypeScript strict checks and Zod schema for content frontmatter.
 - Visual regression testing is manual (human review in browser).
 
 **AI agent guidance:**
+
 - Do not create test files or testing infrastructure unless explicitly requested by user.
 - Do not suggest adding tests unless user asks "how would I test this?"
 - If user wants to add testing later, recommend Vitest for unit tests, Playwright for e2e.
@@ -113,41 +126,47 @@
 When adding new components or modifying styles, follow these guidelines:
 
 **Spacing (always use variables):**
+
 ```css
-padding: var(--space-sm-md);  /* 12px, typical card/component padding */
-gap: var(--space-md);          /* 16px, standard flex/grid gaps */
-margin-top: var(--space-lg);   /* 24px, section spacing */
+padding: var(--space-sm-md); /* 12px, typical card/component padding */
+gap: var(--space-md); /* 16px, standard flex/grid gaps */
+margin-top: var(--space-lg); /* 24px, section spacing */
 ```
 
 **Typography (always use variables):**
+
 ```css
-font-size: var(--fs-lg);       /* 18px, large body text */
-font-size: var(--fs-xl);       /* 24px, subheadings */
-font-size: var(--fs-2xl);      /* 30px, section titles */
+font-size: var(--fs-lg); /* 18px, large body text */
+font-size: var(--fs-xl); /* 24px, subheadings */
+font-size: var(--fs-2xl); /* 30px, section titles */
 ```
 
 **Colors:**
+
 ```css
-border: 1px solid var(--color-border);              /* Standard borders */
-background: var(--color-success-light);             /* Success state background */
-color: var(--accent);                                /* Links and primary actions */
+border: 1px solid var(--color-border); /* Standard borders */
+background: var(--color-success-light); /* Success state background */
+color: var(--accent); /* Links and primary actions */
 ```
 
 **Component patterns:**
+
 - Cards: 12px padding (`--space-sm-md`), `--color-border`, 12px border-radius
 - Grids: Use `grid-template-columns: repeat(auto-fit, minmax(Xpx, 1fr))` with `gap: var(--space-sm-md)`
 - Sections: Vertical padding `var(--space-md-lg)` or `var(--space-xl)`
 - Buttons/CTAs: Use `flex` with `gap: var(--space-sm-md)` and `flex-wrap: wrap`
 
 **Responsive:**
+
 - Start mobile-first with base styles
 - Add tablet adjustments at `@media (max-width: 768px)` if needed
 - Mobile-specific at `@media (max-width: 720px)` (body font reduces to 18px)
 - Grid layouts automatically stack to single column on mobile
 
 **Never:**
+
 - Hardcode px values for spacing (except 1px borders)
 - Hardcode rgba() for borders (use `--color-border`)
 - Hardcode font-size with px or rem (use `--fs-*`)
 - Create styles without dark mode consideration (test with prefers-color-scheme)
-Questions or unclear areas? Tell me what to adjust and I’ll iterate.
+  Questions or unclear areas? Tell me what to adjust and I’ll iterate.

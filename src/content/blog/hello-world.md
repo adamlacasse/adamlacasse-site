@@ -1,8 +1,8 @@
 ---
-title: "Hello world"
-description: "Kicking off adamlacasse.dev as a hub for projects and writing."
+title: 'Hello world'
+description: 'Kicking off adamlacasse.dev as a hub for projects and writing.'
 pubDate: 2026-01-09
-tags: ["meta", "site"]
+tags: ['meta', 'site']
 draft: false
 ---
 
