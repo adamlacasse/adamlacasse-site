@@ -1,41 +1,65 @@
 # Copilot Instructions
 
-- Repo: Astro 5 static blog for adamlacasse.dev with MDX + sitemap integrations set in [astro.config.mjs](astro.config.mjs); no server runtime.
-- Install/run: `npm install`; `npm run dev` (localhost:4321); `npm run build`; `npm run preview` (scripts in [package.json](package.json#L1-L18)). No tests configured.
-- Content model: blog collection schema in [src/content/config.ts](src/content/config.ts#L1-L15) requires `title`, `description`, `pubDate`, optional `updatedDate`, `tags` array (default empty), and `draft` flag (default `false`). Posts live in [src/content/blog](src/content/blog).
-- Publishing rules: blog listings and feeds exclude drafts and sort newest-first via `getCollection("blog")` + filter/sort in [src/pages/blog/index.astro](src/pages/blog/index.astro#L1-L27) and [src/pages/rss.xml.js](src/pages/rss.xml.js#L1-L19); detail pages only build non-drafts in [src/pages/blog/[...slug].astro](src/pages/blog/%5B...slug%5D.astro#L1-L27).
-- Layouts: use [src/layouts/BaseLayout.astro](src/layouts/BaseLayout.astro#L1-L44) for site chrome (imports global.css + layout.css, renders header/nav/main/footer with semantic HTML, handles meta tags); [src/layouts/BlogPostLayout.astro](src/layouts/BlogPostLayout.astro#L1-L39) wraps posts with title/date/tag display and slots content. Keep titles/descriptions passed in; BaseLayout sets the `<title>`/description tags directly. All layout classes (`.site-header`, `.site-nav`, `.site-brand`, etc.) defined in layout.css. **Sticky footer pattern**: body uses flexbox (`display: flex`, `flex-direction: column`, `min-height: 100vh`) with `.site-main` set to `flex: 1` to ensure footer stays at viewport bottom on pages with minimal content.
-- Pages: homepage hero + featured tiles in [src/pages/index.astro](src/pages/index.astro); projects list data is hardcoded array in [src/pages/projects.astro](src/pages/projects.astro); about/contact are simple text pages.
-- RSS: generated at `/rss.xml` from the same filtered collection; keep `site` from context for absolute URLs in [src/pages/rss.xml.js](src/pages/rss.xml.js#L1-L19).
-- Styling: **Design system fully implemented** in [src/styles/global.css](src/styles/global.css) and [src/styles/layout.css](src/styles/layout.css).
-  - **Spacing scale** (rem-based): Use `--space-xs` (0.25rem/4px) through `--space-2xl` (2rem/32px) for ALL spacing. Never hardcode px values for spacing. Common: `--space-sm-md` (0.75rem/12px) for component padding, `--space-md` (1rem/16px) for standard gaps, `--space-lg` (1.5rem/24px) for section spacing.
-  - **Font scale** (1.25 ratio): Use `--fs-xs` (0.75rem/12px) through `--fs-4xl` (2.813rem/45px) for ALL font sizes. Headings: h1 uses `--fs-4xl`, h2 uses `--fs-3xl`, h3 uses `--fs-2xl`, h4 uses `--fs-xl`, h5 uses `--fs-lg`. Body text is 20px root.
-  - **Color tokens**: Use `--color-border` for all borders (replaces hardcoded rgba values). Semantic tokens: `--color-success`, `--color-error`, `--color-warning`, `--color-info` (all have `-light` variants for backgrounds).
-  - **Dark mode**: Fully implemented via `@media (prefers-color-scheme: dark)` with inverted color variables, light blue accents (#64b5f6), and optimized contrast. All components support dark mode automatically.
-  - **Responsive breakpoints**: Tablet (768px) reduces padding, stacks navigation, single-column grids. Mobile (720px) further reduces heading sizes and stacks all flex containers. Mobile-first approach.
+- Repo: Astro 5 static blog for adamlacasse.dev with MDX + sitemap integrations set in [astro.config.mjs](../astro.config.mjs); no server runtime.
+- Install/run: `npm install`; `npm run dev` (localhost:4321); `npm run build`; `npm run preview` (scripts in [package.json](../package.json)). No tests configured.
+- Content model: blog collection schema in [src/content/config.ts](../src/content/config.ts) requires `title`, `description`, `pubDate`, optional `updatedDate`,
+  `tags` array (default empty), and `draft` flag (default `false`). Posts live in [src/content/blog](../src/content/blog).
+- Publishing rules: blog listings and feeds exclude drafts and sort newest-first via `getCollection("blog")` + filter/sort in
+  [src/pages/blog/index.astro](../src/pages/blog/index.astro) and [src/pages/rss.xml.js](../src/pages/rss.xml.js); detail pages only build non-drafts in [src/pages/blog/[slug].astro](../src/pages/blog/[slug].astro).
+- Layouts: use [src/layouts/BaseLayout.astro](../src/layouts/BaseLayout.astro) for site chrome (imports global.css + layout.css, renders header/nav/main/footer
+  with semantic HTML, handles meta tags);
+  [src/layouts/BlogPostLayout.astro](../src/layouts/BlogPostLayout.astro) wraps posts with title/date/tag display and slots content. Keep titles/descriptions passed
+  in; BaseLayout sets the `<title>`/description tags directly.
+  All layout classes (`.site-header`, `.site-nav`, `.site-brand`, etc.) defined in layout.css. **Sticky footer pattern**: body uses flexbox
+  (`display: flex`, `flex-direction: column`, `min-height: 100vh`)
+  with `.site-main` set to `flex: 1` to ensure footer stays at viewport bottom on pages with minimal content.
+- Pages: homepage hero + featured tiles in [src/pages/index.astro](../src/pages/index.astro); projects list data is hardcoded array in [src/pages/projects.astro](../src/pages/projects.astro);
+  about/contact are simple text pages.
+- RSS: generated at `/rss.xml` from the same filtered collection; keep `site` from context for absolute URLs in [src/pages/rss.xml.js](../src/pages/rss.xml.js).
+- Styling: **Design system fully implemented** in [src/styles/global.css](../src/styles/global.css) and [src/styles/layout.css](../src/styles/layout.css).
+  - **Spacing scale** (rem-based): Use `--space-xs` (0.25rem/4px) through `--space-2xl` (2rem/32px) for ALL spacing. Never hardcode px values for spacing. Common:
+    `--space-sm-md` (0.75rem/12px) for component padding, `--space-md` (1rem/16px) for standard gaps, `--space-lg` (1.5rem/24px) for section spacing.
+  - **Font scale** (1.25 ratio): Use `--fs-xs` (0.75rem/12px) through `--fs-4xl` (2.813rem/45px) for ALL font sizes. Headings: h1 uses `--fs-4xl`, h2 uses `--fs-3xl`,
+    h3 uses `--fs-2xl`, h4 uses `--fs-xl`, h5 uses `--fs-lg`. Body text is 20px root.
+  - **Color tokens**: Use `--color-border` for all borders (replaces hardcoded rgba values). Semantic tokens: `--color-success`, `--color-error`,
+    `--color-warning`, `--color-info` (all have `-light` variants for backgrounds).
+  - **Dark mode**: Fully implemented via `@media (prefers-color-scheme: dark)` with inverted color variables, light blue accents (#64b5f6), and optimized contrast.
+    All components support dark mode automatically.
+  - **Responsive breakpoints**: Tablet (768px) reduces padding, stacks navigation, single-column grids. Mobile (720px) further reduces heading sizes and stacks
+    all flex containers. Mobile-first approach.
   - **Layout constraints**: Site containers max-width 980px; prose content max-width 75ch (for readability). Both intentional and documented.
-  - Font preloading configured in [src/layouts/BaseLayout.astro](src/layouts/BaseLayout.astro) for Atkinson regular/bold fonts.
+  - Font preloading configured in [src/layouts/BaseLayout.astro](../src/layouts/BaseLayout.astro) for Atkinson regular/bold fonts.
 - Active components: `ThemeToggle.astro` (theme switcher), `HeaderLink.astro` (used in MDX demo). Unused starter components have been removed.
-- Constants: site metadata lives in [src/consts.ts](src/consts.ts); import `SITE_TITLE`/`SITE_DESCRIPTION` for headers and meta tags. Projects data and nav links are currently hardcoded inline in pages; when adding reusable data structures, export them from consts.ts for consistency.
-- Integrations/SEO: Open Graph and Twitter Card meta tags implemented in [src/layouts/BaseLayout.astro](src/layouts/BaseLayout.astro) with `ogTitle`, `ogDescription`, `ogImage` props. Canonical URLs auto-generated. Sitemap configured in astro.config.mjs with `changefreq: 'weekly'` and `priority: 0.7`.
-- Draft workflow: mark `draft: true` in frontmatter to hide from listings, RSS, and static paths while keeping content renderable locally (still available if directly navigated during dev). Ensure `pubDate`/`updatedDate` parse as dates.
-- Assets: fonts served from [public/fonts](public/fonts); hero/og fallback image lives at [src/assets/blog-placeholder-1.jpg](src/assets/blog-placeholder-1.jpg).
-- Images: Sharp installed for optimization; use Astro's `<Image />` component for blog images and assets. Open Graph/social images require manual implementation per page.
-- MDX support is available; MDX posts can go under [src/content/blog](src/content/blog) alongside Markdown.
-- TypeScript: Strict mode enforced via `extends "astro/tsconfigs/strict"` in [tsconfig.json](tsconfig.json). All strict checks enabled: noImplicitAny, strictNullChecks, strictFunctionTypes, noUnusedLocals, noUnusedParameters, noImplicitReturns. Zod schema in content config validates blog frontmatter at build time.
-- Error handling: Zod schema catches malformed frontmatter at build; no custom runtime error pages or 404 defined. Failed date parsing or missing required fields will fail the build with clear errors.
+- Constants: site metadata lives in [src/consts.ts](../src/consts.ts); import `SITE_TITLE`/`SITE_DESCRIPTION` for headers and meta tags. Projects data and nav
+  links are currently hardcoded inline in pages; when adding reusable data structures, export them from consts.ts for consistency.
+- Integrations/SEO: Open Graph and Twitter Card meta tags implemented in [src/layouts/BaseLayout.astro](../src/layouts/BaseLayout.astro) with `ogTitle`, `ogDescription`,
+  `ogImage` props. Canonical URLs auto-generated.
+  Sitemap configured in astro.config.mjs with `changefreq: 'weekly'` and `priority: 0.7`.
+- Draft workflow: mark `draft: true` in frontmatter to hide from listings, RSS, and static paths while keeping content renderable locally (still available if
+  directly navigated during dev). Ensure `pubDate`/`updatedDate` parse as dates.
+- Assets: fonts served from [public/fonts](../public/fonts); hero/og fallback image lives at [src/assets/blog-placeholder-1.jpg](../src/assets/blog-placeholder-1.jpg).
+- Images: Sharp installed for optimization; use Astro's `<Image />` component for blog images and assets. Open Graph/social images require manual implementation
+  per page.
+- MDX support is available; MDX posts can go under [src/content/blog](../src/content/blog) alongside Markdown.
+- TypeScript: Strict mode enforced via `extends "astro/tsconfigs/strict"` in [tsconfig.json](../tsconfig.json). All strict checks enabled: noImplicitAny,
+  strictNullChecks, strictFunctionTypes, noUnusedLocals, noUnusedParameters, noImplicitReturns. Zod schema in content config validates blog frontmatter at build
+  time.
+- Error handling: Zod schema catches malformed frontmatter at build; no custom runtime error pages or 404 defined. Failed date parsing or missing required fields
+  will fail the build with clear errors.
 - Build output: Static site generates to `dist/` directory; no SSR/hybrid modes configured. All pages pre-rendered at build time via `astro build`.
-- Dependencies: Currently on Astro 5.x (5.16.8) with MDX 4.x and sitemap integrations. MDX 4.x requires Astro 5+; check compatibility matrix before major version upgrades. Sharp handles image optimization automatically.
+- Dependencies: Currently on Astro 5.x (5.16.8) with MDX 4.x and sitemap integrations. MDX 4.x requires Astro 5+; check compatibility matrix before major version
+  upgrades. Sharp handles image optimization automatically.
 - Preferred patterns: reuse BaseLayout/BlogPostLayout for consistent spacing/typography; preserve the hardcoded nav/footer links unless product decision changes.
 
 ## Code Quality & Formatting
 
 **Tooling:**
 
-- ESLint: Configured with TypeScript, Astro, and Prettier integration in [eslint.config.mjs](eslint.config.mjs). Rules enforce recommended practices for JS/TS/Astro.
-- Prettier: Configured in [.prettierrc](.prettierrc) with 100 char line length, single quotes, trailing commas (es5), and Astro plugin.
-- Markdownlint: Configured in [.markdownlint.json](.markdownlint.json) with 100 char line length (matching Prettier), duplicate headings allowed, exceptions for code blocks/tables/headings.
-- EditorConfig: Configured in [.editorconfig](.editorconfig) with 2-space indents, LF line endings, UTF-8, trim trailing whitespace (except .md files).
+- ESLint: Configured with TypeScript, Astro, and Prettier integration in [eslint.config.mjs](../eslint.config.mjs). Rules enforce recommended practices for JS/TS/Astro.
+- Prettier: Configured in [.prettierrc](../.prettierrc) with 100 char line length, single quotes, trailing commas (es5), and Astro plugin.
+- Markdownlint: Configured in [.markdownlint.json](../.markdownlint.json) with 100 char line length (matching Prettier), duplicate headings
+  allowed, exceptions for code blocks/tables/headings.
+- EditorConfig: Configured in [.editorconfig](../.editorconfig) with 2-space indents, LF line endings, UTF-8, trim trailing whitespace (except .md files).
 
 **When to run formatting/linting:**
 
@@ -62,7 +86,7 @@
 
 - Add JSDoc comments for exported functions/types where purpose is not immediately obvious from name.
 - Inline comments should explain _why_, not _what_ (code should be self-documenting).
-- Use `// TODO:` for intentional tech debt; add these to [TODO.md](TODO.md) if they're significant.
+- Use `// TODO:` for intentional tech debt; add these to [TODO.md](../TODO.md) if they're significant.
 
 ## Git Workflow & Conventions
 
@@ -88,7 +112,7 @@
 
 ## TODO.md Workflow
 
-**When to update [TODO.md](TODO.md):**
+**When to update [TODO.md](../TODO.md):**
 
 - **User explicitly requests it:** Add, update, or mark items complete as instructed.
 - **Discovering new issues during work:** Add them to the appropriate section with clear description.

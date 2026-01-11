@@ -5,7 +5,7 @@ Static site for Adam LaCasse built with Astro 5 + MDX. Ships as a static build (
 ## Overview
 
 - Content lives in `src/content/blog` (Markdown/MDX) and is validated by `src/content/config.ts` (requires `title`, `description`, `pubDate`;
-optional `updatedDate`, `tags`, `draft`).
+  optional `updatedDate`, `tags`, `draft`).
 - Site metadata is defined in `src/consts.ts` (`AUTHOR`, `SITE_TITLE`, `SITE_DESCRIPTION`) and consumed by layouts/pages.
 - Layouts: `BaseLayout.astro` (chrome, meta, OG/Twitter tags, font preloads, nav/footer) and `BlogPostLayout.astro` (post wrapper).
 - SEO & perf: sitemap + robots.txt, RSS feed, OG/Twitter meta, font preloading, `_headers` with cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
