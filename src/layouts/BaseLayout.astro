@@ -1,8 +1,10 @@
 ---
 import '../styles/global.css';
 import '../styles/layout.css';
+import { Image } from 'astro:assets';
 import { AUTHOR, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import logo from '../assets/lacasse-solutions.png';
 
 interface Props {
   title?: string;
@@ -71,7 +73,9 @@ const siteUrl = new URL(canonicalURL);
     <header class="site-header">
       <div class="site-container">
         <nav class="site-nav">
-          <a href="/" class="site-brand">{AUTHOR}</a>
+          <a href="/" class="site-brand">
+            <Image src={logo} alt={AUTHOR} width={240} height={240} />
+          </a>
           <div class="site-links">
             <a href="/about">About</a>
             <a href="/now">Now</a>

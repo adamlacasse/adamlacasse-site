@@ -267,6 +267,12 @@
   opacity: 0.9;
 }
 
+.last-updated {
+  margin: var(--space-sm-md) 0;
+  font-style: italic;
+  opacity: 0.8;
+}
+
 /* Blog post header/meta */
 .post-meta {
   opacity: 0.8;
@@ -316,6 +322,9 @@
 
   .site-nav {
     border-bottom: none;
+    display: flex;
+    align-items: flex-start;
+    /* justify-content: space-between; */
   }
 
   a {
