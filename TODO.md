@@ -1,6 +1,6 @@
 # Project TODO
 
-> **Last updated:** January 10, 2026
+> **Last updated:** January 11, 2026
 >
 > High Priority: 6/6 ✅ | Medium Priority: 6/6 ✅ | Low Priority: 7/7 ✅
 
@@ -53,12 +53,7 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 
 ### Code Quality
 
-- [x] **Handle unused starter components** - Delete or move to `/archive`:
-  - `src/components/BaseHead.astro`
-  - `src/components/Header.astro`
-  - `src/components/Footer.astro`
-  - `src/components/HeaderLink.astro`
-  - `src/components/FormattedDate.astro`
+- [x] **Handle unused starter components** - Deleted BaseHead, Header, Footer, FormattedDate from archive; moved active HeaderLink to main components folder
 - [x] **Update package.json metadata** - Fix:
   - `"name": "src"` → `"name": "adamlacasse-site"`
   - Add `description`, `author`, `license`, `repository` fields
@@ -244,12 +239,10 @@ _No items currently in progress._
     1. Event listener attached multiple times (removed one duplicate `<script src="/theme.js">` from BaseLayout, but issue persists)
     2. Race condition between script initialization and DOM readiness
     3. Possible event delegation or event handler cleanup issues
-    4. State synchronization problem between `src/scripts/theme.ts` and `public/theme.js` (two separate implementations)
   - **Affected files:**
     - `src/components/ThemeToggle.astro` - Button markup with id="theme-toggle"
     - `src/layouts/BaseLayout.astro` - Loads `/theme.js` script
     - `public/theme.js` - Public script that initializes theme toggle (uses `initThemeToggle()`)
-    - `src/scripts/theme.ts` - TypeScript module with exported functions (appears unused in build)
   - **Key observations:**
     - Theme script loads in `<head>` once, runs immediately and on DOMContentLoaded
     - Button rendered in nav via ThemeToggle component
@@ -259,8 +252,7 @@ _No items currently in progress._
     1. Add debug logging to `public/theme.js` to track event listener attachment and click event firing
     2. Check if `initThemeToggle()` is being called multiple times despite `{ once: true }` flag
     3. Verify the click handler is added with proper event listener cleanup
-    4. Consider consolidating `src/scripts/theme.ts` and `public/theme.js` to single source of truth
-    5. Test with browser DevTools to verify event listener count on button element
+    4. Test with browser DevTools to verify event listener count on button element
 
 - [x] **Dark mode toggle** - Implement client-side theme switcher:
   - Default to system preferences (`prefers-color-scheme`)

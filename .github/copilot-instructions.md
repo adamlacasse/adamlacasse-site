@@ -15,7 +15,7 @@
   - **Responsive breakpoints**: Tablet (768px) reduces padding, stacks navigation, single-column grids. Mobile (720px) further reduces heading sizes and stacks all flex containers. Mobile-first approach.
   - **Layout constraints**: Site containers max-width 980px; prose content max-width 75ch (for readability). Both intentional and documented.
   - Font preloading configured in [src/layouts/BaseLayout.astro](src/layouts/BaseLayout.astro) for Atkinson regular/bold fonts.
-- Components shipped by the Astro starter (Header, Footer, HeaderLink, FormattedDate) under [src/components](src/components) are unused in the live layout; avoid mixing them unless intentionally reverting to the starter theme.
+- Active components: `ThemeToggle.astro` (theme switcher), `HeaderLink.astro` (used in MDX demo). Unused starter components have been removed.
 - Constants: site metadata lives in [src/consts.ts](src/consts.ts); import `SITE_TITLE`/`SITE_DESCRIPTION` for headers and meta tags. Projects data and nav links are currently hardcoded inline in pages; when adding reusable data structures, export them from consts.ts for consistency.
 - Integrations/SEO: Open Graph and Twitter Card meta tags implemented in [src/layouts/BaseLayout.astro](src/layouts/BaseLayout.astro) with `ogTitle`, `ogDescription`, `ogImage` props. Canonical URLs auto-generated. Sitemap configured in astro.config.mjs with `changefreq: 'weekly'` and `priority: 0.7`.
 - Draft workflow: mark `draft: true` in frontmatter to hide from listings, RSS, and static paths while keeping content renderable locally (still available if directly navigated during dev). Ensure `pubDate`/`updatedDate` parse as dates.
