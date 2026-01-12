@@ -193,7 +193,6 @@ This file tracks identified issues and improvements for adamlacasse.dev. Items a
 
 ### Asset Reference ✅ Verified
 
-- Placeholder images exist: `blog-placeholder-1.jpg` through `blog-placeholder-5.jpg` and `blog-placeholder-about.jpg`
 - **Status:** Assets ready for use when blog posts need featured images
 
 ### Dark Mode Decision ✅ Implemented
