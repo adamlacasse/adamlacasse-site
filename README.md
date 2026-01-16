@@ -11,6 +11,7 @@ Static site for Adam LaCasse built with Astro 5 + MDX. Ships as a static build (
 - SEO & perf: sitemap + robots.txt, RSS feed, OG/Twitter meta, font preloading, `_headers` with cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
 - Styling: `src/styles/global.css` and `src/styles/layout.css` are active.
 - Footer links: GitHub, LinkedIn, and RSS are available in the footer for quick navigation.
+- **Deployment:** Hosted on [Cloudflare Pages](https://pages.cloudflare.com/); static build (`npm run build` → `dist/`) is deployed automatically. Cache rules configured via `public/_headers`.
 
 ## Project Structure (essentials)
 
@@ -40,7 +41,7 @@ src/
 - Draft posts: set `draft: true` in frontmatter to exclude from listings/RSS/paths.
 - Images: prefer Astro `<Image />` when adding real images (none live today besides placeholders).
 - Open Graph: layouts accept `ogTitle`, `ogDescription`, `ogImage`; defaults to page title/description.
-- Caching: adjust `public/_headers` if deployment target handles headers differently.
+- Caching: `public/_headers` configures cache rules on Cloudflare Pages (fonts/images long-term, HTML/feeds short-term).
 
 ### Social Sharing
 

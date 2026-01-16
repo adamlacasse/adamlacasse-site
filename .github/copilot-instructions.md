@@ -1,6 +1,7 @@
 # Copilot Instructions
 
 - Repo: Astro 5 static blog for adamlacasse.dev with MDX + sitemap integrations set in [astro.config.mjs](../astro.config.mjs); no server runtime.
+- **Deployment:** Hosted on [Cloudflare Pages](https://pages.cloudflare.com/); static build outputs to `dist/` and is auto-deployed. Cache strategy configured via `public/_headers`.
 - Install/run: `npm install`; `npm run dev` (localhost:4321); `npm run build`; `npm run preview` (scripts in [package.json](../package.json)). No tests configured.
 - Content model: blog collection schema in [src/content/config.ts](../src/content/config.ts) requires `title`, `description`, `pubDate`, optional `updatedDate`,
   `tags` array (default empty), and `draft` flag (default `false`). Posts live in [src/content/blog](../src/content/blog).
