@@ -1,0 +1,85 @@
+---
+// Reusable resume content component
+// Used by both resume.astro (web) and resume/pdf.astro (print)
+import { resumeData } from '../data/resume';
+---
+
+<div class="resume-content">
+  <section class="resume-section">
+    <h2 class="resume-section-title">Summary</h2>
+    <p class="resume-summary" set:html={resumeData.summary} />
+  </section>
+
+  <section class="resume-section">
+    <h2 class="resume-section-title">Core Skills</h2>
+    <ul class="resume-skills">
+      {
+        resumeData.skills.map((skill) => (
+          <li>
+            <strong>{skill.category}:</strong>
+            {skill.items}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="resume-section">
+    <h2 class="resume-section-title">Experience</h2>
+
+    {
+      resumeData.experience.map((role) => (
+        <article class="resume-role">
+          <div class="resume-role-header">
+            <div class="resume-role-info">
+              <h3 class="resume-role-title">
+                {role.company} — {role.title}
+              </h3>
+              <p class="resume-role-subtitle">{role.subtitle}</p>
+            </div>
+            <div class="resume-role-dates">{role.dates}</div>
+          </div>
+
+          <ul class="resume-role-list">
+            {role.achievements.map((achievement) => (
+              <li set:html={achievement} />
+            ))}
+          </ul>
+
+          {role.tech && (
+            <div class="resume-tech">
+              <strong>Tech:</strong> {role.tech}
+            </div>
+          )}
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="resume-section">
+    <h2 class="resume-section-title">Education</h2>
+    <ul class="resume-education">
+      {
+        resumeData.education.map((edu) => (
+          <li>
+            <div class="resume-edu-content">
+              <div>
+                <strong>{edu.degree}</strong> — {edu.school}
+              </div>
+              {edu.date && <div class="resume-edu-date">{edu.date}</div>}
+            </div>
+            {edu.note && <p class="resume-edu-note">{edu.note}</p>}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="resume-footer-section">
+    <div class="resume-footer-content">
+      <div><strong>Daily:</strong> {resumeData.dailyTech}</div>
+      <div><strong>Project:</strong> {resumeData.projectTech}</div>
+      <div><strong>Portfolio:</strong> <a href="/">adamlacasse.dev</a></div>
+    </div>
+  </section>
+</div>

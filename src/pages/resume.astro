@@ -1,0 +1,413 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResumeContent from '../components/ResumeContent.astro';
+import { AUTHOR } from '../consts';
+import { resumeData } from '../data/resume';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: resumeData.name,
+  jobTitle: 'Senior Software Engineer',
+  description: resumeData.summary.replace(/<[^>]*>/g, ''),
+  url: 'https://adamlacasse.dev',
+  sameAs: [resumeData.github, resumeData.linkedin],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Atkinson',
+    addressRegion: 'NH',
+    addressCountry: 'US',
+  },
+  knowsAbout: [
+    'TypeScript',
+    'React',
+    'Node.js',
+    'Java',
+    'AWS',
+    'Web Architecture',
+    'API Design',
+    'Software Engineering',
+  ],
+};
+---
+
+<BaseLayout
+  title={`Resume — ${AUTHOR}`}
+  description="Senior software engineer specializing in client platforms, web architecture, and foundational systems for enterprise applications."
+  contentWidth="narrow"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+  <div class="resume-header">
+    <h1 class="resume-name">{resumeData.name}</h1>
+    <p class="resume-headline">{resumeData.headline}</p>
+
+    <div class="resume-meta">
+      <span>{resumeData.location}</span>
+      <span>{resumeData.phone}</span>
+      <span><a href={`mailto:${resumeData.email}`} class="resume-link">{resumeData.email}</a></span>
+      <span
+        ><a
+          href={`https://${resumeData.website}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="resume-link">{resumeData.website}</a
+        ></span
+      >
+      <span
+        ><a href={resumeData.github} target="_blank" rel="noopener noreferrer" class="resume-link"
+          >GitHub</a
+        ></span
+      >
+      <span
+        ><a href={resumeData.linkedin} target="_blank" rel="noopener noreferrer" class="resume-link"
+          >LinkedIn</a
+        ></span
+      >
+    </div>
+
+    <div class="resume-actions">
+      <a href="/resume/pdf" target="_blank" class="btn-download">PDF Optimized Version →</a>
+    </div>
+  </div>
+
+  <ResumeContent />
+
+  <style>
+    /* Resume-specific styling using the site's design system */
+    /* Override accent color for a more sophisticated, muted blue */
+    :root {
+      --resume-accent: #0055b8;
+      --resume-accent-dark: #003d82;
+    }
+
+    .resume-header {
+      padding: var(--space-lg) var(--space-md-lg);
+      background: rgba(var(--gray-light), 0.3);
+      border-radius: 12px;
+      border-left: 4px solid var(--resume-accent);
+      margin-bottom: var(--space-xl);
+    }
+
+    .resume-name {
+      font-size: var(--fs-3xl);
+      margin: 0 0 var(--space-sm);
+      color: var(--resume-accent);
+      letter-spacing: -0.5px;
+    }
+
+    .resume-headline {
+      font-size: var(--fs-lg);
+      font-weight: 600;
+      color: rgb(var(--muted));
+      margin: 0 0 var(--space-md);
+      letter-spacing: 0.2px;
+    }
+
+    .resume-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm) var(--space-md);
+      font-size: var(--fs-base);
+      color: rgb(var(--muted));
+      margin-bottom: var(--space-md);
+    }
+
+    .resume-meta span {
+      white-space: nowrap;
+    }
+
+    .resume-link {
+      color: var(--resume-accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(var(--gray), 0.3);
+      font-weight: 550;
+      transition:
+        border-color 0.2s,
+        color 0.2s;
+    }
+
+    .resume-link:hover {
+      border-bottom-color: var(--resume-accent);
+      color: var(--resume-accent-dark);
+    }
+
+    .resume-actions {
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .btn-download {
+      display: inline-block;
+      padding: var(--space-sm) var(--space-md);
+      background: transparent;
+      color: var(--resume-accent);
+      text-decoration: none;
+      border: 1.5px solid var(--resume-accent);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: var(--fs-base);
+      transition:
+        background 0.2s,
+        border-color 0.2s,
+        color 0.2s,
+        transform 0.1s;
+    }
+
+    .btn-download:hover {
+      background: var(--resume-accent);
+      color: white;
+      border-color: var(--resume-accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .resume-section {
+      margin: var(--space-xl) 0;
+    }
+
+    .resume-section-title {
+      font-size: var(--fs-xl);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--resume-accent);
+      margin: 0 0 var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    .resume-summary {
+      font-size: var(--fs-lg);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .resume-summary strong {
+      font-weight: 700;
+      color: var(--resume-accent);
+    }
+
+    .resume-skills {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: var(--space-sm-md);
+    }
+
+    .resume-skills li {
+      padding: var(--space-sm-md) var(--space-md);
+      background: rgba(var(--gray-light), 0.25);
+      border-left: 3px solid var(--resume-accent);
+      border-radius: 6px;
+      font-size: var(--fs-base);
+      line-height: 1.6;
+    }
+
+    .resume-skills strong {
+      font-weight: 750;
+      color: var(--resume-accent);
+    }
+
+    .resume-role {
+      margin: var(--space-lg) 0;
+      padding: var(--space-md-lg);
+      background: rgba(var(--gray-light), 0.15);
+      border-radius: 12px;
+      border: 1px solid var(--color-border);
+    }
+
+    .resume-role-header {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-md);
+      align-items: baseline;
+      margin-bottom: var(--space-sm-md);
+      flex-wrap: wrap;
+    }
+
+    .resume-role-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .resume-role-title {
+      font-size: var(--fs-xl);
+      font-weight: 850;
+      color: var(--resume-accent);
+      margin: 0 0 var(--space-xs);
+      letter-spacing: -0.2px;
+    }
+
+    .resume-role-subtitle {
+      font-size: var(--fs-base);
+      font-weight: 600;
+      color: rgb(var(--muted));
+      margin: 0;
+    }
+
+    .resume-role-dates {
+      font-size: var(--fs-base);
+      font-weight: 700;
+      color: rgb(var(--muted));
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+
+    .resume-role-list {
+      margin: var(--space-md) 0 0;
+      padding-left: var(--space-lg);
+    }
+
+    .resume-role-list li {
+      margin: var(--space-sm) 0;
+      line-height: 1.7;
+    }
+
+    .resume-role-list li::marker {
+      color: var(--resume-accent);
+    }
+
+    .resume-role-list strong {
+      font-weight: 700;
+      color: var(--resume-accent);
+    }
+
+    .resume-tech {
+      margin-top: var(--space-md);
+      padding: var(--space-sm-md) var(--space-md);
+      background: rgba(var(--gray-light), 0.3);
+      border-left: 2px solid var(--resume-accent);
+      border-radius: 6px;
+      font-size: var(--fs-sm);
+      color: rgb(var(--muted));
+    }
+
+    .resume-tech strong {
+      font-weight: 750;
+      color: var(--resume-accent);
+    }
+
+    .resume-education {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .resume-education li {
+      padding: var(--space-md);
+      background: rgba(var(--gray-light), 0.2);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+    }
+
+    .resume-edu-content {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-md);
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .resume-edu-content strong {
+      font-weight: 750;
+      color: var(--resume-accent);
+    }
+
+    .resume-edu-date {
+      font-weight: 600;
+      color: rgb(var(--light));
+      white-space: nowrap;
+      font-size: var(--fs-sm);
+    }
+
+    .resume-edu-note {
+      margin: var(--space-xs) 0 0;
+      color: rgb(var(--muted));
+      font-size: var(--fs-sm);
+      font-style: italic;
+    }
+
+    .resume-footer-section {
+      margin-top: var(--space-xl);
+      padding: var(--space-md-lg);
+      background: rgba(var(--gray-light), 0.25);
+      border-radius: 12px;
+      border-top: 2px solid var(--color-border);
+    }
+
+    .resume-footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm) var(--space-lg);
+      font-size: var(--fs-base);
+      color: rgb(var(--muted));
+    }
+
+    .resume-footer-content strong {
+      font-weight: 750;
+      color: var(--resume-accent);
+    }
+
+    .resume-footer-content a {
+      color: var(--resume-accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(var(--gray), 0.3);
+    }
+
+    .resume-footer-content a:hover {
+      border-bottom-color: var(--resume-accent);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .resume-header {
+        padding: var(--space-md);
+      }
+
+      .resume-name {
+        font-size: var(--fs-2xl);
+      }
+
+      .resume-role {
+        padding: var(--space-md);
+      }
+
+      .resume-role-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .resume-role-info {
+        min-width: auto;
+      }
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      .btn-download {
+        background: var(--accent);
+        color: var(--black);
+      }
+
+      .btn-download:hover {
+        background: var(--accent-dark);
+      }
+    }
+
+    [data-theme='dark'] .btn-download {
+      background: transparent;
+      color: var(--resume-accent);
+      border: 1.5px solid var(--resume-accent);
+    }
+
+    [data-theme='dark'] .btn-download:hover {
+      background: var(--resume-accent);
+      color: rgb(var(--black));
+      border-color: var(--resume-accent-dark);
+    }
+  </style>
+</BaseLayout>
