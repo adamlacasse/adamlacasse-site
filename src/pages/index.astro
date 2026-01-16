@@ -4,42 +4,54 @@ import { AUTHOR } from '../consts';
 ---
 
 <BaseLayout title={AUTHOR}>
-  <section class="hero-section">
-    <h1 class="hero-title">Hi, I'm Adam 👋</h1>
-    <p class="hero-intro">
-      I'm a Senior full stack software engineer with a business background. I focus on building
-      software that serves people, process, and long-term outcomes — not just technical
-      requirements. I value collaboration, clear communication, and teams built on trust over
-      competition.
-    </p>
+  <section class="hero is-medium">
+    <div class="hero-body">
+      <h1 class="title is-1">Hi, I'm Adam 👋</h1>
+      <p class="subtitle is-4">
+        I'm a Senior full stack software engineer with a business background. I focus on building
+        software that serves people, process, and long-term outcomes — not just technical
+        requirements. I value collaboration, clear communication, and teams built on trust over
+        competition.
+      </p>
 
-    <div class="hero-cta">
-      <a href="/projects">Explore projects →</a>
-      <a href="/blog">Read writing →</a>
+      <div class="buttons">
+        <a href="/projects" class="button is-link">Explore projects →</a>
+        <a href="/blog" class="button is-link is-light">Read writing →</a>
+      </div>
     </div>
   </section>
 
-  <section class="featured-section">
-    <h2 class="section-title">Featured</h2>
+  <section class="section">
+    <h2 class="title is-3 mb-5">Featured</h2>
 
-    <div class="card-grid">
-      <article class="card">
-        <h3 class="card-title">Freq Show</h3>
-        <p class="card-description">A music-nerd app for deep artist/album/song discovery.</p>
-        <a href="https://freq-show.adamlacasse.dev">freq-show.adamlacasse.dev →</a>
-      </article>
+    <div class="columns">
+      <div class="column">
+        <div class="box">
+          <h3 class="title is-5">Freq Show</h3>
+          <p>A music-nerd app for deep artist/album/song discovery.</p>
+          <a href="https://freq-show.adamlacasse.dev" class="button is-small is-link is-light mt-3">
+            freq-show.adamlacasse.dev →
+          </a>
+        </div>
+      </div>
 
-      <article class="card">
-        <h3 class="card-title">North Flow</h3>
-        <p class="card-description">A mindfulness/gratitude check-in project.</p>
-        <a href="https://northflow.adamlacasse.dev">northflow.adamlacasse.dev →</a>
-      </article>
+      <div class="column">
+        <div class="box">
+          <h3 class="title is-5">North Flow</h3>
+          <p>A mindfulness/gratitude check-in project.</p>
+          <a href="https://northflow.adamlacasse.dev" class="button is-small is-link is-light mt-3">
+            northflow.adamlacasse.dev →
+          </a>
+        </div>
+      </div>
 
-      <article class="card">
-        <h3 class="card-title">Writing</h3>
-        <p class="card-description">Musings on software, music, and life.</p>
-        <a href="/blog">Go to /blog →</a>
-      </article>
+      <div class="column">
+        <div class="box">
+          <h3 class="title is-5">Writing</h3>
+          <p>Musings on software, music, and life.</p>
+          <a href="/blog" class="button is-small is-link is-light mt-3">Go to /blog →</a>
+        </div>
+      </div>
     </div>
   </section>
 </BaseLayout>

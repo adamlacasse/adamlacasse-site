@@ -21,25 +21,33 @@ const projects = [
 ---
 
 <BaseLayout title={`Projects — ${AUTHOR}`}>
-  <h1 class="page-title">Projects</h1>
-  <p class="page-intro">A living list. The hub stays stable; projects can come and go.</p>
+  <h1 class="title is-2">Projects</h1>
+  <p class="subtitle">A living list. The hub stays stable; projects can come and go.</p>
 
-  <div class="project-grid">
+  <div class="columns is-multiline">
     {
       projects.map((p) => (
-        <article class="project-card">
-          <div class="project-header">
-            <h2 class="project-title">{p.name}</h2>
-            <small class="project-status">{p.status}</small>
+        <div class="column is-half">
+          <div class="card">
+            <div class="card-content">
+              <div class="level">
+                <div class="level-left">
+                  <h2 class="title is-4">{p.name}</h2>
+                </div>
+                <div class="level-right">
+                  <span class="tag is-success is-light">{p.status}</span>
+                </div>
+              </div>
+              <p>{p.description}</p>
+            </div>
+            <footer class="card-footer">
+              <a href={p.href} class="card-footer-item">Live →</a>
+              <a href={p.repo} target="_blank" rel="noreferrer" class="card-footer-item">
+                Repo →
+              </a>
+            </footer>
           </div>
-          <p class="project-description">{p.description}</p>
-          <div class="project-links">
-            <a href={p.href}>Live →</a>
-            <a href={p.repo} target="_blank" rel="noreferrer">
-              Repo →
-            </a>
-          </div>
-        </article>
+        </div>
       ))
     }
   </div>

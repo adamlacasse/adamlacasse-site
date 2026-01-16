@@ -4,15 +4,15 @@
 import { resumeData } from '../data/resume';
 ---
 
-<div class="resume-content">
-  <section class="resume-section">
-    <h2 class="resume-section-title">Summary</h2>
-    <p class="resume-summary" set:html={resumeData.summary} />
+<div>
+  <section>
+    <h2>Summary</h2>
+    <p set:html={resumeData.summary} />
   </section>
 
-  <section class="resume-section">
-    <h2 class="resume-section-title">Core Skills</h2>
-    <ul class="resume-skills">
+  <section>
+    <h2>Core Skills</h2>
+    <ul>
       {
         resumeData.skills.map((skill) => (
           <li>
@@ -24,30 +24,30 @@ import { resumeData } from '../data/resume';
     </ul>
   </section>
 
-  <section class="resume-section">
-    <h2 class="resume-section-title">Experience</h2>
+  <section>
+    <h2>Experience</h2>
 
     {
       resumeData.experience.map((role) => (
-        <article class="resume-role">
-          <div class="resume-role-header">
-            <div class="resume-role-info">
-              <h3 class="resume-role-title">
+        <article>
+          <div>
+            <div>
+              <h3>
                 {role.company} — {role.title}
               </h3>
-              <p class="resume-role-subtitle">{role.subtitle}</p>
+              <p>{role.subtitle}</p>
             </div>
-            <div class="resume-role-dates">{role.dates}</div>
+            <div>{role.dates}</div>
           </div>
 
-          <ul class="resume-role-list">
+          <ul>
             {role.achievements.map((achievement) => (
               <li set:html={achievement} />
             ))}
           </ul>
 
           {role.tech && (
-            <div class="resume-tech">
+            <div>
               <strong>Tech:</strong> {role.tech}
             </div>
           )}
@@ -56,27 +56,27 @@ import { resumeData } from '../data/resume';
     }
   </section>
 
-  <section class="resume-section">
-    <h2 class="resume-section-title">Education</h2>
-    <ul class="resume-education">
+  <section>
+    <h2>Education</h2>
+    <ul>
       {
         resumeData.education.map((edu) => (
           <li>
-            <div class="resume-edu-content">
+            <div>
               <div>
                 <strong>{edu.degree}</strong> — {edu.school}
               </div>
-              {edu.date && <div class="resume-edu-date">{edu.date}</div>}
+              {edu.date && <div>{edu.date}</div>}
             </div>
-            {edu.note && <p class="resume-edu-note">{edu.note}</p>}
+            {edu.note && <p>{edu.note}</p>}
           </li>
         ))
       }
     </ul>
   </section>
 
-  <section class="resume-footer-section">
-    <div class="resume-footer-content">
+  <section>
+    <div>
       <div><strong>Daily:</strong> {resumeData.dailyTech}</div>
       <div><strong>Project:</strong> {resumeData.projectTech}</div>
       <div><strong>Portfolio:</strong> <a href="/">adamlacasse.dev</a></div>

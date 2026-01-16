@@ -17,7 +17,6 @@
 - Pages: homepage hero + featured tiles in [src/pages/index.astro](../src/pages/index.astro); projects list data is hardcoded array in [src/pages/projects.astro](../src/pages/projects.astro);
   about/contact are simple text pages.
 - RSS: generated at `/rss.xml` from the same filtered collection; keep `site` from context for absolute URLs in [src/pages/rss.xml.js](../src/pages/rss.xml.js).
-- Styling: **Design system fully implemented** in [src/styles/global.css](../src/styles/global.css) and [src/styles/layout.css](../src/styles/layout.css).
   - **Spacing scale** (rem-based): Use `--space-xs` (0.25rem/4px) through `--space-2xl` (2rem/32px) for ALL spacing. Never hardcode px values for spacing. Common:
     `--space-sm-md` (0.75rem/12px) for component padding, `--space-md` (1rem/16px) for standard gaps, `--space-lg` (1.5rem/24px) for section spacing.
   - **Font scale** (1.25 ratio): Use `--fs-xs` (0.75rem/12px) through `--fs-4xl` (2.813rem/45px) for ALL font sizes. Headings: h1 uses `--fs-4xl`, h2 uses `--fs-3xl`,
@@ -65,7 +64,6 @@
 **When to run formatting/linting:**
 
 - **Before committing code:** Always run `npm run format` (or `npm run lint:fix` if you prefer ESLint auto-fix).
-- **AI agents should:** Run format/lint commands after making file changes if unsure about style compliance.
 - **Check without changes:** Use `npm run format:check` or `npm run lint` to verify without modifying files.
 - **IDE integration:** VS Code should auto-format on save if configured; respect .editorconfig and .prettierrc settings.
 
@@ -74,14 +72,12 @@
 1. Astro components/layouts (e.g., `import BaseLayout from '../layouts/BaseLayout.astro'`)
 2. Node modules/packages (e.g., `import { getCollection } from 'astro:content'`)
 3. Local utilities/constants (e.g., `import { SITE_TITLE } from '../consts'`)
-4. CSS imports last (e.g., `import '../styles/global.css'`)
 
 **File naming conventions:**
 
 - Components: PascalCase (e.g., `BaseLayout.astro`, `BlogPostLayout.astro`)
 - Pages: kebab-case or lowercase (e.g., `index.astro`, `[slug].astro`, `rss.xml.js`)
 - Utilities/configs: kebab-case (e.g., `content/config.ts`, `consts.ts`)
-- Styles: kebab-case (e.g., `global.css`, `layout.css`)
 
 **Comments/JSDoc:**
 
@@ -145,53 +141,3 @@
 - Do not create test files or testing infrastructure unless explicitly requested by user.
 - Do not suggest adding tests unless user asks "how would I test this?"
 - If user wants to add testing later, recommend Vitest for unit tests, Playwright for e2e.
-
-## Design System Quick Reference
-
-When adding new components or modifying styles, follow these guidelines:
-
-**Spacing (always use variables):**
-
-```css
-padding: var(--space-sm-md); /* 12px, typical card/component padding */
-gap: var(--space-md); /* 16px, standard flex/grid gaps */
-margin-top: var(--space-lg); /* 24px, section spacing */
-```
-
-**Typography (always use variables):**
-
-```css
-font-size: var(--fs-lg); /* 18px, large body text */
-font-size: var(--fs-xl); /* 24px, subheadings */
-font-size: var(--fs-2xl); /* 30px, section titles */
-```
-
-**Colors:**
-
-```css
-border: 1px solid var(--color-border); /* Standard borders */
-background: var(--color-success-light); /* Success state background */
-color: var(--accent); /* Links and primary actions */
-```
-
-**Component patterns:**
-
-- Cards: 12px padding (`--space-sm-md`), `--color-border`, 12px border-radius
-- Grids: Use `grid-template-columns: repeat(auto-fit, minmax(Xpx, 1fr))` with `gap: var(--space-sm-md)`
-- Sections: Vertical padding `var(--space-md-lg)` or `var(--space-xl)`
-- Buttons/CTAs: Use `flex` with `gap: var(--space-sm-md)` and `flex-wrap: wrap`
-
-**Responsive:**
-
-- Start mobile-first with base styles
-- Add tablet adjustments at `@media (max-width: 768px)` if needed
-- Mobile-specific at `@media (max-width: 720px)` (body font reduces to 18px)
-- Grid layouts automatically stack to single column on mobile
-
-**Never:**
-
-- Hardcode px values for spacing (except 1px borders)
-- Hardcode rgba() for borders (use `--color-border`)
-- Hardcode font-size with px or rem (use `--fs-*`)
-- Create styles without dark mode consideration (test with prefers-color-scheme)
-  Questions or unclear areas? Tell me what to adjust and I’ll iterate.

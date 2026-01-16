@@ -1,9 +1,6 @@
 ---
-import '../styles/global.css';
-import '../styles/layout.css';
 import { Image } from 'astro:assets';
 import { AUTHOR, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import ThemeToggle from '../components/ThemeToggle.astro';
 import logo from '../assets/lacasse-solutions.png';
 
 interface Props {
@@ -55,124 +52,75 @@ const siteUrl = new URL(canonicalURL);
     {ogImage && <meta property="twitter:image" content={new URL(ogImage, Astro.site).toString()} />}
 
     <meta name="color-scheme" content="light dark" />
-    <link rel="icon" href="/favicon.svg" />
-    <link
-      rel="preload"
-      href="/fonts/atkinson-regular.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
-
-    <!-- Theme initialization script (external) -->
-    <script src="/theme.js" type="module"></script>
+    <link rel="icon" href="/pc.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
   </head>
 
   <body>
-    <header class="site-header">
-      <div class="site-container">
-        <nav class="site-nav">
-          <a href="/" class="site-brand">
-            <Image src={logo} alt={AUTHOR} width={240} height={240} />
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a href="/" class="navbar-item">
+            <Image src={logo} alt={AUTHOR} width={120} height={120} />
           </a>
-          <div class="site-links">
-            <a href="/about">About</a>
-            <a href="/now">Now</a>
-            <a href="/projects">Projects</a>
-            <a href="/blog">Writing</a>
-            <a href="/contact">Contact</a>
-            <ThemeToggle />
+        </div>
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item" href="/about">About</a>
+            <a class="navbar-item" href="/now">Now</a>
+            <a class="navbar-item" href="/projects">Projects</a>
+            <a class="navbar-item" href="/blog">Writing</a>
+            <a class="navbar-item" href="/contact">Contact</a>
           </div>
-        </nav>
+        </div>
       </div>
-    </header>
+    </nav>
 
-    <main class="site-main">
-      <div class="site-container">
+    <main class="section">
+      <div class="container">
         {
           contentWidth === 'narrow' ? (
-            <div class="content content--narrow">
+            <div class="content" style="max-width: 75ch; margin: 0 auto;">
               <slot />
             </div>
           ) : (
-            <slot />
+            <div class="content">
+              <slot />
+            </div>
           )
         }
       </div>
     </main>
 
-    <footer class="site-footer">
-      <div class="site-container">
-        <div>
-          <small>© {new Date().getFullYear()} {AUTHOR}</small>
-          <small>
-            <a
-              href="https://github.com/adamlacasse"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub profile"
-            >
-              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path
-                  d="M7 7L3 12L7 17"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M10 7L14 17"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M17 7L21 12L17 17"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </svg>
-              GitHub
-            </a>
-            {' · '}
-            <a
-              href="https://www.linkedin.com/in/adamlacasse/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn profile"
-            >
-              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path
-                  fill="currentColor"
-                  d="M4.983 3.5a2.5 2.5 0 1 1-4.999.001A2.5 2.5 0 0 1 4.983 3.5zM.5 8h4.967v16H.5V8zm7.033 0h4.76v2.182h.066c.663-1.24 2.285-2.54 4.708-2.54 4.514 0 7.933 2.587 7.933 7.97V24H20.27v-8.153c0-1.949-.038-4.457-2.712-4.457-2.716 0-3.131 2.126-3.131 4.317V24H7.533V8z"
-                ></path>
-              </svg>
-              LinkedIn
-            </a>
-            {' · '}
-            <a href="/rss.xml" aria-label="RSS feed">
-              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <circle cx="5" cy="19" r="2" fill="currentColor"></circle>
-                <path
-                  d="M5 13a6 6 0 0 1 6 6"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"></path>
-                <path
-                  d="M5 9a10 10 0 0 1 10 10"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"></path>
-              </svg>
-              RSS
-            </a>
-          </small>
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            <small>© {new Date().getFullYear()} {AUTHOR}</small>
+          </p>
+          <p>
+            <small>
+              <a
+                href="https://github.com/adamlacasse"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub profile"
+              >
+                GitHub
+              </a>
+              {' · '}
+              <a
+                href="https://www.linkedin.com/in/adamlacasse/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn profile"
+              >
+                LinkedIn
+              </a>
+              {' · '}
+              <a href="/rss.xml" aria-label="RSS feed"> RSS </a>
+            </small>
+          </p>
         </div>
       </div>
     </footer>

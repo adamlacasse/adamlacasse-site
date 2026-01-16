@@ -3,8 +3,8 @@
   // https://docs.astro.build/en/guides/typescript/
   "extends": "astro/tsconfigs/strict",
 
-  // Includes all files and Astro's generated types
-  "include": [".astro/types.d.ts", "**/*"],
+  // Includes TypeScript files, Astro files, and Astro's generated types
+  "include": [".astro/types.d.ts", "src/**/*", "*.ts", "*.tsx", "*.astro"],
 
   // Excludes build output
   "exclude": ["dist"],
