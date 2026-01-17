@@ -20,7 +20,7 @@ const projects = [
 ];
 ---
 
-<BaseLayout title={`Projects — ${AUTHOR}`}>
+<BaseLayout title={`Projects — ${AUTHOR}`} contentWidth="narrow">
   <h1 class="title is-2">Projects</h1>
   <p class="subtitle">A living list. The hub stays stable; projects can come and go.</p>
 
@@ -41,7 +41,9 @@ const projects = [
               <p>{p.description}</p>
             </div>
             <footer class="card-footer">
-              <a href={p.href} class="card-footer-item">Live →</a>
+              <a href={p.href} class="card-footer-item">
+                Live →
+              </a>
               <a href={p.repo} target="_blank" rel="noreferrer" class="card-footer-item">
                 Repo →
               </a>

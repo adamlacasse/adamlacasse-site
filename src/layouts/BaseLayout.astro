@@ -54,28 +54,100 @@ const siteUrl = new URL(canonicalURL);
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="/pc.ico" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <style>
+      /* Sticky footer pattern */
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      main {
+        flex: 1;
+      }
+
+      /* Footer overrides */
+      .footer {
+        margin-top: 24px;
+        padding: 24px 0;
+      }
+
+      /* Theme toggle: keep the icon on a transparent canvas */
+      #theme-toggle {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        color: inherit;
+      }
+
+      #theme-toggle:hover,
+      #theme-toggle:focus-visible {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+      }
+
+      #theme-toggle:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: var(--space-xs, 0.25rem);
+      }
+
+      .navbar-brand .navbar-item {
+        height: auto;
+      }
+
+      header {
+        /* border-bottom: 1px solid var(--color-border, #dbdbdb); */
+        padding: 0 8rem;
+      }
+
+      #logo {
+        /* height: 120px; */
+        max-height: none;
+        width: 250px;
+      }
+    </style>
+    <script is:inline>
+      // Initialize theme before page render to prevent flash
+      (function () {
+        const theme =
+          localStorage.getItem('theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
 
   <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="container">
-        <div class="navbar-brand">
-          <a href="/" class="navbar-item">
-            <Image src={logo} alt={AUTHOR} width={120} height={120} />
-          </a>
-        </div>
-        <div class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item" href="/about">About</a>
-            <a class="navbar-item" href="/now">Now</a>
-            <a class="navbar-item" href="/projects">Projects</a>
-            <a class="navbar-item" href="/blog">Writing</a>
-            <a class="navbar-item" href="/contact">Contact</a>
+    <header>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container">
+          <div class="navbar-brand">
+            <a href="/" class="navbar-item">
+              <Image id="logo" src={logo} alt={AUTHOR} />
+            </a>
+          </div>
+          <div class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item" href="/about">About</a>
+              <a class="navbar-item" href="/now">Now</a>
+              <a class="navbar-item" href="/projects">Projects</a>
+              <a class="navbar-item" href="/blog">Writing</a>
+              <a class="navbar-item" href="/contact">Contact</a>
+              <div class="navbar-item">
+                <button id="theme-toggle" class="button is-small" aria-label="Toggle theme">
+                  <span class="icon is-small">
+                    <span id="theme-icon">🌙</span>
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-
+      </nav>
+    </header>
     <main class="section">
       <div class="container">
         {
@@ -124,5 +196,35 @@ const siteUrl = new URL(canonicalURL);
         </div>
       </div>
     </footer>
+
+    <script is:inline>
+      // Theme toggle functionality
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+
+      function updateThemeIcon(theme) {
+        if (themeIcon) {
+          themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+      }
+
+      // Set initial icon
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme) {
+        updateThemeIcon(currentTheme);
+      }
+
+      // Toggle theme on button click
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme');
+          const newTheme = current === 'dark' ? 'light' : 'dark';
+
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+          updateThemeIcon(newTheme);
+        });
+      }
+    </script>
   </body>
 </html>
