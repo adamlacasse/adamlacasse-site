@@ -1,6 +1,6 @@
 {
   "name": "adamlacasse-site",
-  "description": "Adam LaCasse's personal site - a static blog built with Astro 5, MDX, and Sitemap integrations",
+  "description": "Adam LaCasse's personal site - a static site built with Astro 5, MDX, and Sitemap integrations",
   "author": "Adam LaCasse",
   "license": "MIT",
   "repository": {
@@ -18,10 +18,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "prettify": "prettier . --write",
+    "lint": "npm run prettify && npm run lint:fix"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",

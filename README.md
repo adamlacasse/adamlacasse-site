@@ -9,7 +9,6 @@ Static site for Adam LaCasse built with Astro 5 + MDX. Ships as a static build (
 - Site metadata is defined in `src/consts.ts` (`AUTHOR`, `SITE_TITLE`, `SITE_DESCRIPTION`) and consumed by layouts/pages.
 - Layouts: `BaseLayout.astro` (chrome, meta, OG/Twitter tags, font preloads, nav/footer) and `BlogPostLayout.astro` (post wrapper).
 - SEO & perf: sitemap + robots.txt, RSS feed, OG/Twitter meta, font preloading, `_headers` with cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).
-- Styling: `src/styles/global.css` and `src/styles/layout.css` are active.
 - Footer links: GitHub, LinkedIn, and RSS are available in the footer for quick navigation.
 - **Deployment:** Hosted on [Cloudflare Pages](https://pages.cloudflare.com/); static build (`npm run build` → `dist/`) is deployed automatically. Cache rules configured via `public/_headers`.
 
@@ -20,7 +19,7 @@ public/          static assets, robots.txt, _headers
 src/
  consts.ts      site metadata constants
  assets/        images (e.g., blog placeholders)
- styles/        global + layout CSS
+ styles/        CSS
  layouts/       BaseLayout, BlogPostLayout
  pages/         static pages (about, contact, now, projects, blog, rss)
  content/       blog posts + content config (Zod schema)
@@ -97,7 +96,6 @@ src/
 - Layouts:
   - `BaseLayout.astro`: nav/footer, global meta, OG/Twitter tags, canonical, font preloads.
   - `BlogPostLayout.astro`: wraps posts, uses `BaseLayout` and frontmatter for title/description/dates/tags.
-- Styling: `src/styles/global.css` and `src/styles/layout.css` are active.
 - Theme management: `public/theme.js` handles dark/light mode toggling with localStorage persistence; activated via script tag in `BaseLayout.astro`.
 - Performance/SEO:
   - `_headers` sets cache rules (fonts 1yr, images 1mo, CSS/JS 1wk, HTML 1d, RSS 6h).

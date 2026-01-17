@@ -10,282 +10,15 @@ import { resumeData } from '../../data/resume';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Adam LaCasse — Resume</title>
-
-    <style>
-      /* ===== Page / Print ===== */
-      @page {
-        size: Letter;
-        margin: 0.55in;
-      }
-      * {
-        box-sizing: border-box;
-      }
-
-      :root {
-        --ink: #0f172a; /* richer near-black */
-        --muted: #475569; /* slate */
-        --light: #64748b; /* lighter slate */
-        --rule: #cbd5e1; /* softer hairline */
-        --accent: #0f172a; /* deep slate for contrast */
-        --subtle-bg: #f8fafc; /* barely-there background */
-        --hover: #1e293b; /* darker for interactions */
-      }
-
-      body {
-        margin: 0;
-        color: var(--ink);
-        font:
-          11pt/1.4 ui-sans-serif,
-          system-ui,
-          -apple-system,
-          Segoe UI,
-          Roboto,
-          Helvetica,
-          Arial,
-          'Apple Color Emoji',
-          'Segoe UI Emoji';
-        letter-spacing: 0.15px;
-        font-weight: 450;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      /* ===== Layout ===== */
-      .page {
-        max-width: 8.5in;
-        margin: 0 auto;
-      }
-
-      header {
-        padding: 16px 18px 14px;
-        background: var(--subtle-bg);
-        border-radius: 4px;
-        border-bottom: 2px solid var(--accent);
-        margin-bottom: 18px;
-      }
-
-      .name {
-        font-size: 22pt;
-        line-height: 1.05;
-        margin: 0;
-        font-weight: 800;
-        letter-spacing: -0.5px;
-        color: var(--accent);
-      }
-
-      .headline {
-        margin: 7px 0 0;
-        font-weight: 650;
-        color: var(--muted);
-        font-size: 11.5pt;
-        letter-spacing: 0.2px;
-      }
-
-      .meta {
-        margin-top: 8px;
-        color: var(--muted);
-        font-size: 10.5pt;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px 14px;
-      }
-      .meta span {
-        white-space: nowrap;
-      }
-      .meta a {
-        color: var(--accent);
-        text-decoration: none;
-        border-bottom: 1px solid rgba(15, 23, 42, 0.25);
-        font-weight: 550;
-        transition: border-color 0.2s;
-      }
-      .meta a:hover {
-        border-bottom-color: var(--accent);
-      }
-
-      main {
-        display: block; /* keep ATS-friendly single column */
-      }
-
-      .section {
-        margin: 20px 0 0;
-      }
-
-      .section-title {
-        margin: 0 0 10px;
-        padding-left: 12px;
-        font-size: 11.5pt;
-        letter-spacing: 0.8px;
-        text-transform: uppercase;
-        font-weight: 850;
-        color: var(--accent);
-        display: flex;
-        align-items: baseline;
-        gap: 10px;
-        border-left: 3px solid var(--accent);
-      }
-      .section-title::after {
-        content: '';
-        flex: 1;
-        border-bottom: 1.5px solid var(--rule);
-        transform: translateY(-2px);
-      }
-
-      .summary {
-        margin: 0;
-        color: var(--ink);
-      }
-      .summary b {
-        font-weight: 750;
-        color: var(--accent);
-      }
-
-      .skills {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 5px;
-        color: var(--ink);
-      }
-      .skills li {
-        padding-left: 2px;
-      }
-      .skills b {
-        color: var(--accent);
-        font-weight: 750;
-      }
-
-      .role {
-        margin: 16px 0 0;
-      }
-
-      .role-head {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        align-items: baseline;
-        margin: 0 0 4px;
-      }
-
-      .role-title {
-        margin: 0;
-        font-weight: 850;
-        font-size: 12.5pt;
-        color: var(--accent);
-        letter-spacing: -0.1px;
-      }
-
-      .role-sub {
-        margin: 0;
-        color: var(--muted);
-        font-weight: 600;
-      }
-
-      .role-dates {
-        color: var(--muted);
-        font-weight: 700;
-        white-space: nowrap;
-        font-size: 10.5pt;
-        letter-spacing: 0.3px;
-      }
-
-      ul {
-        margin: 7px 0 0 20px;
-        padding: 0;
-      }
-      li {
-        margin: 5px 0;
-        padding-left: 4px;
-      }
-      li::marker {
-        color: var(--muted);
-        font-size: 0.9em;
-      }
-
-      .techline {
-        margin: 7px 0 0;
-        color: var(--muted);
-        font-size: 10.5pt;
-        padding: 6px 10px;
-        background: var(--subtle-bg);
-        border-radius: 3px;
-        border-left: 2px solid var(--rule);
-      }
-      .techline b {
-        font-weight: 750;
-        color: var(--accent);
-      }
-
-      .edu {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        color: var(--ink);
-      }
-      .edu li {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        margin: 7px 0;
-      }
-      .edu .right {
-        color: var(--light);
-        font-weight: 600;
-        white-space: nowrap;
-      }
-      .edu .note {
-        margin: 2px 0 0;
-        color: var(--muted);
-        font-size: 10.5pt;
-      }
-
-      .footer {
-        margin-top: 16px;
-        padding: 12px 14px;
-        background: var(--subtle-bg);
-        border-radius: 4px;
-        border-top: 2px solid var(--rule);
-        color: var(--muted);
-        font-size: 10.5pt;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 16px;
-      }
-      .footer b {
-        font-weight: 750;
-        color: var(--accent);
-      }
-
-      /* Keep it one page: tighten a touch for print */
-      @media print {
-        body {
-          font-size: 10.6pt;
-        }
-        .name {
-          font-size: 19pt;
-        }
-        .section {
-          margin-top: 14px;
-        }
-        .role {
-          margin-top: 12px;
-        }
-        li {
-          margin: 3px 0;
-        }
-      }
-    </style>
   </head>
 
   <body>
-    <div class="page">
+    <div>
       <header>
-        <h1 class="name">{resumeData.name}</h1>
-        <p class="headline">{resumeData.headline}</p>
+        <h1>{resumeData.name}</h1>
+        <p>{resumeData.headline}</p>
 
-        <div class="meta">
+        <div>
           <span>{resumeData.location}</span>
           <span>{resumeData.phone}</span>
           <span><a href={`mailto:${resumeData.email}`}>{resumeData.email}</a></span>
@@ -305,14 +38,14 @@ import { resumeData } from '../../data/resume';
       </header>
 
       <main>
-        <section class="section">
-          <h2 class="section-title">Summary</h2>
-          <p class="summary" set:html={resumeData.summary} />
+        <section>
+          <h2>Summary</h2>
+          <p set:html={resumeData.summary} />
         </section>
 
-        <section class="section">
-          <h2 class="section-title">Core Skills</h2>
-          <ul class="skills">
+        <section>
+          <h2>Core Skills</h2>
+          <ul>
             {
               resumeData.skills.map((skill) => (
                 <li>
@@ -324,20 +57,20 @@ import { resumeData } from '../../data/resume';
           </ul>
         </section>
 
-        <section class="section">
-          <h2 class="section-title">Experience</h2>
+        <section>
+          <h2>Experience</h2>
 
           {
             resumeData.experience.map((role) => (
-              <div class="role">
-                <div class="role-head">
+              <div>
+                <div>
                   <div>
-                    <p class="role-title">
+                    <p>
                       {role.company} — {role.title}
                     </p>
-                    <p class="role-sub">{role.subtitle}</p>
+                    <p>{role.subtitle}</p>
                   </div>
-                  <div class="role-dates">{role.dates}</div>
+                  <div>{role.dates}</div>
                 </div>
 
                 <ul>
@@ -347,7 +80,7 @@ import { resumeData } from '../../data/resume';
                 </ul>
 
                 {role.tech && (
-                  <p class="techline">
+                  <p>
                     <b>Tech:</b> {role.tech}
                   </p>
                 )}
@@ -356,9 +89,9 @@ import { resumeData } from '../../data/resume';
           }
         </section>
 
-        <section class="section">
-          <h2 class="section-title">Education</h2>
-          <ul class="edu">
+        <section>
+          <h2>Education</h2>
+          <ul>
             {
               resumeData.education.map((edu) => (
                 <>
@@ -366,16 +99,16 @@ import { resumeData } from '../../data/resume';
                     <div>
                       <b>{edu.degree}</b> — {edu.school}
                     </div>
-                    {edu.date && <div class="right">{edu.date}</div>}
+                    {edu.date && <div>{edu.date}</div>}
                   </li>
-                  {edu.note && <div class="note">{edu.note}</div>}
+                  {edu.note && <div>{edu.note}</div>}
                 </>
               ))
             }
           </ul>
         </section>
 
-        <div class="footer">
+        <div>
           <span><b>Daily:</b> {resumeData.dailyTech}</span>
           <span><b>Project:</b> {resumeData.projectTech}</span>
           <span><b>Portfolio:</b> {resumeData.website}</span>

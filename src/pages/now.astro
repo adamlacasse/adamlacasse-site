@@ -1,20 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { AUTHOR } from '../consts';
 ---
 
 <BaseLayout
-  title="Now"
+  title={`Now — ${AUTHOR}`}
   description="What I'm focused on lately — building, learning, and refining how I work."
   contentWidth="narrow"
 >
-  <h1 class="page-title">Now</h1>
+  <h1>Now</h1>
 
-  <p class="page-intro">
+  <p>
     A snapshot of what I’m actively focused on these days — not a résumé, just what has my attention
     right now.
   </p>
 
-  <blockquote class="last-updated">
+  <blockquote>
     <strong>Last updated:</strong> January 2026
   </blockquote>
 

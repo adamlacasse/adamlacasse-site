@@ -8,27 +8,27 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
-<BaseLayout title={`Writing — ${AUTHOR}`}>
-  <h1 class="page-title">Writing</h1>
-  <p class="page-intro">Miscellany on software, music, and life.</p>
+<BaseLayout title={`Writing — ${AUTHOR}`} contentWidth="narrow">
+  <h1 class="title is-2">Writing</h1>
+  <p class="subtitle">Miscellany on software, music, and life.</p>
 
-  <ul class="blog-list">
+  <div class="content">
     {
       posts.map((p) => (
-        <li class="blog-item">
-          <a href={`/blog/${p.slug}/`} class="blog-item-link">
-            {p.data.title}
-          </a>
-          <div class="blog-date">
+        <div class="box">
+          <h2 class="title is-4">
+            <a href={`/blog/${p.slug}/`}>{p.data.title}</a>
+          </h2>
+          <p class="subtitle is-6 has-text-grey">
             {p.data.pubDate.toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'short',
               day: 'numeric',
             })}
-          </div>
-          <p class="blog-description">{p.data.description}</p>
-        </li>
+          </p>
+          <p>{p.data.description}</p>
+        </div>
       ))
     }
-  </ul>
+  </div>
 </BaseLayout>

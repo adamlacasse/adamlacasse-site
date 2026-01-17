@@ -1,7 +1,6 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import astro from 'eslint-plugin-astro';
-import prettier from 'eslint-plugin-prettier';
 
 export default [
   {
@@ -12,11 +11,9 @@ export default [
   ...astro.configs.recommended,
   {
     files: ['**/*.{js,mjs,cjs,ts,tsx,astro}'],
-    plugins: {
-      prettier,
-    },
     rules: {
-      'prettier/prettier': 'error',
+      // Prefer running Prettier via `npm run format` instead of lint-time parsing.
+      reportUnusedDisableDirectives: 0,
     },
   },
   {
