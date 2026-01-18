@@ -38,27 +38,31 @@ const structuredData = {
 >
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
-  <div>
-    <h1>{resumeData.name}</h1>
-    <p>{resumeData.headline}</p>
+  <div class="mb-6">
+    <h1 class="title is-2 mb-2">{resumeData.name}</h1>
+    <p class="subtitle is-5 mb-4">{resumeData.headline}</p>
 
-    <div>
-      <span>{resumeData.location}</span>
-      <span>{resumeData.phone}</span>
-      <span><a href={`mailto:${resumeData.email}`}>{resumeData.email}</a></span>
-      <span
+    <div class="block">
+      <span class="mr-4">{resumeData.location}</span>
+      <span class="mr-4">{resumeData.phone}</span>
+      <span class="mr-4"><a href={`mailto:${resumeData.email}`}>{resumeData.email}</a></span>
+      <span class="mr-4"
         ><a href={`https://${resumeData.website}`} target="_blank" rel="noopener noreferrer"
           >{resumeData.website}</a
         ></span
       >
-      <span><a href={resumeData.github} target="_blank" rel="noopener noreferrer">GitHub</a></span>
+      <span class="mr-4"
+        ><a href={resumeData.github} target="_blank" rel="noopener noreferrer">GitHub</a></span
+      >
       <span
         ><a href={resumeData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></span
       >
     </div>
 
-    <div>
-      <a href="/resume/pdf" target="_blank">PDF Optimized Version →</a>
+    <div class="mt-4">
+      <a href="/resume/pdf" target="_blank" class="button is-link is-light is-small"
+        >PDF Optimized Version →</a
+      >
     </div>
   </div>
 

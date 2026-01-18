@@ -2,6 +2,10 @@
 import { Image } from 'astro:assets';
 import { AUTHOR, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import logo from '../assets/lacasse-solutions.png';
+import githubIconBlack from '../assets/GitHub_Invertocat_Black.svg';
+import githubIconWhite from '../assets/GitHub_Invertocat_White.svg';
+import linkedinIcon from '../assets/LI-In-Bug.png';
+import rssIcon from '../assets/Feed-icon.png';
 
 interface Props {
   title?: string;
@@ -99,14 +103,83 @@ const siteUrl = new URL(canonicalURL);
       }
 
       header {
-        /* border-bottom: 1px solid var(--color-border, #dbdbdb); */
-        padding: 0 8rem;
+        position: relative;
+        padding-top: 26px;
       }
 
       #logo {
-        /* height: 120px; */
         max-height: none;
         width: 250px;
+      }
+
+      /* Mobile menu overlay */
+      @media screen and (max-width: 1023px) {
+        .navbar-menu.is-active {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          z-index: 100;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      /* Social links styling */
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.2s ease;
+      }
+
+      .social-icon:hover {
+        opacity: 0.7;
+      }
+
+      .social-icon img {
+        display: block;
+      }
+
+      /* GitHub icon theme switching */
+      .github-light {
+        display: block;
+      }
+
+      .github-dark {
+        display: none;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .github-light {
+          display: none;
+        }
+
+        .github-dark {
+          display: block;
+        }
+      }
+
+      html[data-theme='light'] .github-light {
+        display: block;
+      }
+
+      html[data-theme='light'] .github-dark {
+        display: none;
+      }
+
+      html[data-theme='dark'] .github-light {
+        display: none;
+      }
+
+      html[data-theme='dark'] .github-dark {
+        display: block;
       }
     </style>
     <script is:inline>
@@ -128,8 +201,20 @@ const siteUrl = new URL(canonicalURL);
             <a href="/" class="navbar-item">
               <Image id="logo" src={logo} alt={AUTHOR} />
             </a>
+            <a
+              role="button"
+              class="navbar-burger"
+              aria-label="menu"
+              aria-expanded="false"
+              data-target="navbarMenu"
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
           </div>
-          <div class="navbar-menu">
+          <div id="navbarMenu" class="navbar-menu">
             <div class="navbar-end">
               <a class="navbar-item" href="/about">About</a>
               <a class="navbar-item" href="/now">Now</a>
@@ -170,28 +255,41 @@ const siteUrl = new URL(canonicalURL);
           <p>
             <small>© {new Date().getFullYear()} {AUTHOR}</small>
           </p>
-          <p>
-            <small>
-              <a
-                href="https://github.com/adamlacasse"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub profile"
-              >
-                GitHub
-              </a>
-              {' · '}
-              <a
-                href="https://www.linkedin.com/in/adamlacasse/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn profile"
-              >
-                LinkedIn
-              </a>
-              {' · '}
-              <a href="/rss.xml" aria-label="RSS feed"> RSS </a>
-            </small>
+          <p class="social-links">
+            <a
+              href="https://github.com/adamlacasse"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub profile"
+              class="social-icon"
+            >
+              <Image
+                src={githubIconBlack}
+                alt="GitHub"
+                width={24}
+                height={24}
+                class="github-light"
+              />
+              <Image
+                src={githubIconWhite}
+                alt="GitHub"
+                width={24}
+                height={24}
+                class="github-dark"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/adamlacasse/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn profile"
+              class="social-icon"
+            >
+              <Image src={linkedinIcon} alt="LinkedIn" width={24} height={24} />
+            </a>
+            <a href="/rss.xml" aria-label="RSS feed" class="social-icon">
+              <Image src={rssIcon} alt="RSS Feed" width={24} height={24} />
+            </a>
           </p>
         </div>
       </div>
@@ -225,6 +323,54 @@ const siteUrl = new URL(canonicalURL);
           updateThemeIcon(newTheme);
         });
       }
+
+      // Mobile menu toggle functionality
+      document.addEventListener('DOMContentLoaded', () => {
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(
+          document.querySelectorAll('.navbar-burger'),
+          0
+        );
+
+        // Function to close all menus
+        const closeAllMenus = () => {
+          $navbarBurgers.forEach((el) => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.remove('is-active');
+            $target.classList.remove('is-active');
+          });
+        };
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach((el) => {
+          el.addEventListener('click', () => {
+            // Get the target from the "data-target" attribute
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+          });
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') {
+            closeAllMenus();
+          }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+          const isClickInsideMenu =
+            event.target.closest('.navbar-menu') || event.target.closest('.navbar-burger');
+          if (!isClickInsideMenu) {
+            closeAllMenus();
+          }
+        });
+      });
     </script>
   </body>
 </html>

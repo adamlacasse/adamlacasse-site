@@ -5,17 +5,17 @@ import { resumeData } from '../data/resume';
 ---
 
 <div>
-  <section>
-    <h2>Summary</h2>
-    <p set:html={resumeData.summary} />
+  <section class="mb-6">
+    <h2 class="title is-4 mb-3">Summary</h2>
+    <p class="block" set:html={resumeData.summary} />
   </section>
 
-  <section>
-    <h2>Core Skills</h2>
+  <section class="mb-6">
+    <h2 class="title is-4 mb-3">Core Skills</h2>
     <ul>
       {
         resumeData.skills.map((skill) => (
-          <li>
+          <li class="mb-2">
             <strong>{skill.category}:</strong>
             {skill.items}
           </li>
@@ -24,30 +24,30 @@ import { resumeData } from '../data/resume';
     </ul>
   </section>
 
-  <section>
-    <h2>Experience</h2>
+  <section class="mb-6">
+    <h2 class="title is-4 mb-4">Experience</h2>
 
     {
       resumeData.experience.map((role) => (
-        <article>
-          <div>
+        <article class="mb-5">
+          <div class="mb-3">
             <div>
-              <h3>
+              <h3 class="title is-5 mb-1">
                 {role.company} — {role.title}
               </h3>
-              <p>{role.subtitle}</p>
+              <p class="subtitle is-6 has-text-grey">{role.subtitle}</p>
             </div>
-            <div>{role.dates}</div>
+            <div class="has-text-grey-light">{role.dates}</div>
           </div>
 
-          <ul>
+          <ul class="mb-3">
             {role.achievements.map((achievement) => (
-              <li set:html={achievement} />
+              <li class="mb-2" set:html={achievement} />
             ))}
           </ul>
 
           {role.tech && (
-            <div>
+            <div class="has-text-grey-dark">
               <strong>Tech:</strong> {role.tech}
             </div>
           )}
@@ -56,29 +56,29 @@ import { resumeData } from '../data/resume';
     }
   </section>
 
-  <section>
-    <h2>Education</h2>
+  <section class="mb-6">
+    <h2 class="title is-4 mb-3">Education</h2>
     <ul>
       {
         resumeData.education.map((edu) => (
-          <li>
+          <li class="mb-3">
             <div>
               <div>
                 <strong>{edu.degree}</strong> — {edu.school}
               </div>
-              {edu.date && <div>{edu.date}</div>}
+              {edu.date && <div class="has-text-grey">{edu.date}</div>}
             </div>
-            {edu.note && <p>{edu.note}</p>}
+            {edu.note && <p class="mt-2 has-text-grey-dark">{edu.note}</p>}
           </li>
         ))
       }
     </ul>
   </section>
 
-  <section>
-    <div>
-      <div><strong>Daily:</strong> {resumeData.dailyTech}</div>
-      <div><strong>Project:</strong> {resumeData.projectTech}</div>
+  <section class="mb-6">
+    <div class="content">
+      <div class="mb-2"><strong>Daily:</strong> {resumeData.dailyTech}</div>
+      <div class="mb-2"><strong>Project:</strong> {resumeData.projectTech}</div>
       <div><strong>Portfolio:</strong> <a href="/">adamlacasse.dev</a></div>
     </div>
   </section>
