@@ -24,36 +24,30 @@ export interface ResumeSkill {
 
 export const resumeData = {
   name: 'Adam LaCasse',
-  headline: 'Senior Software Engineer — Client Platforms & Web Architecture',
-  location: 'Atkinson, NH (Remote, US)',
-  phone: '617-407-3254',
-  email: 'adamlacasse@outlook.com',
+  headline: 'Principal-Track Software Engineer | Enterprise Systems | AI/ML-Enabled Platforms',
+  location: 'Atkinson, NH',
+  phone: '(617) 407-3254',
+  email: 'adam@adamlacasse.dev',
   website: 'adamlacasse.dev',
   github: 'https://github.com/adamlacasse',
   linkedin: 'https://www.linkedin.com/in/adamlacasse/',
 
-  summary: `Senior software engineer with <strong>6+ years of experience</strong> building foundational web platforms, reusable UI architecture, and client/server APIs for large, globally distributed user bases. Strong technical judgment in ambiguous environments—balancing business needs, performance, and long-term maintainability while enabling product teams through <strong>ergonomic frameworks and stable contracts</strong>.`,
+  summary: `Senior full-stack software engineer at a Fortune 100 insurer designing and delivering enterprise web platforms serving 40,000+ global users. Combines deep technical execution with prior director-level leadership in finance and operations to drive scalable systems, measurable efficiency gains, and cross-organizational alignment.<br><br>Experienced across modern TypeScript/JavaScript ecosystems, cloud-native architecture, and data-driven backend design, with growing specialization in AI/ML-enabled software systems. Currently completing an M.S. in Computer Science (AI concentration) focused on machine learning, large language models, and intelligent system design.<br><br>Seeking Staff / Principal Engineer roles where architectural leadership, system design, and cross-team technical influence can meaningfully shape enterprise platforms, AI-enabled products, or regulated-domain systems.`,
 
   skills: [
     {
-      category: 'Client Architecture',
-      items: 'TypeScript, React, component systems, state management',
+      category: 'Languages & Frameworks',
+      items: 'JavaScript, TypeScript, Node.js, React, Python, Java (Spring), SQL, HTML/CSS',
     },
     {
-      category: 'APIs',
-      items: 'REST, GraphQL, client/server contracts',
+      category: 'Cloud, Data, & Architecture',
+      items:
+        'AWS, REST/GraphQL APIs, Microservices, CI/CD, Data pipelines & warehousing, Distributed system design, Observability & reliability patterns',
     },
     {
-      category: 'Platforms',
-      items: 'Node.js, Java, AWS',
-    },
-    {
-      category: 'Engineering',
-      items: 'CI/CD, testing, performance, reliability, debugging',
-    },
-    {
-      category: 'Collaboration',
-      items: 'cross-team design, mentorship, stakeholder communication',
+      category: 'AI / Intelligent Systems',
+      items:
+        'LLM integration, NLP fundamentals, Applied machine learning workflows, Prompt & retrieval design, AI-assisted developer tooling',
     },
   ] as ResumeSkill[],
 
@@ -61,36 +55,63 @@ export const resumeData = {
     {
       title: 'Senior Software Engineer',
       company: 'Liberty Mutual Insurance',
-      subtitle: 'Enterprise web applications for ~50,000 international users',
-      dates: 'Jun 2019 – Present',
+      subtitle: 'Portsmouth, NH (Hybrid)',
+      dates: '2019 – Present',
       achievements: [
-        'Designed and maintained <strong>reusable client-side architecture</strong> (React, TypeScript, Redux) used across multiple internal applications.',
-        'Built and evolved <strong>API contracts</strong> between web clients and backend services (Java Spring Boot, Node.js, PostgreSQL), emphasizing stability and ownership.',
-        'Reduced coupling between UI and backend systems through shared patterns and platform improvements, enabling safer iteration and incremental delivery.',
-        'Partnered with product and business stakeholders to evaluate <strong>architectural tradeoffs</strong> and deliver pragmatic, cost-effective solutions.',
-        'Mentored engineers on system design reasoning, API ergonomics, and production readiness; improved code quality and team velocity.',
-        'Supported production systems by debugging client/server issues and improving reliability within AWS-hosted environments.',
+        '<strong>Senior Software Engineer (2021–Present)</strong>',
+        'Lead role in the architecture and development of enterprise platforms such as Goals & Growth, Concierge, and Merit, supporting 40K+ multilingual users worldwide with critical Talent operations.',
+        'Lead role in the $4M redesign of the RMIS platform, migrating core services to cloud-native microservices and standardizing cross-platform data contracts to improve scalability, deployment consistency, and long-term platform maintainability.',
+        'Translate complex business and regulatory requirements into scalable, cost-effective technical solutions, reducing ambiguity and accelerating delivery across collaborating teams.',
+        'Mentor engineers and establish system design and quality standards adopted across teams, strengthening reliability, shared architecture patterns, and technical decision-making maturity.',
+        'Partner with product, analytics, and senior leadership to align engineering execution with measurable organizational outcomes and long-term platform strategy.',
+        '<strong>Software Engineer (2019–2021)</strong>',
+        'Earned rapid promotion through ownership of complex features, cross-team collaboration, and consistent resolution of ambiguous or high-risk technical problems.',
+        'Completed rotation with data and analytics engineering teams, expanding expertise in databases, warehousing, and business intelligence pipelines.',
       ],
       tech: 'JavaScript, TypeScript, React, Node.js, Java (Spring), PostgreSQL, AWS',
     },
     {
-      title: 'JavaScript / Web Engineer (Contract)',
-      company: 'The ATOM Group',
-      subtitle: 'Enterprise engagements: performance, DX, test coverage',
-      dates: '2018 – 2019',
+      title: 'Teaching Assistant',
+      company: 'Trilogy Education',
+      subtitle: 'Portsmouth, NH',
+      dates: '2019',
       achievements: [
-        'Modernized large JavaScript codebases for enterprise clients, improving performance, developer experience, and test coverage.',
-        'Identified bugs and bottlenecks through end-to-end testing, contributing to higher-quality production releases.',
+        'Guided students through full-stack MERN development, debugging strategies, and foundational software engineering practices.',
+        'Strengthened mentorship and technical communication skills now applied in senior engineering leadership contexts.',
       ],
       tech: '',
     },
     {
-      title: 'Teaching Assistant',
-      company: 'Trilogy Education',
-      subtitle: 'MERN stack coaching; fundamentals + debugging',
-      dates: '2019',
+      title: 'JavaScript / Web Engineer (Contract)',
+      company: 'The ATOM Group',
+      subtitle: '',
+      dates: '2018 – 2019',
       achievements: [
-        'Assisted students learning full-stack web development; reinforced component-based UI patterns, state management, and API integration.',
+        'Improved performance, UX, and developer experience across client web platforms.',
+        'Implemented end-to-end testing that surfaced production defects and performance bottlenecks in critical systems.',
+      ],
+      tech: '',
+    },
+    {
+      title: 'Director of Administration',
+      company: 'Devine Millimet',
+      subtitle: 'Prior Leadership Experience (Pre-Engineering)',
+      dates: '2015 – 2018',
+      achievements: [
+        `Directed operations spanning IT, finance, HR, marketing, and facilities for one of New Hampshire's largest law firms.`,
+        'Delivered measurable operational efficiencies through process analysis, systems thinking, and organizational leadership.',
+      ],
+      tech: '',
+    },
+    {
+      title: 'Director of Financial Planning & Analysis',
+      company: 'Brown Rudnick',
+      subtitle: 'Prior Leadership Experience (Pre-Engineering)',
+      dates: '2005 – 2015',
+      achievements: [
+        'Progressed from analyst → manager → director while guiding the firm through the 2008 financial crisis.',
+        'Achieved >15% profitability improvement through strategic financial modeling, operational analysis, and executive partnership.',
+        '<em>Foundational strengths: executive communication, systems thinking, and business-aligned decision making—now applied to software architecture and technical leadership.</em>',
       ],
       tech: '',
     },
@@ -98,21 +119,34 @@ export const resumeData = {
 
   education: [
     {
-      degree: 'M.S. Computer Science (AI Concentration)',
+      degree: 'M.S. Computer Science — Artificial Intelligence Concentration',
       school: 'Merrimack College',
       date: 'Expected 2026',
-      note: 'Focus: data structures, algorithms, system architecture (Python)',
-    },
-    {
-      degree: 'B.A. Management',
-      school: 'Curry College',
+      note: 'Focus: machine learning, deep learning, NLP, large language models, intelligent system design',
     },
     {
       degree: 'Full-Stack Web Development Bootcamp',
       school: 'University of New Hampshire',
       date: '2018',
     },
+    {
+      degree: 'B.A. Management',
+      school: 'Curry College',
+    },
+    {
+      degree: 'Additional study: Jazz Composition',
+      school: 'Berklee College of Music',
+    },
   ] as ResumeEducation[],
+
+  leadershipThemes: [
+    'Enterprise-scale system architecture and modernization',
+    'Cross-functional technical leadership and influence',
+    'Mentorship, standards setting, and engineer development',
+    'Data-driven architectural decision making',
+    'Business-aligned engineering strategy in complex organizations',
+    'Continuous learning and applied AI evolution',
+  ],
 
   dailyTech: 'JS/TS, React, Node, Java, SQL, AWS',
   projectTech: 'Python, Go, Rust',

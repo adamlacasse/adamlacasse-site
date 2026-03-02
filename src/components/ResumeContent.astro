@@ -76,6 +76,13 @@ import { resumeData } from '../data/resume';
   </section>
 
   <section class="mb-6">
+    <h2 class="title is-4 mb-3">Leadership & Impact Themes</h2>
+    <ul>
+      {resumeData.leadershipThemes.map((theme) => <li class="mb-2">{theme}</li>)}
+    </ul>
+  </section>
+
+  <section class="mb-6">
     <div class="content">
       <div class="mb-2"><strong>Daily:</strong> {resumeData.dailyTech}</div>
       <div class="mb-2"><strong>Project:</strong> {resumeData.projectTech}</div>
