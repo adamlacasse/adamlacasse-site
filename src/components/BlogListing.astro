@@ -1,0 +1,240 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import rssIcon from '../assets/Feed-icon.png';
+
+type BlogPost = CollectionEntry<'blog'>;
+
+interface Props {
+  title: string;
+  subtitle: string;
+  posts: BlogPost[];
+  activeSection: 'writing' | 'politics';
+  feedHref: string;
+}
+
+const { title, subtitle, posts, activeSection, feedHref } = Astro.props as Props;
+
+const sections = [
+  {
+    href: '/blog',
+    label: 'Writing',
+    key: 'writing',
+  },
+  {
+    href: '/blog/politics',
+    label: 'Politics',
+    key: 'politics',
+  },
+] as const;
+---
+
+<div class="blog-section-header mb-5">
+  <div class="section-toolbar">
+    <nav class="section-switch" aria-label="Blog sections">
+      {
+        sections.map((section) => (
+          <a
+            href={section.href}
+            class:list={['section-switch__link', { 'is-active': activeSection === section.key }]}
+            aria-current={activeSection === section.key ? 'page' : undefined}
+          >
+            {section.label}
+          </a>
+        ))
+      }
+    </nav>
+    <a
+      href={feedHref}
+      class="blog-feed-link"
+      aria-label={`${title} RSS feed`}
+      title={`${title} RSS feed`}
+    >
+      <Image src={rssIcon} alt="RSS feed" width={24} height={24} />
+    </a>
+  </div>
+</div>
+
+<h1 class="title is-2">{title}</h1>
+<p class="subtitle">{subtitle}</p>
+
+{
+  posts.length > 0 ? (
+    <div class="blog-grid">
+      {posts.map((post) => (
+        <div class="box">
+          <h2 class="title is-4">
+            <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+          </h2>
+          <p class="subtitle is-6 has-text-grey">
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </p>
+          <p>{post.data.description}</p>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div class="notification is-light">Nothing is published here yet.</div>
+  )
+}
+
+<style>
+  .blog-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .section-toolbar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem;
+    border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, currentColor 5%, transparent);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  }
+
+  .section-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .section-switch__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 7rem;
+    padding: 0.7rem 1.1rem;
+    border-radius: 999px;
+    color: inherit;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .section-switch__link:hover {
+    background: color-mix(in srgb, currentColor 8%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .section-switch__link.is-active {
+    background: linear-gradient(135deg, #1d4ed8, #2563eb 55%, #0f766e);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 10px 22px rgba(37, 99, 235, 0.28);
+    color: #f8fafc;
+  }
+
+  .blog-feed-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-left: 0.2rem;
+    padding-left: 0.3rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+    opacity: 0.72;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .blog-feed-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 1.6rem;
+    background: color-mix(in srgb, currentColor 22%, transparent);
+    transform: translateY(-50%);
+  }
+
+  .blog-feed-link:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+    background: color-mix(in srgb, currentColor 8%, transparent);
+  }
+
+  .blog-feed-link :global(img) {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .blog-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  }
+
+  .blog-grid .box {
+    margin-bottom: 0;
+    height: 100%;
+  }
+
+  :global(html[data-theme='dark']) .section-toolbar {
+    border-color: rgba(148, 163, 184, 0.24);
+    background: rgba(15, 23, 42, 0.72);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+  }
+
+  :global(html[data-theme='dark']) .section-switch__link {
+    color: #e5e7eb;
+  }
+
+  :global(html[data-theme='dark']) .section-switch__link:hover {
+    background: rgba(148, 163, 184, 0.14);
+  }
+
+  :global(html[data-theme='dark']) .blog-feed-link {
+    opacity: 0.66;
+  }
+
+  :global(html[data-theme='dark']) .blog-feed-link::before {
+    background: rgba(148, 163, 184, 0.34);
+  }
+
+  :global(html[data-theme='dark']) .blog-feed-link:hover {
+    opacity: 0.92;
+  }
+
+  @media (max-width: 640px) {
+    .blog-section-header {
+      align-items: stretch;
+    }
+
+    .section-toolbar {
+      width: 100%;
+    }
+
+    .section-switch {
+      width: 100%;
+    }
+
+    .section-switch__link {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .blog-feed-link {
+      width: 2.75rem;
+      height: auto;
+    }
+  }
+</style>

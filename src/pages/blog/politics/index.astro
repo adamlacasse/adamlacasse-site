@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import BlogListing from '../../../components/BlogListing.astro';
+import { AUTHOR } from '../../../consts';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft && post.slug.startsWith('politics/'))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<BaseLayout title={`Politics — ${AUTHOR}`} contentWidth="narrow">
+  <BlogListing
+    title="Politics"
+    subtitle="Notes and essays on public life, power, and the stories we tell about both."
+    posts={posts}
+    activeSection="politics"
+    feedHref="/blog/politics/rss.xml"
+  />
+</BaseLayout>

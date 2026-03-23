@@ -6,10 +6,10 @@ export async function getStaticPaths() {
   const posts = await getCollection('blog');
 
   return posts
-    .filter((p) => !p.data.draft)
-    .map((p) => ({
-      params: { slug: p.slug },
-      props: { post: p },
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: { slug: post.slug },
+      props: { post },
     }));
 }
 

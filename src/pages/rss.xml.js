@@ -4,7 +4,7 @@ import { AUTHOR } from '../consts';
 
 export async function GET(context) {
   const posts = (await getCollection('blog'))
-    .filter((p) => !p.data.draft)
+    .filter((p) => !p.data.draft && !p.slug.startsWith('politics/'))
     .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
   return rss({
