@@ -1,3 +1,7 @@
-# Isn't it ironic?
+---
+title: "Isn't it ironic?"
+description: 'Keep it simple, stupid.'
+pubDate: 'Apr 13, 2026'
+---
 
-I actually don't know. Seriously. Like, do people enjoy the band Kiss unironically? I truly don't know. I mean, they're not bad. They're even pretty listenable. But if that feels like faint praise, IT IS.
+Do people enjoy the band Kiss unironically? I truly don't know. I mean, they're not bad. They're even pretty listenable. But if that feels like faint praise, IT IS.
