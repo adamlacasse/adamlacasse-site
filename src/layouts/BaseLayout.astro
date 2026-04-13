@@ -6,6 +6,7 @@ import githubIconBlack from '../assets/GitHub_Invertocat_Black.svg';
 import githubIconWhite from '../assets/GitHub_Invertocat_White.svg';
 import linkedinIcon from '../assets/LI-In-Bug.png';
 import rssIcon from '../assets/Feed-icon.png';
+import orcidIcon from '../assets/orcid.logo.svg';
 import 'bulma/css/bulma.min.css';
 
 interface Props {
@@ -153,6 +154,11 @@ const siteUrl = new URL(canonicalURL);
         display: block;
       }
 
+      .social-icon.orcid-icon img {
+        width: 64px;
+        height: 64px;
+      }
+
       /* GitHub icon theme switching */
       .github-light {
         display: block;
@@ -295,6 +301,15 @@ const siteUrl = new URL(canonicalURL);
             </a>
             <a href="/rss.xml" aria-label="RSS feed" class="social-icon">
               <Image src={rssIcon} alt="RSS Feed" width={24} height={24} />
+            </a>
+            <a
+              href="https://orcid.org/0009-0004-9664-1079"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="ORCID profile"
+              class="social-icon orcid-icon"
+            >
+              <Image src={orcidIcon} alt="ORCID iD" width={24} height={24} />
             </a>
           </p>
         </div>
