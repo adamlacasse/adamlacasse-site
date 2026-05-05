@@ -9,7 +9,7 @@ export async function GET(context) {
 
   return rss({
     title: `${AUTHOR} — Politics`,
-    description: 'Political writing from Adam LaCasse.',
+    description: 'Political blog from Adam LaCasse.',
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,

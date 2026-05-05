@@ -9,12 +9,12 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
-<BaseLayout title={`Writing — ${AUTHOR}`} contentWidth="narrow">
+<BaseLayout title={`Blog — ${AUTHOR}`} contentWidth="narrow">
   <BlogListing
-    title="Writing"
-    subtitle="Miscellany on software, music, and life."
+    title="Scratch Tracks"
+    subtitle="A blog on software, music, meaning, and miscellany."
     posts={posts}
-    activeSection="writing"
+    activeSection="blog"
     feedHref="/rss.xml"
   />
 </BaseLayout>

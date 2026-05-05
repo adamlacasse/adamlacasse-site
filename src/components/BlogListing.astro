@@ -9,7 +9,7 @@ interface Props {
   title: string;
   subtitle: string;
   posts: BlogPost[];
-  activeSection: 'writing' | 'politics';
+  activeSection: 'blog' | 'politics';
   feedHref: string;
 }
 
@@ -18,8 +18,8 @@ const { title, subtitle, posts, activeSection, feedHref } = Astro.props as Props
 const sections = [
   {
     href: '/blog',
-    label: 'Writing',
-    key: 'writing',
+    label: 'Scratch Tracks',
+    key: 'blog',
   },
   {
     href: '/blog/politics',
