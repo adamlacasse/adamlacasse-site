@@ -9,7 +9,7 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
-<BaseLayout title={`Politics — ${AUTHOR}`} contentWidth="narrow">
+<BaseLayout title={`Politics - ${AUTHOR}`} contentWidth="narrow">
   <BlogListing
     title="Politics"
     subtitle="Searching for signal in the noise."

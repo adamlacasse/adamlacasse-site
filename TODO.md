@@ -118,7 +118,7 @@ _No items currently in progress._
     - Theme script loads in `<head>` once, runs immediately and on DOMContentLoaded
     - Button rendered in nav via ThemeToggle component
     - localStorage persistence works correctly (theme change does persist)
-    - Issue is intermittent—sometimes single click works, sometimes needs two clicks
+    - Issue is intermittent-sometimes single click works, sometimes needs two clicks
   - **Next steps:**
     1. Add debug logging to `public/theme.js` to track event listener attachment and click event firing
     2. Check if `initThemeToggle()` is being called multiple times despite `{ once: true }` flag

@@ -3,110 +3,76 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { AUTHOR } from '../consts';
 ---
 
-<BaseLayout title={`About — ${AUTHOR}`} contentWidth="narrow">
+<BaseLayout title={`About - ${AUTHOR}`} contentWidth="narrow">
   <h1>About</h1>
 
   <p>
-    I've been a full stack software engineer since 2018. Before the career change that led me to
-    software, I spent years on the "business side," solving problems by turning down the noise
-    around complex issues and building strong relationships with the right people. Although I am now
-    a software engineer, I am acutely aware that technology is often the last step in the process —
-    not the first.
+    I've been a software engineer since 2018. Before that, I spent nearly two decades on the
+    business side - running finance and operations teams in law, real estate, and professional
+    services. The career change was less like a pivot than a continuation: same job (figure out
+    what's actually broken, build something that holds up), different tools.
   </p>
 
   <p>
-    Since 2000, I have worked with people and processes to extract maximum value with minimum cost
-    and effort. I've consistently used that approach to drive outcomes across the real estate,
-    professional services, and insurance industries. The products change, but the winning formula is
-    the same.
+    The through-line, going back to 2000, has been extracting maximum value with minimum noise.
+    Different industries, different products, same winning formula. Technology, I've learned, is
+    usually the last step in that process - not the first.
   </p>
 
   <p>
-    In the day to day, I care deeply about fostering healthy, effective teams. I am NOT a "super
-    chicken," and I fully subscribe to the idea that collaboration and social capital consistently
-    produce better business and personal outcomes than internal competition. The best teams I’ve
-    been part of — and led — were built on respect, support, and clear communication. None relied on
-    "brilliant jerks."
+    I care a lot about the teams I'm part of. I am NOT a "super chicken," and I fully subscribe to
+    the idea that collaboration and social capital produce better outcomes than internal
+    competition. The best teams I've been on and led were built on respect, support, and clear
+    communication. None of them relied on "brilliant jerks."
   </p>
 
-  <h2>Master’s program</h2>
+  <h2>The master's</h2>
 
   <p>
-    I’m currently pursuing a Master’s degree in Computer Science with a concentration in Artificial
-    Intelligence at <a href="https://www.merrimack.edu/" target="_blank" rel="noreferrer"
+    I'm one course away from finishing an M.S. in Computer Science with an Artificial Intelligence
+    concentration at <a href="https://www.merrimack.edu/" target="_blank" rel="noreferrer"
       >Merrimack College</a
-    >. I am deepening my understanding of the theoretical foundations behind everyday engineering
-    decisions. The goal isn’t credentialing — it’s developing better judgment by understanding the
-    tradeoffs beneath the abstractions. And, as we all know, AI isn't going away anytime soon.
+    >. The goal isn't a credential - it's better judgment. I wanted to understand the tradeoffs
+    underneath the abstractions I use every day.
   </p>
 
   <p>
-    My focus areas include algorithms, discrete mathematics, data modeling, and system design. I’m
-    particularly interested in how formal concepts translate into real-world software: complexity,
-    constraints, boundaries, and long-term maintainability.
+    The AI concentration isn't decorative. The bulk of the coursework lives in the substance of
+    modern AI - the foundations, the mechanics of deep learning, and the ethical questions that come
+    with shipping these systems into the real world. I came in curious about how it all actually
+    works under the hood. I'm leaving able to reason about model behavior, training tradeoffs, and -
+    maybe more importantly - where the technology earns its keep versus where it doesn't.
+  </p>
+
+  <h2>How I work</h2>
+
+  <p>
+    I gravitate toward boring, well-understood tools that scale with teams over time. I optimize for
+    clarity, explicit boundaries, and systems that are still easy to reason about years later. When
+    the choice is between novel and proven, I usually pick proven - but I want to know enough about
+    the novel to pick well.
   </p>
 
   <p>
-    One concrete output of that work is <a href="https://northflow.adamlacasse.dev">NorthFlow</a> — a
-    small, intentionally scoped check-in app in Python that emphasizes database design, constraints, and
-    extensibility.
+    For the specific stack and full work history, see the <a href="/resume">resume</a> or
+    <a href="https://www.linkedin.com/in/adamlacasse/" rel="noopener" target="_blank">LinkedIn</a>.
   </p>
 
-  <h2>Tech I work with</h2>
+  <h2>Outside of code</h2>
 
   <p>
-    I tend to work across the full stack, with a bias toward boring, well-understood tools that
-    scale with teams and time. I value clarity, explicit boundaries, and systems that are easy to
-    reason about long after the initial implementation.
+    I am a music nerd. I play guitar, bass, and drums. I like deep dives into vinyl, credits,
+    sessions, side-player rabbit holes, etc. - which probably tracks given a stretch at Berklee
+    College of Music studying jazz composition. I cook, hike, ride a motorcycle, tinker around the
+    house, bird watch, and look for the philosophical underpinnings of everyday minutia. I am a big
+    Kurt Vonnegut fan.
   </p>
 
-  <ul>
-    <li>
-      <strong>Frontend</strong> — TypeScript, JavaScript, React, Angular, modern HTML & CSS
-    </li>
-    <li>
-      <strong>Backend</strong> — Node.js, Python, Java, Go, RESTful APIs
-    </li>
-    <li>
-      <strong>Data</strong> — PostgreSQL, MySQL, relational modeling, constraints, migrations
-    </li>
-    <li>
-      <strong>Infrastructure & tooling</strong> — AWS, Docker, CI/CD pipelines, Git & GitHub
-    </li>
-  </ul>
+  <h2>About this site</h2>
 
   <p>
-    When choosing tools, I optimize for long-term maintainability, ease of ownership, and clear
-    interfaces over novelty or cleverness.
-  </p>
-
-  <h2>Selected experience</h2>
-
-  <p>
-    I’ve spent my career working at the intersection of business problems and technical systems,
-    across both non-technical and engineering roles.
-  </p>
-
-  <ul>
-    <li>
-      <strong>Senior Full Stack Software Engineer — Insurance & enterprise platforms</strong><br />
-      Building and evolving internal tools used by large, distributed teams, with an emphasis on maintainability,
-      clear ownership, and incremental delivery.
-    </li>
-
-    <li>
-      <strong>Business & operations leadership — Real estate and professional services</strong><br
-      />
-      Led operational initiatives focused on process improvement, cost control, and cross-functional collaboration
-      prior to transitioning into software engineering.
-    </li>
-  </ul>
-
-  <p>
-    For a complete work history, see <a
-      href="https://www.linkedin.com/in/adamlacasse/"
-      rel="noopener"
-      target="_blank">LinkedIn</a
-    > or my <a href="/resume">resume page</a>.
+    Built in <a href="https://astro.build/" target="_blank" rel="noreferrer">Astro</a>, deployed
+    continuously, and perpetually tinkered with. Part portfolio, part workshop, part escape from the
+    seemingly meaninglessness of existence - with a smile!
   </p>
 </BaseLayout>

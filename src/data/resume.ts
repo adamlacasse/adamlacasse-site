@@ -111,7 +111,7 @@ export const resumeData = {
       achievements: [
         'Progressed from analyst → manager → director while guiding the firm through the 2008 financial crisis.',
         'Achieved >15% profitability improvement through strategic financial modeling, operational analysis, and executive partnership.',
-        '<em>Foundational strengths: executive communication, systems thinking, and business-aligned decision making—now applied to software architecture and technical leadership.</em>',
+        '<em>Foundational strengths: executive communication, systems thinking, and business-aligned decision making-now applied to software architecture and technical leadership.</em>',
       ],
       tech: '',
     },
@@ -119,7 +119,7 @@ export const resumeData = {
 
   education: [
     {
-      degree: 'M.S. Computer Science — Artificial Intelligence Concentration',
+      degree: 'M.S. Computer Science - Artificial Intelligence Concentration',
       school: 'Merrimack College',
       date: 'Expected 2026',
       note: 'Focus: machine learning, deep learning, NLP, large language models, intelligent system design',

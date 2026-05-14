@@ -12,15 +12,15 @@
   in; BaseLayout sets the `<title>`/description tags directly. Sticky footer pattern uses flexbox (`display: flex`, `flex-direction: column`) with `main` set to `flex: 1`.
 - Styling: **Bulma CSS framework** for all layout/component styling (imported from CDN in BaseLayout). Spacing/typography use Bulma's utility classes (e.g., `mb-3`, `mt-4`, `is-4`). Theme toggle uses inline script in `<head>` to manage `data-theme` attribute for light/dark mode persistence via localStorage.
 - Pages (8 total):
-  - [src/pages/index.astro](../src/pages/index.astro) — homepage hero + featured tiles
-  - [src/pages/blog/index.astro](../src/pages/blog/index.astro) — blog listing (filtered, newest-first)
-  - [src/pages/blog/[slug].astro](../src/pages/blog/[slug].astro) — individual blog posts
-  - [src/pages/projects.astro](../src/pages/projects.astro) — projects gallery (hardcoded array)
-  - [src/pages/about.astro](../src/pages/about.astro) — about page
-  - [src/pages/now.astro](../src/pages/now.astro) — now page
-  - [src/pages/resume.astro](../src/pages/resume.astro) — resume/CV (web) with JSON-LD structured data
-  - [src/pages/resume/pdf.astro](../src/pages/resume/pdf.astro) — resume PDF export
-  - [src/pages/contact.astro](../src/pages/contact.astro) — contact page
+  - [src/pages/index.astro](../src/pages/index.astro) - homepage hero + featured tiles
+  - [src/pages/blog/index.astro](../src/pages/blog/index.astro) - blog listing (filtered, newest-first)
+  - [src/pages/blog/[slug].astro](../src/pages/blog/[slug].astro) - individual blog posts
+  - [src/pages/projects.astro](../src/pages/projects.astro) - projects gallery (hardcoded array)
+  - [src/pages/about.astro](../src/pages/about.astro) - about page
+  - [src/pages/now.astro](../src/pages/now.astro) - now page
+  - [src/pages/resume.astro](../src/pages/resume.astro) - resume/CV (web) with JSON-LD structured data
+  - [src/pages/resume/pdf.astro](../src/pages/resume/pdf.astro) - resume PDF export
+  - [src/pages/contact.astro](../src/pages/contact.astro) - contact page
 - RSS: generated at `/rss.xml` from the same filtered collection; keep `site` from context for absolute URLs in [src/pages/rss.xml.js](../src/pages/rss.xml.js).
 - **Resume system**: Single-source-of-truth pattern using [src/data/resume.ts](../src/data/resume.ts) (TypeScript interfaces + `resumeData` object). Reusable [src/components/ResumeContent.astro](../src/components/ResumeContent.astro) component shared between web (`resume.astro`) and PDF (`resume/pdf.astro`) pages. Structured data (JSON-LD Person schema) added in `resume.astro` for SEO.
 - Active components: [src/components/HeaderLink.astro](../src/components/HeaderLink.astro) (demo/utility), [src/components/ResumeContent.astro](../src/components/ResumeContent.astro) (resume shared component). Theme toggle button lives directly in BaseLayout header (no separate component); theme logic is inline script in `<head>`.

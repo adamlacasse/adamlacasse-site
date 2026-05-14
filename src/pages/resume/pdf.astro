@@ -9,7 +9,7 @@ import { resumeData } from '../../data/resume';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Adam LaCasse — Resume</title>
+    <title>Adam LaCasse - Resume</title>
     <style>
       * {
         margin: 0;
@@ -260,7 +260,7 @@ import { resumeData } from '../../data/resume';
                 <div class="role-header">
                   <div class="role-title">
                     <h3>
-                      {role.company} — {role.title}
+                      {role.company} - {role.title}
                     </h3>
                     <p style="margin-bottom: 0; color: var(--color-text-light);">{role.subtitle}</p>
                   </div>
@@ -290,7 +290,7 @@ import { resumeData } from '../../data/resume';
               resumeData.education.map((edu) => (
                 <>
                   <li>
-                    <strong>{edu.degree}</strong> — {edu.school}
+                    <strong>{edu.degree}</strong> - {edu.school}
                     {edu.date && <span style="color: var(--color-text-light);"> • {edu.date}</span>}
                   </li>
                   {edu.note && (

@@ -8,7 +8,7 @@ export async function GET(context) {
     .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
   return rss({
-    title: `${AUTHOR} — Blog`,
+    title: `${AUTHOR} - Blog`,
     description: 'A blog on software, music, meaning, and miscellany.',
     site: context.site,
     items: posts.map((p) => ({
