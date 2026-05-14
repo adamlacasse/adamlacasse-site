@@ -4,4 +4,4 @@
 export const AUTHOR = 'Adam LaCasse';
 export const SITE_TITLE = 'Adam LaCasse';
 export const SITE_DESCRIPTION =
-  'Software engineer. Building projects, writing notes, shipping things.';
+  'Full-stack engineer focused on enterprise platforms, architecture, and applied AI.';

@@ -24,7 +24,7 @@ export interface ResumeSkill {
 
 export const resumeData = {
   name: 'Adam LaCasse',
-  headline: 'Senior Full-Stack Engineer | People & Talent platforms | Applied AI',
+  headline: 'Full-Stack Engineer | Enterprise Platforms | Architecture | Applied AI',
   location: 'Atkinson, NH',
   phone: '(617) 407-3254',
   email: 'adam@adamlacasse.dev',
@@ -32,7 +32,7 @@ export const resumeData = {
   github: 'https://github.com/adamlacasse',
   linkedin: 'https://www.linkedin.com/in/adamlacasse/',
 
-  summary: `Senior full-stack engineer who likes shipping product end-to-end. The last five years: building People & Talent platforms - recruiting, performance, knowledge, and recognition tools - used by 40,000+ employees at a Fortune 100 insurer. Before software, I spent nearly two decades running finance and operations teams, which means I'm the engineer who actually enjoys the stakeholder conversation: HR business partners, recruiters, ops leads, exec sponsors.<br><br>Stack: TypeScript, React, Node.js, Python, Java, PostgreSQL, AWS. One course away from an M.S. in Computer Science with an Artificial Intelligence concentration (foundations of AI, deep learning, AI ethics). Looking for product-engineering work where the brief is loose, the iteration is fast, and AI is part of the toolkit.`,
+  summary: `Full-stack engineer focused on enterprise platforms, architecture, and end-to-end product delivery. Current work includes modernizing a risk management platform serving ~70K users and supporting ~$4B in annual premium, plus People & Talent tools used by 40,000+ multilingual employees at a Fortune 100 insurer. Before software, I spent nearly two decades running finance and operations teams, which means I'm the engineer who actually enjoys the stakeholder conversation: HR business partners, recruiters, ops leads, exec sponsors.<br><br>Stack: TypeScript, React, Node.js, Python, Java, PostgreSQL, AWS. One course away from an M.S. in Computer Science with an Artificial Intelligence concentration (foundations of AI, deep learning, AI ethics). Looking for product-minded engineering leadership work where I can shape architecture, turn ambiguous business problems into durable systems, and apply AI where it creates real leverage.`,
 
   skills: [
     {
@@ -59,11 +59,12 @@ export const resumeData = {
       dates: '2019 - Present',
       achievements: [
         '<strong>Senior Software Engineer (2021-Present)</strong>',
+        '<strong>RMIS platform redesign (2026-Present):</strong> Lead role in modernizing the risk management platform (RMIS) - serving ~70K users (large enterprises, auditors, brokers, and internal teams) and supporting ~$4B in annual premium.',
+        '$4M modernization effort: migrating core services to cloud-native microservices on AWS, standardizing cross-platform data contracts, and tightening the deployment loop for faster iteration.',
+        'Shape architecture and implementation plans across service boundaries, data contracts, delivery sequencing, and operational handoff.',
         '<strong>People & Talent platforms (2021-2026):</strong> Lead engineer on Goals & Growth (performance), Concierge (people knowledge hub), and Merit (recognition) - used by 40,000+ multilingual employees worldwide.',
         'Owned product end-to-end: discovery with HR business partners and recruiters, system design, implementation, rollout, and iteration on usage data.',
         'Translated loosely defined people-operations problems into shipped product, working directly with HRBPs, recruiters, analysts, and executives.',
-        '<strong>RMIS platform redesign (2026-Present):</strong> Lead role in modernizing the risk management platform (RMIS) - serving ~70K users (large enterprises, auditors, brokers, and internal teams) and supporting ~$4B in annual premium.',
-        '$4M modernization effort: migrating core services to cloud-native microservices on AWS, standardizing cross-platform data contracts, and tightening the deployment loop for faster iteration.',
         'Throughout: mentor engineers and set system-design and code-review standards adopted across teams; advocate for boring tools, explicit boundaries, and small reversible shipments.',
         '<strong>Software Engineer (2019-2021)</strong>',
         'Joined the People & Talent team; earned rapid promotion to Senior through ownership of complex features and consistent resolution of ambiguous, high-risk technical problems.',
@@ -78,7 +79,7 @@ export const resumeData = {
       dates: '2019',
       achievements: [
         'Guided students through full-stack MERN development, debugging, and the habits that separate working code from maintainable code.',
-        'Sharpened the mentorship and technical-communication muscles I still use in senior engineering contexts today.',
+        'Sharpened the mentorship and technical-communication muscles I still use in engineering leadership contexts today.',
       ],
       tech: '',
     },

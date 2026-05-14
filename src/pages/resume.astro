@@ -8,7 +8,7 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: resumeData.name,
-  jobTitle: 'Senior Software Engineer',
+  jobTitle: 'Full-Stack Engineer',
   description: resumeData.summary.replace(/<[^>]*>/g, ''),
   url: 'https://adamlacasse.dev',
   sameAs: [resumeData.github, resumeData.linkedin],
@@ -40,7 +40,7 @@ const structuredData = {
 
 <BaseLayout
   title={`Resume - ${AUTHOR}`}
-  description="Senior full-stack engineer building People & Talent platforms used by 40,000+ employees. Product-minded, business-side roots, M.S. in CS with an AI concentration in progress."
+  description="Full-stack engineer focused on enterprise platforms, architecture, and applied AI. Current work includes RMIS modernization supporting ~$4B in annual premium."
   contentWidth="narrow"
 >
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
