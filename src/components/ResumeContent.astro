@@ -1,28 +1,46 @@
 ---
 // Reusable resume content component
-// Used by both resume.astro (web) and resume/pdf.astro (print)
+// The PDF route renders its own ATS layout from the same resume data.
 import { resumeData } from '../data/resume';
+
+interface Props {
+  includeSummary?: boolean;
+  includeSkills?: boolean;
+  includeLeadership?: boolean;
+}
+
+const {
+  includeSummary = true,
+  includeSkills = true,
+  includeLeadership = true,
+} = Astro.props as Props;
 ---
 
 <div>
-  <section class="mb-6">
-    <h2 class="title is-4 mb-3">Summary</h2>
-    <p class="block" set:html={resumeData.summary} />
-  </section>
+  {
+    includeSummary && (
+      <section class="mb-6">
+        <h2 class="title is-4 mb-3">Summary</h2>
+        <p class="block" set:html={resumeData.summary} />
+      </section>
+    )
+  }
 
-  <section class="mb-6">
-    <h2 class="title is-4 mb-3">Core Skills</h2>
-    <ul>
-      {
-        resumeData.skills.map((skill) => (
-          <li class="mb-2">
-            <strong>{skill.category}:</strong>
-            {skill.items}
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+  {
+    includeSkills && (
+      <section class="mb-6">
+        <h2 class="title is-4 mb-3">Core Skills</h2>
+        <ul>
+          {resumeData.skills.map((skill) => (
+            <li class="mb-2">
+              <strong>{skill.category}:</strong>
+              {skill.items}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
 
   <section class="mb-6">
     <h2 class="title is-4 mb-4">Experience</h2>
@@ -75,12 +93,18 @@ import { resumeData } from '../data/resume';
     </ul>
   </section>
 
-  <section class="mb-6">
-    <h2 class="title is-4 mb-3">Leadership & Impact Themes</h2>
-    <ul>
-      {resumeData.leadershipThemes.map((theme) => <li class="mb-2">{theme}</li>)}
-    </ul>
-  </section>
+  {
+    includeLeadership && (
+      <section class="mb-6">
+        <h2 class="title is-4 mb-3">Leadership & Impact Themes</h2>
+        <ul>
+          {resumeData.leadershipThemes.map((theme) => (
+            <li class="mb-2">{theme}</li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
 
   <section class="mb-6">
     <div class="content">

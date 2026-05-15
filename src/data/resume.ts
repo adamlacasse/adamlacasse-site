@@ -22,15 +22,103 @@ export interface ResumeSkill {
   items: string;
 }
 
+export interface ResumeMetric {
+  value: string;
+  label: string;
+  detail: string;
+}
+
+export interface ResumeProofPoint {
+  title: string;
+  description: string;
+  href?: string;
+  linkLabel?: string;
+}
+
 export const resumeData = {
   name: 'Adam LaCasse',
-  headline: 'Full-Stack Engineer | Enterprise Platforms | Architecture | Applied AI',
-  location: 'Atkinson, NH',
+  headline: 'Senior Full-Stack Engineer | Enterprise Platforms & Applied AI',
+  positioning:
+    'I take ambiguous business problems and turn them into durable systems that real people rely on. I’m looking for user-centric engineering leadership work where I can shape architecture, lead end-to-end delivery, and apply AI where it creates real leverage.',
+  signature: 'Reliable leadership. Reliable systems. Fortune 100 scale.',
+  location: 'Southern NH / Greater Boston',
   phone: '(617) 407-3254',
   email: 'adam@adamlacasse.dev',
   website: 'adamlacasse.dev',
   github: 'https://github.com/adamlacasse',
   linkedin: 'https://www.linkedin.com/in/adamlacasse/',
+
+  impactMetrics: [
+    {
+      value: '~70K',
+      label: 'RMIS users',
+      detail: 'Including large enterprises, auditors, brokers, and internal teams.',
+    },
+    {
+      value: '~$4B',
+      label: 'Annual premium supported',
+      detail: 'On our mission-critical risk management information system (RMIS).',
+    },
+
+    {
+      value: '~$4M',
+      label: 'RMIS modernization',
+      detail:
+        'Cloud-native services, shared data contracts, delivery sequencing, and operational handoff.',
+    },
+    {
+      value: '40K+',
+      label: 'Global employees served',
+      detail: 'People & Talent products for diverse, multilingual teams.',
+    },
+  ] as ResumeMetric[],
+
+  proofPoints: [
+    {
+      title: 'Enterprise modernization lead',
+      description:
+        'Shape architecture and implementation plans across service boundaries, AWS services, platform data contracts, rollout sequencing, and support ownership.',
+    },
+    {
+      title: 'Product-minded engineer',
+      description:
+        'Own discovery, build, rollout, and iteration with HR business partners, recruiters, analysts, and executive sponsors.',
+    },
+    {
+      title: 'Business operator turned builder',
+      description:
+        'Nearly two decades leading finance and operations teams before engineering, including law-firm administration and FP&A leadership.',
+    },
+    {
+      title: 'Applied AI with substance',
+      description:
+        'M.S. Computer Science work in AI foundations, deep learning, and AI ethics, plus hands-on LLM integration and retrieval patterns.',
+    },
+  ] as ResumeProofPoint[],
+
+  portfolioProof: [
+    {
+      title: 'Freq Show!',
+      description:
+        'AI-powered music discovery app built around search paths, metadata relationships, discographies, and credit exploration.',
+      href: 'https://freq-show.adamlacasse.dev',
+      linkLabel: 'Live app',
+    },
+    {
+      title: 'NorthFlow',
+      description:
+        'Small workflow product shaped around explicit domain modeling, durable constraints, and low-noise iteration.',
+      href: 'https://northflow.adamlacasse.dev',
+      linkLabel: 'Live app',
+    },
+    {
+      title: 'Organizize',
+      description:
+        'Inventory platform with intake/outtake transactions, role-based access, and guardrails for operational consistency.',
+      href: 'https://organizize.adamlacasse.dev',
+      linkLabel: 'Live app',
+    },
+  ] as ResumeProofPoint[],
 
   summary: `Full-stack engineer focused on enterprise platforms, architecture, and end-to-end product delivery. Current work includes modernizing a risk management platform serving ~70K users and supporting ~$4B in annual premium, plus People & Talent tools used by 40,000+ multilingual employees at a Fortune 100 insurer. Before software, I spent nearly two decades running finance and operations teams, which means I'm the engineer who actually enjoys the stakeholder conversation: HR business partners, recruiters, ops leads, exec sponsors.<br><br>Stack: TypeScript, React, Node.js, Python, Java, PostgreSQL, AWS. One course away from an M.S. in Computer Science with an Artificial Intelligence concentration (foundations of AI, deep learning, AI ethics). Looking for product-minded engineering leadership work where I can shape architecture, turn ambiguous business problems into durable systems, and apply AI where it creates real leverage.`,
 
@@ -47,7 +135,7 @@ export const resumeData = {
     {
       category: 'Applied AI',
       items:
-        'LLM integration, prompt design, retrieval patterns, AI-assisted developer tooling; active M.S. coursework in foundations of AI, deep learning, and AI ethics',
+        'LLM integration, prompt design, retrieval patterns, AI-assisted developer tooling. Recent MSCS coursework in foundations of AI, deep learning, and AI ethics',
     },
   ] as ResumeSkill[],
 
