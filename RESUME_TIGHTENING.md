@@ -30,6 +30,6 @@ Status as of 2026-05-15.
 
 ## Tabled for later
 
-- **Tagline (`signature` field).** Adam recently revised it and is keeping it as-is for now — *not* an active to-do. Prior agent take (preserved for the eventual revisit): the tagline makes generic positive claims when it could stake a position only Adam can stake, and "Fortune 100 scale" is redundant with the impact strip directly below. The phrase "boring tools, explicit boundaries, small reversible shipments" — now living in the Operating Principles bullet — is a strong candidate if Adam ever wants to promote it to the tagline (Option B from the earlier conversation).
+- **Tagline (`signature` field).** Adam recently revised it and is keeping it as-is for now — _not_ an active to-do. Prior agent take (preserved for the eventual revisit): the tagline makes generic positive claims when it could stake a position only Adam can stake, and "Fortune 100 scale" is redundant with the impact strip directly below. The phrase "boring tools, explicit boundaries, small reversible shipments" — now living in the Operating Principles bullet — is a strong candidate if Adam ever wants to promote it to the tagline (Option B from the earlier conversation).
 - **Headline rewrite.** "Senior Full-Stack Engineer | Enterprise Platforms & Applied AI" is what every senior FS engineer writes. The operator-turned-engineer angle isn't surfaced above the fold.
 - **Hyphen → em-dash consistency pass** across `resume.ts`. Cosmetic but noticeable.
