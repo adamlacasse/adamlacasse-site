@@ -16,6 +16,13 @@ const {
 } = Astro.props as Props;
 ---
 
+<style>
+  .sub-bullet {
+    margin-left: 1.5rem;
+    list-style-type: circle;
+  }
+</style>
+
 <div>
   {
     includeSummary && (
@@ -60,7 +67,10 @@ const {
 
           <ul class="mb-3">
             {role.achievements.map((achievement) => (
-              <li class="mb-2" set:html={achievement} />
+              <li
+                class={`mb-2${achievement.startsWith('<strong>') ? '' : ' sub-bullet'}`}
+                set:html={achievement}
+              />
             ))}
           </ul>
 

@@ -146,15 +146,15 @@ export const resumeData = {
       subtitle: 'Portsmouth, NH (Hybrid)',
       dates: '2019 - Present',
       achievements: [
-        '<strong>RMIS platform redesign (2026-Present):</strong> Lead engineer on the data layer of a multi-year, $4M modernization of a risk management platform supporting ~$4B in annual premium and ~70K users (enterprises, brokers, auditors, internal teams) - replacing a legacy monolith with cloud-native services on AWS, currently in the foundations phase building toward incremental cutover.',
-        'Defined shared data contracts and migration patterns (dual-write, shadow read, expand-contract) across downstream consumers spanning reporting pipelines and customer-facing data flows - new services can stand up behind the live monolith without disrupting them.',
-        'Established service boundaries, rollout sequencing, and reference patterns the broader program builds against - downstream teams can move on the new architecture independently rather than waiting on a full monolith cutover.',
-        `<strong>People & Talent platforms (2019-2025):</strong> Engineered three internal greenfield platforms from initial discovery through rollout - performance management, a people knowledge hub, and employee recognition - consolidating a sprawl of third-party tools and spreadsheets in support of Liberty's "best place to work" strategic priority across ~40K multilingual employees. <strong>Promoted from Software Engineer to Senior in 2021</strong> mid-arc, through ownership of complex features and steady delivery on ambiguous technical problems.`,
+        '<strong>RMIS platform redesign (2025-Present):</strong> Lead engineer on the data layer of a multi-year, ~$4M modernization of a risk management platform supporting ~$4B in annual premium and ~70K users (enterprises, brokers, auditors, internal teams) - replacing legacy mainframe workflows with cloud-native services on AWS, currently in the foundations phase building toward incremental cutover.',
+        'Defined shared data contracts and migration patterns (dual-write, shadow read, expand-contract) across downstream consumers spanning reporting pipelines and customer-facing data flows - new services can stand up behind the live legacy app without disruption.',
+        'Established service boundaries, rollout sequencing, and reference patterns the broader program builds against - downstream teams can move on the new architecture independently rather than waiting on a full ecosystem cutover.',
+        `<strong>People & Talent platforms (2019-2025):</strong> Engineered several internal greenfield platforms from initial discovery through rollout - performance management, a people knowledge hub, compensation support, and more - consolidating a sprawl of third-party tools and spreadsheets in support of Liberty's "best place to work" strategic priority across ~40K multilingual employees. <strong>Promoted from Software Engineer to Senior in 2021</strong> mid-arc, through ownership of complex features and steady delivery on ambiguous technical problems.`,
         'Ran discovery, design, and rollout for each product in direct partnership with HR business partners, recruiters, analysts, and exec sponsors - turning loosely defined people-operations problems into systems each function actually adopted.',
         '<strong>Operating principles across both programs:</strong> boring tools, explicit boundaries, small reversible shipments - applied through engineer mentorship and design/review standards adjacent teams now follow.',
         'Brief rotation with the data and analytics engineering team - databases, warehousing, and BI pipeline work.',
       ],
-      tech: 'TypeScript, JavaScript, React, Node.js, Java (Spring), PostgreSQL, AWS',
+      tech: 'TypeScript, JavaScript, Node.js, React, Java (Spring), Python, PostgreSQL, AWS',
     },
     {
       title: 'Teaching Assistant',
@@ -233,6 +233,6 @@ export const resumeData = {
     'Mentorship and standards-setting without over-engineering',
   ],
 
-  dailyTech: 'JS/TS, React, Node, Java, SQL, AWS',
-  projectTech: 'Python, Go, Rust',
+  dailyTech: 'JS/TS, Python, Node, Java, SQL, AWS',
+  projectTech: 'Go, Rust, Ruby, PHP...',
 };

@@ -29,9 +29,19 @@ import { resumeData } from '../../data/resume';
 
       @media screen {
         body {
-          padding: 2rem;
+          background: #c8c8c8;
+          padding: 2.5rem 1.5rem;
+          min-height: 100vh;
+        }
+
+        body > div {
+          background: #fff;
           max-width: 850px;
           margin: 0 auto;
+          padding: 0.75in;
+          box-shadow:
+            0 2px 8px rgba(0, 0, 0, 0.15),
+            0 8px 32px rgba(0, 0, 0, 0.12);
         }
       }
 
@@ -254,6 +264,11 @@ import { resumeData } from '../../data/resume';
         margin-top: 0.4rem;
       }
 
+      li.sub-bullet {
+        margin-left: 1rem;
+        list-style-type: circle;
+      }
+
       .portfolio-list {
         display: flex;
         flex-direction: column;
@@ -400,7 +415,10 @@ import { resumeData } from '../../data/resume';
 
                 <ul>
                   {role.achievements.map((achievement) => (
-                    <li set:html={achievement} />
+                    <li
+                      class={achievement.startsWith('<strong>') ? '' : 'sub-bullet'}
+                      set:html={achievement}
+                    />
                   ))}
                 </ul>
 

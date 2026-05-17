@@ -1,7 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import { AUTHOR, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import logo from '../assets/lacasse-solutions.png';
+import logoLight from '../assets/logo-light.png';
+import logoDark from '../assets/logo-dark.png';
 import githubIconBlack from '../assets/GitHub_Invertocat_Black.svg';
 import githubIconWhite from '../assets/GitHub_Invertocat_White.svg';
 import linkedinIcon from '../assets/LI-In-Bug.png';
@@ -108,7 +109,8 @@ const siteUrl = new URL(canonicalURL);
         padding-top: 26px;
       }
 
-      #logo {
+      #logo,
+      #logo-dark {
         max-height: none;
         width: 250px;
       }
@@ -193,6 +195,41 @@ const siteUrl = new URL(canonicalURL);
       html[data-theme='dark'] .github-dark {
         display: block;
       }
+
+      /* Logo theme switching */
+      .logo-light {
+        display: block;
+      }
+
+      .logo-dark {
+        display: none;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .logo-light {
+          display: none;
+        }
+
+        .logo-dark {
+          display: block;
+        }
+      }
+
+      html[data-theme='light'] .logo-light {
+        display: block;
+      }
+
+      html[data-theme='light'] .logo-dark {
+        display: none;
+      }
+
+      html[data-theme='dark'] .logo-light {
+        display: none;
+      }
+
+      html[data-theme='dark'] .logo-dark {
+        display: block;
+      }
     </style>
     <script is:inline>
       // Initialize theme before page render to prevent flash
@@ -211,7 +248,8 @@ const siteUrl = new URL(canonicalURL);
         <div class="container">
           <div class="navbar-brand">
             <a href="/" class="navbar-item">
-              <Image id="logo" src={logo} alt={AUTHOR} />
+              <Image id="logo" src={logoLight} alt={AUTHOR} class="logo-light" />
+              <Image id="logo-dark" src={logoDark} alt={AUTHOR} class="logo-dark" />
             </a>
             <a
               role="button"
