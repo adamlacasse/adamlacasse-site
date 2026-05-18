@@ -105,14 +105,33 @@ const siteUrl = new URL(canonicalURL);
       }
 
       header {
-        position: relative;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 30;
         padding-top: 26px;
+        background-color: var(--bulma-scheme-main);
+        transition:
+          padding-top 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      header.is-scrolled {
+        padding-top: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
       }
 
       #logo,
       #logo-dark {
         max-height: none;
         width: 250px;
+        transition: width 0.25s ease;
+      }
+
+      header.is-scrolled #logo,
+      header.is-scrolled #logo-dark {
+        width: 140px;
       }
 
       /* Mobile menu overlay */
@@ -269,6 +288,7 @@ const siteUrl = new URL(canonicalURL);
               <a class="navbar-item" href="/about">About</a>
               <a class="navbar-item" href="/now">Now</a>
               <a class="navbar-item" href="/projects">Projects</a>
+              <a class="navbar-item" href="/resume">Résumé</a>
               <a class="navbar-item" href="/blog">Blog</a>
               <a class="navbar-item" href="/contact">Contact</a>
               <div class="navbar-item">
@@ -382,6 +402,34 @@ const siteUrl = new URL(canonicalURL);
           updateThemeIcon(newTheme);
         });
       }
+
+      // Compact sticky header
+      const siteHeader = document.querySelector('header');
+      const SCROLL_THRESHOLD = 60;
+
+      // Push body content below the fixed header
+      document.body.style.paddingTop = siteHeader.offsetHeight + 'px';
+
+      function updateHeaderState() {
+        siteHeader.classList.toggle('is-scrolled', window.scrollY > SCROLL_THRESHOLD);
+      }
+
+      let scrollTicking = false;
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!scrollTicking) {
+            requestAnimationFrame(() => {
+              updateHeaderState();
+              scrollTicking = false;
+            });
+            scrollTicking = true;
+          }
+        },
+        { passive: true }
+      );
+
+      updateHeaderState();
 
       // Mobile menu toggle functionality
       document.addEventListener('DOMContentLoaded', () => {
