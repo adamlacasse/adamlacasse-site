@@ -1,12 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { AUTHOR } from '../consts';
+import { AUTHOR, SITE_TITLE } from '../consts';
+import { profilePageStructuredData, websiteStructuredData } from '../seo';
+
+const description =
+  'Adam LaCasse is a senior full-stack engineer building enterprise platforms, applied AI tools, and durable software for complex operations.';
 ---
 
-<BaseLayout title={AUTHOR}>
-  <section class="hero is-medium">
+<BaseLayout
+  title={SITE_TITLE}
+  description={description}
+  structuredData={[websiteStructuredData, profilePageStructuredData('/', description)]}
+>
+  <section class="hero home-hero">
     <div class="hero-body">
-      <h1 class="title is-1">Hi, I'm Adam 👋</h1>
+      <p class="greeting-eyebrow">Hi, I'm Adam 👋</p>
+      <h1 class="title is-1">{AUTHOR}</h1>
+      <p class="subtitle is-3">
+        Senior full-stack engineer for enterprise platforms and applied AI.
+      </p>
       <p class="subtitle is-4">
         I build enterprise software shaped by two decades in finance and operations, using a simple
         but powerful approach: identify the real constraint, simplify around it, and make the system
@@ -30,3 +42,28 @@ import { AUTHOR } from '../consts';
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .greeting-eyebrow {
+    color: var(--bulma-text-weak);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .greeting-eyebrow + .title {
+    margin-top: 0;
+  }
+
+  .home-hero .hero-body {
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    .home-hero .hero-body {
+      padding-top: 3rem;
+      padding-bottom: 4rem;
+    }
+  }
+</style>

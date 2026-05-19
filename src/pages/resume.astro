@@ -3,15 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ResumeContent from '../components/ResumeContent.astro';
 import { AUTHOR } from '../consts';
 import { resumeData } from '../data/resume';
+import { personStructuredData } from '../seo';
 
 const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
+  ...personStructuredData,
   name: resumeData.name,
-  jobTitle: 'Full-Stack Engineer',
+  jobTitle: resumeData.headline,
   description: resumeData.summary.replace(/<[^>]*>/g, ''),
-  url: 'https://adamlacasse.dev',
-  sameAs: [resumeData.github, resumeData.linkedin],
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Atkinson',
@@ -36,15 +34,17 @@ const structuredData = {
     'LLM Integration',
   ],
 };
+
+const description =
+  'Resume for Adam LaCasse, senior full-stack engineer focused on enterprise platforms, architecture, applied AI, and product delivery.';
 ---
 
 <BaseLayout
-  title={`Resume - ${AUTHOR}`}
-  description="Full-stack engineer focused on enterprise platforms, architecture, and applied AI. Current work includes RMIS modernization supporting ~$4B in annual premium."
+  title={`${AUTHOR} Resume | Senior Full-Stack Engineer`}
+  description={description}
   contentWidth="wide"
+  structuredData={structuredData}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-
   <div class="resume-page">
     <section class="resume-hero" aria-labelledby="resume-title">
       <div class="hero-copy">

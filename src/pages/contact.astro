@@ -1,9 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { AUTHOR } from '../consts';
+
+const description =
+  'Contact Adam LaCasse for software engineering, enterprise platform, applied AI, and product engineering conversations.';
 ---
 
-<BaseLayout title={`Contact - ${AUTHOR}`} contentWidth="narrow">
+<BaseLayout title={`Contact - ${AUTHOR}`} description={description} contentWidth="narrow">
   <h1>Contact</h1>
   <p>
     Email: <a href="mailto:hello@adamlacasse.dev">hello@adamlacasse.dev</a>

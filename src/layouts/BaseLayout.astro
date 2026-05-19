@@ -18,6 +18,7 @@ interface Props {
   ogImage?: string;
   canonicalURL?: string;
   contentWidth?: 'wide' | 'narrow';
+  structuredData?: unknown | unknown[];
 }
 
 const {
@@ -28,11 +29,17 @@ const {
   ogImage,
   canonicalURL: canonicalOverride,
   contentWidth = 'wide',
+  structuredData,
 } = Astro.props as Props;
 
 const siteBase = Astro.site ?? new URL('/', 'http://localhost');
 const canonicalURL = (canonicalOverride ?? new URL(Astro.url.pathname, siteBase)).toString();
 const siteUrl = new URL(canonicalURL);
+const structuredDataItems = Array.isArray(structuredData)
+  ? structuredData
+  : structuredData
+    ? [structuredData]
+    : [];
 ---
 
 <!doctype html>
@@ -57,6 +64,12 @@ const siteUrl = new URL(canonicalURL);
     <meta property="twitter:title" content={ogTitle || title} />
     <meta property="twitter:description" content={ogDescription || description} />
     {ogImage && <meta property="twitter:image" content={new URL(ogImage, Astro.site).toString()} />}
+
+    {
+      structuredDataItems.map((item) => (
+        <script type="application/ld+json" set:html={JSON.stringify(item)} />
+      ))
+    }
 
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="/pc.ico" />

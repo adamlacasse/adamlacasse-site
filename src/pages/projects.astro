@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { AUTHOR } from '../consts';
 
+const description =
+  'Projects by Adam LaCasse, including software experiments in music discovery, workflow tools, inventory systems, and trivia-night utilities.';
+
 const projects = [
   {
     name: 'Freq Show!',
@@ -49,7 +52,7 @@ const projects = [
   }
 </style>
 
-<BaseLayout title={`Projects - ${AUTHOR}`} contentWidth="narrow">
+<BaseLayout title={`Projects - ${AUTHOR}`} description={description} contentWidth="narrow">
   <h1 class="title is-2">Projects</h1>
   <p class="subtitle">A living list. The hub stays stable; projects can come and go.</p>
 

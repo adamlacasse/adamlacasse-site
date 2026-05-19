@@ -1,10 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { AUTHOR } from '../consts';
+import { profilePageStructuredData } from '../seo';
+
+const description =
+  'About Adam LaCasse, a senior full-stack engineer with a background in enterprise software, finance, operations, and applied AI.';
 ---
 
-<BaseLayout title={`About - ${AUTHOR}`} contentWidth="narrow">
-  <h1>About</h1>
+<BaseLayout
+  title={`About ${AUTHOR}`}
+  description={description}
+  contentWidth="narrow"
+  structuredData={profilePageStructuredData('/about/', description)}
+>
+  <h1>About {AUTHOR}</h1>
 
   <p>
     My career has been a long run of making complex operational systems easier to understand, trust,

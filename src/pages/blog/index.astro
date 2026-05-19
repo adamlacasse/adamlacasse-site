@@ -7,9 +7,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const posts = (await getCollection('blog'))
   .filter((post) => !post.data.draft && !post.slug.startsWith('politics/'))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const description =
+  'Scratch Tracks, the blog of Adam LaCasse, covering software, music, meaning, and miscellany.';
 ---
 
-<BaseLayout title={`Blog - ${AUTHOR}`} contentWidth="narrow">
+<BaseLayout title={`Blog - ${AUTHOR}`} description={description} contentWidth="narrow">
   <BlogListing
     title="Scratch Tracks"
     subtitle="A blog on software, music, meaning, and miscellany."

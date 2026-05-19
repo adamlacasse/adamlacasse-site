@@ -1,13 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { AUTHOR } from '../consts';
+
+const description =
+  'What Adam LaCasse is focused on now: software projects, M.S. computer science coursework, applied AI, and systems work.';
 ---
 
-<BaseLayout
-  title={`Now - ${AUTHOR}`}
-  description="What I'm focused on lately - building, learning, and refining how I work."
-  contentWidth="narrow"
->
+<BaseLayout title={`Now - ${AUTHOR}`} description={description} contentWidth="narrow">
   <h1>Now</h1>
 
   <p>
