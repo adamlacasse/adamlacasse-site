@@ -15,16 +15,6 @@ const {
   updatedDate?: Date;
   tags?: string[];
 };
-
-const siteBase = Astro.site ?? new URL('/', 'http://localhost');
-const canonicalURL = new URL(Astro.url.pathname, siteBase).toString();
-const linkedinShareURL = new URL('https://www.linkedin.com/shareArticle');
-linkedinShareURL.searchParams.set('mini', 'true');
-linkedinShareURL.searchParams.set('url', canonicalURL);
-linkedinShareURL.searchParams.set('title', title);
-if (description) {
-  linkedinShareURL.searchParams.set('summary', description);
-}
 ---
 
 <BaseLayout title={`${title} - ${AUTHOR}`} description={description} contentWidth="narrow">
@@ -65,16 +55,6 @@ if (description) {
           </div>
         )
       }
-      <div class="mt-3">
-        <a
-          href={linkedinShareURL.toString()}
-          rel="noopener"
-          target="_blank"
-          class="button is-small is-link is-light"
-        >
-          Share on LinkedIn
-        </a>
-      </div>
     </header>
 
     <div class="content">
@@ -82,3 +62,9 @@ if (description) {
     </div>
   </article>
 </BaseLayout>
+
+<style>
+  header .subtitle {
+    margin-top: 0.75rem;
+  }
+</style>
