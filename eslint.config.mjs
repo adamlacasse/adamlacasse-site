@@ -1,6 +1,7 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import astro from 'eslint-plugin-astro';
+import globals from 'globals';
 
 export default [
   {
@@ -17,13 +18,9 @@ export default [
     },
   },
   {
-    files: ['public/**/*.js'],
+    files: ['public/**/*.js', 'src/pages/games/**/*.js'],
     languageOptions: {
-      globals: {
-        window: 'readonly',
-        document: 'readonly',
-        localStorage: 'readonly',
-      },
+      globals: globals.browser,
     },
   },
 ];
