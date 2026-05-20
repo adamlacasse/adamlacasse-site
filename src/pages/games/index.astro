@@ -1,0 +1,15 @@
+---
+import { AUTHOR } from '../../consts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const description =
+  'Scratch Tracks, the blog of Adam LaCasse, covering software, music, meaning, and miscellany.';
+---
+
+<BaseLayout title={`Blog - ${AUTHOR}`} description={description} contentWidth="narrow">
+  <h1>Games</h1>
+  <p>Fun and games, from the mind of Adam LaCasse.</p>
+  <ul>
+    <li><a href="/games/absurdle">Absurdle</a></li>
+  </ul>
+</BaseLayout>
