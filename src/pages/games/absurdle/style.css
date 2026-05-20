@@ -11,12 +11,11 @@ body {
     'Helvetica Neue', sans-serif;
 }
 
-header {
+.app header {
   text-align: center;
 }
 .app {
   display: grid;
-  height: 100vh;
   grid-template-rows: auto auto auto 1fr auto;
   gap: 1rem;
   padding: 1rem;

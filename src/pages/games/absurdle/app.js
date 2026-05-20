@@ -31,14 +31,20 @@ const keyboardEl = $('.keyboard');
 
 let allWords = [];
 let kb;
+let gameController = null;
 
-window.onload = () => {
+window.addEventListener('load', () => {
   kb = generateKeyboard();
   $('.button--new-game').addEventListener('click', () => init().catch((e) => console.error(e)));
   init().catch((e) => console.error(e));
-};
+});
 
 async function init() {
+  // Abort any in-progress game, cleaning up its event listeners
+  if (gameController) gameController.abort();
+  gameController = new AbortController();
+  const { signal } = gameController;
+
   const length = parseInt($('.settings__length').value) || 5;
   const rounds = parseInt($('.settings__rounds').value) || 6;
 
@@ -72,7 +78,12 @@ async function init() {
   const word = words[Math.floor(Math.random() * words.length)];
   const board = generateBoard(rounds, length);
 
-  await startGame({ word, kb, board, words, rounds, length });
+  try {
+    await startGame({ word, kb, board, words, rounds, length, signal });
+  } catch (e) {
+    if (e.name !== 'AbortError') throw e;
+    // AbortError means a new game was started; exit silently
+  }
 }
 
 async function animate(el, name, ms) {
@@ -81,12 +92,12 @@ async function animate(el, name, ms) {
   el.style.animation = 'none';
 }
 
-async function startGame({ word, kb, board, words, rounds, length }) {
+async function startGame({ word, kb, board, words, rounds, length, signal }) {
   const solution = word.split('');
-  let sharecopy = `Absurdle ${length}×${rounds}\n${formatDate(Date(Date.now()))}\n`;
+  let sharecopy = `Absurdle ${length}×${rounds}\n${formatDate(new Date())}\n`;
 
   for (let round = 0; round < rounds; round++) {
-    const guess = await collectGuess({ kb, board, round, words, length });
+    const guess = await collectGuess({ kb, board, round, words, length, signal });
     const hints = guess.map((letter, i) => {
       if (solution[i] === letter) return 'correct';
       if (solution.includes(letter)) return 'close';
@@ -106,28 +117,57 @@ async function startGame({ word, kb, board, words, rounds, length }) {
 }
 
 function showEndGame(won, word, sharecopy) {
-  const message = won
-    ? `<div>Nice Work!</div>`
-    : `<div>GAME OVER — The word was <strong>${word}</strong></div>`;
-  $('.feedback').innerHTML = `
-   ${message}
-   <div>
-     <button type="button" class="button--share" id="copybutton">Copy results</button>
-     <button type="button" class="button--new-game" id="playagain">Play Again</button>
-   </div>
-   <textarea id="sharebox" readonly></textarea>
- `;
-  document.getElementById('sharebox').value = sharecopy;
-  document.getElementById('copybutton').addEventListener('click', () => copytoshare(sharecopy));
-  document
-    .getElementById('playagain')
-    .addEventListener('click', () => init().catch((e) => console.error(e)));
+  const feedback = $('.feedback');
+  feedback.innerHTML = '';
+
+  const messageEl = document.createElement('div');
+  if (won) {
+    messageEl.textContent = 'Nice Work!';
+  } else {
+    messageEl.append('GAME OVER — The word was ');
+    const strong = document.createElement('strong');
+    strong.textContent = word;
+    messageEl.append(strong);
+  }
+
+  const copyBtn = dom(
+    'button',
+    { type: 'button', class: 'button--share', id: 'copybutton' },
+    'Copy results'
+  );
+  const playBtn = dom(
+    'button',
+    { type: 'button', class: 'button--new-game', id: 'playagain' },
+    'Play Again'
+  );
+  const controls = dom('div', {}, copyBtn, playBtn);
+  const shareBox = dom('textarea', { id: 'sharebox', readonly: '' });
+  shareBox.value = sharecopy;
+
+  feedback.append(messageEl, controls, shareBox);
+
+  copyBtn.addEventListener('click', () => copytoshare(sharecopy));
+  playBtn.addEventListener('click', () => init().catch((e) => console.error(e)));
 }
 
-function collectGuess({ kb, board, round, words, length }) {
-  return new Promise((submit) => {
+function collectGuess({ kb, board, round, words, length, signal }) {
+  return new Promise((submit, reject) => {
     let letters = [];
     let processing = false;
+
+    function cleanup() {
+      kb.off(keyHandler);
+      document.removeEventListener('keydown', keyDownHandler);
+    }
+
+    signal.addEventListener(
+      'abort',
+      () => {
+        cleanup();
+        reject(new DOMException('Game cancelled', 'AbortError'));
+      },
+      { once: true }
+    );
 
     function keyDownHandler(e) {
       const key = e.key.toLowerCase();
@@ -151,8 +191,7 @@ function collectGuess({ kb, board, round, words, length }) {
             processing = false;
           } else {
             $('.feedback').innerText = '';
-            kb.off(keyHandler);
-            document.removeEventListener('keydown', keyDownHandler);
+            cleanup();
             submit(letters);
           }
         }
@@ -253,9 +292,9 @@ function copytoshare(text) {
 }
 
 function formatDate(date) {
-  const str = date.toString().substring(4, 15);
-  const day = str.substring(4, 6).trim();
-  const month = str.substring(0, 3);
-  const year = str.substring(7, 11);
-  return `${day} ${month} ${year}`;
+  return new Intl.DateTimeFormat('en-US', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(date);
 }
