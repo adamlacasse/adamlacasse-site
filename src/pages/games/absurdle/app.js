@@ -95,9 +95,11 @@ async function animate(el, name, ms) {
 async function startGame({ word, kb, board, words, rounds, length, signal }) {
   const solution = word.split('');
   let sharecopy = `Absurdle ${length}×${rounds}\n${formatDate(new Date())}\n`;
+  const guessedWords = new Set();
 
   for (let round = 0; round < rounds; round++) {
-    const guess = await collectGuess({ kb, board, round, words, length, signal });
+    const guess = await collectGuess({ kb, board, round, words, length, signal, guessedWords });
+    guessedWords.add(guess.join(''));
     const hints = guess.map((letter, i) => {
       if (solution[i] === letter) return 'correct';
       if (solution.includes(letter)) return 'close';
@@ -150,7 +152,7 @@ function showEndGame(won, word, sharecopy) {
   playBtn.addEventListener('click', () => init().catch((e) => console.error(e)));
 }
 
-function collectGuess({ kb, board, round, words, length, signal }) {
+function collectGuess({ kb, board, round, words, length, signal, guessedWords }) {
   return new Promise((submit, reject) => {
     let letters = [];
     let processing = false;
@@ -183,10 +185,11 @@ function collectGuess({ kb, board, round, words, length, signal }) {
       if (processing) return;
       if (key === '+') {
         if (letters.length === length) {
-          const guessIsValid = words.includes(letters.join(''));
+          const guessWord = letters.join('');
+          const guessIsValid = words.includes(guessWord) && !guessedWords.has(guessWord);
           if (!guessIsValid) {
             processing = true;
-            $('.feedback').innerText = 'Invalid Word';
+            $('.feedback').innerText = guessedWords.has(guessWord) ? 'Already guessed!' : 'Invalid Word';
             await animate($$('.round')[round], 'shake', 800);
             processing = false;
           } else {
