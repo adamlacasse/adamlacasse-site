@@ -1,0 +1,58 @@
+---
+import { AUTHOR } from '../../../consts';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import './style.css';
+
+const description = 'Absurdle — like Wordle, but wicked more awesome.';
+---
+
+<BaseLayout title={`Absurdle - ${AUTHOR}`} description={description}>
+  <div class="app">
+    <header>
+      <h1>Absurdle</h1>
+      <small
+        >Like <a
+          href="https://www.nytimes.com/games/wordle/index.html"
+          target="_blank"
+          rel="noopener noreferrer">Wordle</a
+        >, but wicked more awesome.</small
+      >
+    </header>
+    <div class="settings">
+      <label
+        >Word length <input
+          class="settings__length"
+          type="number"
+          min="3"
+          max="8"
+          value="5"
+        /></label
+      >
+      <label
+        >Guesses <input class="settings__rounds" type="number" min="3" max="10" value="6" /></label
+      >
+      <label class="settings__toggle"
+        ><input class="settings__hard-mode" type="checkbox" /> Hard mode</label
+      >
+      <button class="button--new-game" type="button">New Game</button>
+      <button class="button--help" type="button" aria-haspopup="dialog">?</button>
+    </div>
+    <div class="board"></div>
+    <div class="feedback" role="status" aria-live="polite"></div>
+    <div class="keyboard"></div>
+    <dialog class="instructions">
+      <h2>How to play</h2>
+      <p>Guess the hidden word before you run out of rows.</p>
+      <ul>
+        <li>Green tiles are correct letters in the correct spot.</li>
+        <li>Yellow tiles are in the word, but somewhere else.</li>
+        <li>Gray tiles are not part of the answer.</li>
+      </ul>
+      <p>Hard mode requires every new guess to reuse all revealed hints.</p>
+      <button class="button--new-game instructions__close" type="button">Got it</button>
+    </dialog>
+  </div>
+  <script>
+    import './_app.js';
+  </script>
+</BaseLayout>
