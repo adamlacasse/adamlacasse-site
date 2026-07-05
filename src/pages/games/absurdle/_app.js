@@ -343,6 +343,7 @@ function collectGuess({
 
     function keyDownHandler(e) {
       if (instructionsDialog.hasAttribute('open')) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
       const key = e.key.toLowerCase();
       if (key === 'enter') keyHandler('+');
       else if (key === 'backspace') keyHandler('-');
