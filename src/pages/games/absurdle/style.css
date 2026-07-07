@@ -88,6 +88,7 @@ html[data-theme='dark'] .app {
   cursor: pointer;
 }
 .button--new-game,
+.button--close-dialog,
 .button--help {
   font: inherit;
   padding: 0.3rem 0.8rem;
@@ -108,6 +109,7 @@ html[data-theme='dark'] .app {
   font-weight: 700;
 }
 .button--new-game:hover,
+.button--close-dialog:hover,
 .button--help:hover {
   background: var(--game-button-hover);
   color: #111827;
@@ -140,22 +142,13 @@ html[data-theme='dark'] .app {
   transform-style: preserve-3d;
 }
 .letter--hint-correct {
-  animation: flip 420ms ease both;
-  background: var(--game-correct);
-  border-color: var(--game-correct);
-  color: #fff;
+  animation: flip-correct 420ms ease both;
 }
 .letter--hint-wrong {
-  animation: flip 420ms ease both;
-  background: var(--game-wrong);
-  border-color: var(--game-wrong);
-  color: #fff;
+  animation: flip-wrong 420ms ease both;
 }
 .letter--hint-close {
-  animation: flip 420ms ease both;
-  background: var(--game-close);
-  border-color: var(--game-close);
-  color: #111827;
+  animation: flip-close 420ms ease both;
 }
 .feedback {
   display: flex;
@@ -373,15 +366,84 @@ textarea {
   }
 }
 
-@keyframes flip {
+@keyframes flip-correct {
   0% {
     transform: rotateX(0deg);
+    background: var(--game-tile);
+    border-color: var(--game-border);
+    color: var(--game-text);
   }
-  50% {
+  45% {
     transform: rotateX(90deg);
+    background: var(--game-tile);
+    border-color: var(--game-border);
+    color: var(--game-text);
+  }
+  55% {
+    transform: rotateX(90deg);
+    background: var(--game-correct);
+    border-color: var(--game-correct);
+    color: #fff;
   }
   100% {
     transform: rotateX(0deg);
+    background: var(--game-correct);
+    border-color: var(--game-correct);
+    color: #fff;
+  }
+}
+
+@keyframes flip-wrong {
+  0% {
+    transform: rotateX(0deg);
+    background: var(--game-tile);
+    border-color: var(--game-border);
+    color: var(--game-text);
+  }
+  45% {
+    transform: rotateX(90deg);
+    background: var(--game-tile);
+    border-color: var(--game-border);
+    color: var(--game-text);
+  }
+  55% {
+    transform: rotateX(90deg);
+    background: var(--game-wrong);
+    border-color: var(--game-wrong);
+    color: #fff;
+  }
+  100% {
+    transform: rotateX(0deg);
+    background: var(--game-wrong);
+    border-color: var(--game-wrong);
+    color: #fff;
+  }
+}
+
+@keyframes flip-close {
+  0% {
+    transform: rotateX(0deg);
+    background: var(--game-tile);
+    border-color: var(--game-border);
+    color: var(--game-text);
+  }
+  45% {
+    transform: rotateX(90deg);
+    background: var(--game-tile);
+    border-color: var(--game-border);
+    color: var(--game-text);
+  }
+  55% {
+    transform: rotateX(90deg);
+    background: var(--game-close);
+    border-color: var(--game-close);
+    color: #111827;
+  }
+  100% {
+    transform: rotateX(0deg);
+    background: var(--game-close);
+    border-color: var(--game-close);
+    color: #111827;
   }
 }
 

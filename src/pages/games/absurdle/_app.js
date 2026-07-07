@@ -1,4 +1,18 @@
-import dictionaryUrl from './dictionary.txt?url';
+import dict3Url from './dicts/dict-3.json?url';
+import dict4Url from './dicts/dict-4.json?url';
+import dict5Url from './dicts/dict-5.json?url';
+import dict6Url from './dicts/dict-6.json?url';
+import dict7Url from './dicts/dict-7.json?url';
+import dict8Url from './dicts/dict-8.json?url';
+
+const DICT_URLS = {
+  3: dict3Url,
+  4: dict4Url,
+  5: dict5Url,
+  6: dict6Url,
+  7: dict7Url,
+  8: dict8Url,
+};
 
 const $ = (s, e = document.body) => e.querySelector(s);
 const $$ = (s, e = document.body) => [...e.querySelectorAll(s)];
@@ -47,10 +61,26 @@ let helpButton;
 let instructionsDialog;
 let instructionsClose;
 
-let allWords = [];
+let dictionaries = new Map();
+let dictionaryPromises = new Map();
 let kb;
 let gameController = null;
 let copyResetTimer = null;
+
+function loadDictionaryForLength(length) {
+  if (!dictionaryPromises.has(length)) {
+    const url = DICT_URLS[length];
+    if (!url) return Promise.reject(new Error(`Unsupported word length: ${length}`));
+    dictionaryPromises.set(
+      length,
+      fetch(url).then((r) => {
+        if (!r.ok) throw new Error(`Failed to load dictionary for length ${length}`);
+        return r.json();
+      })
+    );
+  }
+  return dictionaryPromises.get(length);
+}
 
 if (typeof window !== 'undefined') {
   window.addEventListener('load', () => {
@@ -75,6 +105,17 @@ if (typeof window !== 'undefined') {
     instructionsDialog.addEventListener('close', () => {
       localStorage.setItem(STORAGE_KEYS.instructions, 'true');
     });
+
+    lengthInput.addEventListener('change', () => {
+      if (!lengthInput.disabled) init().catch((e) => console.error(e));
+    });
+    roundsInput.addEventListener('change', () => {
+      if (!roundsInput.disabled) init().catch((e) => console.error(e));
+    });
+    hardModeInput.addEventListener('change', () => {
+      if (!hardModeInput.disabled) init().catch((e) => console.error(e));
+    });
+
     if (!localStorage.getItem(STORAGE_KEYS.instructions)) showInstructions();
     init().catch((e) => console.error(e));
   });
@@ -96,37 +137,32 @@ async function init({ newSeed = false } = {}) {
   kb.reset();
   setSettingsDisabled(false);
 
-  if (!allWords.length) {
+  let dict = dictionaries.get(length);
+  if (!dict) {
     feedbackEl.innerText = 'Loading dictionary...';
-    allWords = await fetch(dictionaryUrl)
-      .then((r) => r.text())
-      .then((text) =>
-        text
-          .split('\n')
-          .map((w) => w.trim().toUpperCase())
-          .filter(Boolean)
-      )
-      .catch((e) => {
-        console.error('Failed to load dictionary', e);
-        feedbackEl.innerText = 'Failed to load dictionary. Try refreshing the page.';
-        return [];
-      });
+    try {
+      dict = await loadDictionaryForLength(length);
+      dictionaries.set(length, dict);
+    } catch (e) {
+      console.error('Failed to load dictionary', e);
+      feedbackEl.innerText = 'Failed to load dictionary. Try refreshing the page.';
+      dictionaryPromises.delete(length);
+      return;
+    }
   }
 
-  const words = allWords.filter((w) => w.length === length);
+  const { targets, guesses } = dict;
 
-  if (words.length === 0) {
-    feedbackEl.innerText = `No ${length}-letter words found in dictionary.`;
+  if (targets.length === 0) {
+    feedbackEl.innerText = `No ${length}-letter target words found.`;
     return;
   }
 
-  const word = words[Math.floor(seededRandom(`${seed}:${length}:${rounds}`) * words.length)];
   const board = generateBoard(rounds, length);
   feedbackEl.innerText = '';
-  setSettingsDisabled(true);
 
   try {
-    await startGame({ word, kb, board, words, rounds, length, hardMode, seed, signal });
+    await startGame({ kb, board, targets, guesses, rounds, length, hardMode, seed, signal });
   } catch (e) {
     if (e.name !== 'AbortError') throw e;
     // AbortError means a new game was started; exit silently
@@ -139,8 +175,8 @@ async function animate(el, name, ms) {
   el.style.animation = 'none';
 }
 
-async function startGame({ word, kb, board, words, rounds, length, hardMode, seed, signal }) {
-  const solution = word.split('');
+async function startGame({ kb, board, targets, guesses, rounds, length, hardMode, seed, signal }) {
+  let pool = [...targets];
   let sharecopy = `Absurdle ${length}x${rounds}${hardMode ? ' hard' : ''}\n${formatDate(new Date())}\n`;
   const guessedWords = new Map();
   const hardModeHints = createHardModeHints(length);
@@ -150,7 +186,7 @@ async function startGame({ word, kb, board, words, rounds, length, hardMode, see
       kb,
       board,
       round,
-      words,
+      words: guesses,
       length,
       hardMode,
       hardModeHints,
@@ -158,19 +194,71 @@ async function startGame({ word, kb, board, words, rounds, length, hardMode, see
       guessedWords,
     });
     guessedWords.set(guess.join(''), round);
-    const hints = getHints(solution, guess);
+
+    // Adversarial partitioning
+    const partitions = new Map();
+    for (const w of pool) {
+      const hints = getHints(w.split(''), guess);
+      const key = hints.join(',');
+      if (!partitions.has(key)) {
+        partitions.set(key, []);
+      }
+      partitions.get(key).push(w);
+    }
+
+    let maxCount = 0;
+    let bestKeys = [];
+    for (const [key, list] of partitions.entries()) {
+      if (list.length > maxCount) {
+        maxCount = list.length;
+        bestKeys = [key];
+      } else if (list.length === maxCount) {
+        bestKeys.push(key);
+      }
+    }
+
+    // Tie break: choose partition with least info revealed
+    bestKeys.sort((a, b) => {
+      const scoreA = getPatternScore(a);
+      const scoreB = getPatternScore(b);
+      if (scoreA !== scoreB) return scoreA - scoreB;
+      return a.localeCompare(b);
+    });
+
+    const chosenKey = bestKeys[0];
+    const hints = chosenKey.split(',');
+    pool = partitions.get(chosenKey);
 
     sharecopy += addtoshare(hints);
     updateHardModeHints(hardModeHints, guess, hints);
     await board.revealHint(round, hints);
     kb.revealHint(guess, hints);
 
-    if (guess.join('') === word) {
-      showEndGame(true, word, sharecopy, { round: round + 1, rounds, seed, hardMode, length });
+    const isCorrect = hints.every((h) => h === 'correct');
+    if (isCorrect) {
+      showEndGame(true, guess.join(''), sharecopy, {
+        round: round + 1,
+        rounds,
+        seed,
+        hardMode,
+        length,
+      });
       return;
     }
   }
-  showEndGame(false, word, sharecopy, { round: rounds, rounds, seed, hardMode, length });
+
+  // If lost, pick a remaining word from the pool as the solution
+  const solutionWord =
+    pool[Math.floor(seededRandom(`${seed}:${pool.length}`) * pool.length)] || pool[0];
+  showEndGame(false, solutionWord, sharecopy, { round: rounds, rounds, seed, hardMode, length });
+}
+
+function getPatternScore(key) {
+  return key.split(',').reduce((sum, h) => {
+    if (h === 'correct') return sum + 2;
+    if (h === 'close') return sum + 1;
+    return sum;
+  }, 0);
 }
 
 function showEndGame(won, word, sharecopy, game) {
@@ -178,7 +266,7 @@ function showEndGame(won, word, sharecopy, game) {
   $$('.round').forEach((row) => row.classList.remove('round--active'));
   setSettingsDisabled(false);
   feedbackEl.innerHTML = '';
-  const stats = updateStats(won, game.round);
+  const stats = updateStats(won, game.round, game.seed);
   const shareLink = getShareLink(game.seed, game.length, game.rounds, game.hardMode);
   const shareText = `${sharecopy}\n${shareLink}`;
 
@@ -254,6 +342,8 @@ function collectGuess({
     );
 
     function keyDownHandler(e) {
+      if (instructionsDialog.hasAttribute('open')) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
       const key = e.key.toLowerCase();
       if (key === 'enter') keyHandler('+');
       else if (key === 'backspace') keyHandler('-');
@@ -294,9 +384,15 @@ function collectGuess({
       } else if (key === '-') {
         if (letters.length > 0) letters.pop();
         board.updateGuess(round, letters);
+        if (round === 0 && letters.length === 0) {
+          setSettingsDisabled(false);
+        }
       } else {
         if (letters.length < length) letters.push(key);
         board.updateGuess(round, letters);
+        if (round === 0 && letters.length > 0) {
+          setSettingsDisabled(true);
+        }
       }
     }
     kb.on(keyHandler);
@@ -373,6 +469,7 @@ function generateKeyboard() {
         const keyEl = $(`[data-key="${guess[i]}"]`, keyboardEl);
         if (!keyEl) return;
         if (keyEl.classList.contains('key--hint-correct')) return;
+        if (keyEl.classList.contains('key--hint-close') && hint === 'wrong') return;
         keyEl.classList.remove('key--hint-close', 'key--hint-wrong');
         keyEl.classList.add('key--hint-' + hint);
       });
@@ -540,14 +637,19 @@ function getShareLink(seed, length, rounds, hardMode) {
   return url.toString();
 }
 
-function updateStats(won, guesses) {
+function updateStats(won, guesses, seed) {
   const stats = JSON.parse(localStorage.getItem(STORAGE_KEYS.stats) || '{}');
+  const completedSeeds = stats.completedSeeds || [];
+  if (completedSeeds.includes(seed)) {
+    return stats;
+  }
   const next = {
     played: (stats.played || 0) + 1,
     won: (stats.won || 0) + (won ? 1 : 0),
     currentStreak: won ? (stats.currentStreak || 0) + 1 : 0,
     bestStreak: stats.bestStreak || 0,
     guesses: { ...(stats.guesses || {}) },
+    completedSeeds: [...completedSeeds, seed],
   };
   next.bestStreak = Math.max(next.bestStreak, next.currentStreak);
   if (won) next.guesses[guesses] = (next.guesses[guesses] || 0) + 1;
