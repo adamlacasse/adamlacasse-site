@@ -37,7 +37,7 @@ export interface ResumeProofPoint {
 
 export const resumeData = {
   name: 'Adam LaCasse',
-  headline: 'Senior Full-Stack Engineer | Enterprise Platforms & Applied AI',
+  headline: 'Senior Full-Stack Engineer & Tech Lead | Enterprise Platforms & Applied AI',
   positioning:
     'I take messy business problems and turn them into durable systems that real people rely on. I’m looking for user-centric engineering leadership work where I can shape architecture, lead end-to-end delivery, and apply AI where it creates real leverage.',
   signature: 'Experienced leadership. Reliable systems. Fortune 100 scale.',
@@ -120,7 +120,7 @@ export const resumeData = {
     },
   ] as ResumeProofPoint[],
 
-  summary: `Full-stack engineer focused on enterprise platforms, architecture, and end-to-end product delivery. Current work includes modernizing a risk management platform serving ~70K users and supporting ~$4B in annual premium, plus People & Talent tools used by 40,000+ multilingual employees at a Fortune 100 insurer. Before software, I spent nearly two decades running finance and operations teams, which means I'm the engineer who actually enjoys the stakeholder conversation: HR business partners, recruiters, ops leads, exec sponsors.<br><br>Stack: TypeScript, React, Node.js, Python, Java, PostgreSQL, AWS. One course away from an M.S. in Computer Science with an Artificial Intelligence concentration (foundations of AI, deep learning, AI ethics). Looking for product-minded engineering leadership work where I can shape architecture, turn ambiguous business problems into durable systems, and apply AI where it creates real leverage.`,
+  summary: `Full-stack engineer focused on enterprise platforms, architecture, and end-to-end product delivery. Current work includes modernizing a risk management platform serving ~70K users and supporting ~$4B in annual premium, plus People & Talent tools used by 40,000+ multilingual employees at a Fortune 100 insurer. Before software, I spent nearly two decades running finance and operations teams, which means I'm the engineer who actually enjoys the stakeholder conversation: HR business partners, recruiters, ops leads, exec sponsors.<br><br>Stack: TypeScript, React, Node.js, Python, Java, PostgreSQL, AWS. M.S. in Computer Science with an Artificial Intelligence concentration (foundations of AI, deep learning, AI ethics). Looking for product-minded engineering leadership work where I can shape architecture, turn ambiguous business problems into durable systems, and apply AI where it creates real leverage.`,
 
   skills: [
     {
@@ -135,18 +135,18 @@ export const resumeData = {
     {
       category: 'Applied AI',
       items:
-        'LLM integration, prompt design, retrieval patterns, AI-assisted developer tooling. Recent MSCS coursework in foundations of AI, deep learning, and AI ethics',
+        'LLM integration, prompt design, retrieval patterns, AI-assisted developer tooling. MSCS background in foundations of AI, deep learning, and AI ethics',
     },
   ] as ResumeSkill[],
 
   experience: [
     {
-      title: 'Senior Software Engineer',
+      title: 'Senior Software Engineer & Tech Lead',
       company: 'Liberty Mutual Insurance',
       subtitle: 'Portsmouth, NH (Hybrid)',
       dates: '2019 - Present',
       achievements: [
-        '<strong>RMIS platform redesign (2025-Present):</strong> Lead engineer on the data layer of a multi-year, ~$4M modernization of a risk management platform supporting ~$4B in annual premium and ~70K users (enterprises, brokers, auditors, internal teams) - replacing legacy mainframe workflows with cloud-native services on AWS, currently in the foundations phase building toward incremental cutover.',
+        '<strong>RMIS platform redesign (2025-Present):</strong> Tech Lead on a multi-year, ~$4M modernization of a risk management platform supporting ~$4B in annual premium and ~70K users (enterprises, brokers, auditors, internal teams) - replacing legacy mainframe workflows with cloud-native services on AWS, currently in the foundations phase building toward incremental cutover.',
         'Defined shared data contracts and migration patterns (dual-write, shadow read, expand-contract) across downstream consumers spanning reporting pipelines and customer-facing data flows - new services can stand up behind the live legacy app without disruption.',
         'Established service boundaries, rollout sequencing, and reference patterns the broader program builds against - downstream teams can move on the new architecture independently rather than waiting on a full ecosystem cutover.',
         `<strong>People & Talent platforms (2019-2025):</strong> Engineered several internal greenfield platforms from initial discovery through rollout - performance management, a people knowledge hub, compensation support, and more - consolidating a sprawl of third-party tools and spreadsheets in support of Liberty's "best place to work" strategic priority across ~40K multilingual employees. <strong>Promoted from Software Engineer to Senior in 2021</strong> mid-arc, through ownership of complex features and steady delivery on ambiguous technical problems.`,
@@ -206,7 +206,7 @@ export const resumeData = {
     {
       degree: 'M.S. Computer Science - Artificial Intelligence Concentration',
       school: 'Merrimack College',
-      date: 'Expected 2026',
+      date: '2026',
       note: 'Coursework: foundations of AI, deep learning, AI ethics, data modeling, and system design. The concentration is substance, not decoration - how modern AI actually works and where it earns its keep.',
     },
     {
