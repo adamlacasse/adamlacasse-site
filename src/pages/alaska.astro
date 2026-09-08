@@ -1,0 +1,371 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AUTHOR } from '../consts';
+
+import kodiakFloatPlane from '../assets/alaska-photos/kodiak-float-plane.jpg';
+import kodiakFloatPlaneView from '../assets/alaska-photos/kodiak-float-plane-view.jpg';
+import kodiakMommaBearCubs from '../assets/alaska-photos/kodiak-momma-bear-cubs.jpg';
+import kodiakFox from '../assets/alaska-photos/kodiak-fox.jpg';
+import kodiakFoxLounging from '../assets/alaska-photos/kodiak-fox-lounging.jpg';
+import kodiakBearRiver from '../assets/alaska-photos/kodiak-bear-river.jpg';
+import kodiakBearCloseEncounter from '../assets/alaska-photos/kodiak-bear-close-encounter.jpg';
+import kodiakBearFishing from '../assets/alaska-photos/kodiak-bear-fishing.jpg';
+import kodiakBearPortrait from '../assets/alaska-photos/kodiak-bear-portrait.jpg';
+import kodiakCubCloseup from '../assets/alaska-photos/kodiak-cub-closeup.jpg';
+import kodiakCubsClimbing from '../assets/alaska-photos/kodiak-cubs-climbing.jpg';
+import kodiakWatchingBear from '../assets/alaska-photos/kodiak-watching-bear.jpg';
+import kodiakRainbow from '../assets/alaska-photos/kodiak-rainbow.jpg';
+import kodiakEagle from '../assets/alaska-photos/kodiak-eagle.jpg';
+import sewardPuffins from '../assets/alaska-photos/seward-puffins.jpg';
+import sewardWaterfall from '../assets/alaska-photos/seward-waterfall.jpg';
+import sewardOrcas from '../assets/alaska-photos/seward-orcas.jpg';
+import sewardSeaLions from '../assets/alaska-photos/seward-sea-lions.jpg';
+import sewardGlacier from '../assets/alaska-photos/seward-glacier.jpg';
+import sewardGlacierIce from '../assets/alaska-photos/seward-glacier-ice.jpg';
+import sewardCheers from '../assets/alaska-photos/seward-cheers.jpg';
+import wildlifeCenterFeedingMoose from '../assets/alaska-photos/wildlife-center-feeding-moose.jpg';
+import whiteWaterRafting from '../assets/alaska-photos/white-water-rafting.jpg';
+import sledDogPuppy from '../assets/alaska-photos/sled-dog-puppy.jpg';
+import denaliTundraHike from '../assets/alaska-photos/denali-tundra-hike.jpg';
+import denaliMountainReflection from '../assets/alaska-photos/denali-mountain-reflection.jpg';
+import denaliKayaking from '../assets/alaska-photos/denali-kayaking.jpg';
+import denaliParkSign from '../assets/alaska-photos/denali-park-sign.jpg';
+import denaliAlpenglow from '../assets/alaska-photos/denali-alpenglow.jpg';
+import denaliCaribouRidge from '../assets/alaska-photos/denali-caribou-ridge.jpg';
+import denaliCaribouLake from '../assets/alaska-photos/denali-caribou-lake.jpg';
+import denaliHelicopter from '../assets/alaska-photos/denali-helicopter.jpg';
+
+const description = "A trip recap from Adam LaCasse's trip to Alaska.";
+
+interface Photo {
+  src?: ImageMetadata;
+  alt: string;
+  fullSrc?: string;
+}
+
+interface Leg {
+  title: string;
+  body: string[];
+  photos: Photo[];
+}
+
+const legs: Leg[] = [
+  {
+    title: 'Kodiak Island',
+    body: [
+      'First stop was the <a href="https://kodiakbearcenter.com/" target="_blank" rel="noreferrer">Kodiak Brown Bear Center</a> - an off-grid spot only reachable by float plane. Spent four days there watching several momma bears with their cubs, plus a couple of adolescent males wandering around. A few times we were within ten feet of the bears, which is a genuinely wild thing to experience. Also spotted eagles, foxes, and black-tailed deer along the way. The foxes come right up to you like you owe them money, LOL.',
+    ],
+    photos: [
+      { src: kodiakFloatPlane, alt: 'On the float plane in and out of Kodiak' },
+      { src: kodiakFloatPlaneView, alt: 'The view out the float plane window' },
+      { src: kodiakMommaBearCubs, alt: 'Momma bear and her cubs on the riverbank' },
+      { src: kodiakBearFishing, alt: 'A bear catching a fish mid-river' },
+      { src: kodiakBearPortrait, alt: 'Face to face with a Kodiak brown bear' },
+      { src: kodiakCubCloseup, alt: 'A curious cub in the tall grass' },
+      { src: kodiakCubsClimbing, alt: 'Two cubs climbing a tree' },
+      { src: kodiakFox, alt: 'Watching a fox from the trail' },
+      { src: kodiakFoxLounging, alt: 'A fox lounging by the cabins' },
+      { src: kodiakBearRiver, alt: 'A lone bear working the river' },
+      { src: kodiakBearCloseEncounter, alt: 'A close encounter - just yards away' },
+      { src: kodiakWatchingBear, alt: 'Watching a bear from the riverbank' },
+      { src: kodiakEagle, alt: 'A bald eagle in flight' },
+      { src: kodiakRainbow, alt: 'A rainbow over the lodge' },
+    ],
+  },
+  {
+    title: 'Seward',
+    body: [
+      'Took the <a href="https://www.alaskarailroad.com/" target="_blank" rel="noreferrer">glass-top train</a> down to <a href="https://en.wikipedia.org/wiki/Seward,_Alaska" target="_blank" rel="noreferrer">Seward</a>, then out on a fjord boat tour. This was the wildlife jackpot of the trip: bald eagles, sea otters, humpback whales, puffins, seals, sea lions, orcas, porpoises, and glaciers, all in one outing.',
+      'Our guides fished some glacier ice out of the water and let us hold it. Then they turned it into a cocktail for us to enjoy while we watched the sunlight dance across the fjord.',
+    ],
+    photos: [
+      { src: sewardPuffins, alt: 'Puffins on the cliffs' },
+      { src: sewardOrcas, alt: 'Orcas surfacing beside the boat' },
+      { src: sewardSeaLions, alt: 'Seals and sea lions hauled out on the rocks' },
+      { src: sewardWaterfall, alt: 'Waterfall along the fjord tour' },
+      { src: sewardGlacier, alt: 'Glacier in Resurrection Bay' },
+      { src: sewardGlacierIce, alt: 'Holding a chunk of glacier ice' },
+      { src: sewardCheers, alt: 'Cheers on the boat' },
+    ],
+  },
+  {
+    title: 'Alaska Wildlife Conservation Center',
+    body: [
+      'Visited the <a href="https://alaskawildlife.org/" target="_blank" rel="noreferrer">Alaska Wildlife Conservation Center</a>, home to bison, wolves, moose, and more - and got to feed a bull moose, which is not something I expected to cross off a list. His name is Eland.',
+    ],
+    photos: [{ src: wildlifeCenterFeedingMoose, alt: 'Feeding the bull moose' }],
+  },
+  {
+    title: 'Anchorage',
+    body: [
+      'Met up with some Boston-area friends in Anchorage for a quick reunion before heading further north.',
+    ],
+    photos: [],
+  },
+  {
+    title: 'On to Denali',
+    body: [
+      'Another glass-top train ride, this time to <a href="https://en.wikipedia.org/wiki/Denali_National_Park_and_Preserve" target="_blank" rel="noreferrer">Denali</a>. Once we arrived we did some white water rafting, and an unexpected highlight of holding sled dog puppies and chatting with a few real Iditarod mushers.',
+    ],
+    photos: [
+      { src: whiteWaterRafting, alt: 'White water rafting' },
+      { src: sledDogPuppy, alt: 'Sled dog puppy cuddles' },
+    ],
+  },
+  {
+    title: 'Denali Backcountry Lodge',
+    body: [
+      'Four days at the Denali Backcountry Lodge - another off-grid spot. Flew in on a plane and took a helicopter back out. Spent the days hiking the tundra and saw bears, moose, caribou, and more.',
+      "The real highlight, though, was seeing Mount Denali itself. I didn't realize going in what a rare treat that actually is - the mountain is so massive it makes its own weather and is almost always wrapped in clouds. We got lucky.",
+    ],
+    photos: [
+      { src: denaliTundraHike, alt: 'Hiking the tundra' },
+      { src: denaliMountainReflection, alt: 'Mount Denali, cloud-free' },
+      { src: denaliAlpenglow, alt: 'Alpenglow over the mountains at sunset' },
+      { src: denaliCaribouRidge, alt: 'Caribou along the ridge' },
+      { src: denaliCaribouLake, alt: 'Caribou grazing above the lake' },
+      { src: denaliKayaking, alt: 'Kayaking near the lodge' },
+      { src: denaliParkSign, alt: 'At the edge of Denali National Park' },
+      { src: denaliHelicopter, alt: 'The helicopter ride back out' },
+    ],
+  },
+  {
+    title: 'Fairbanks',
+    body: [
+      'Last leg was a glass-top train to Fairbanks. Toured the town a bit - cool vibes - before flying back to Boston from there.',
+    ],
+    photos: [],
+  },
+];
+
+// Generate a larger, still-optimized variant of each photo for the lightbox modal.
+for (const leg of legs) {
+  for (const photo of leg.photos) {
+    if (photo.src) {
+      const optimized = await getImage({ src: photo.src, width: 1600 });
+      photo.fullSrc = optimized.src;
+    }
+  }
+}
+---
+
+<style>
+  .trip-leg {
+    margin-bottom: 3rem;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .photo-trigger {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+    border-radius: 8px;
+    transition: opacity 0.15s ease;
+  }
+
+  .photo-trigger:hover,
+  .photo-trigger:focus-visible {
+    opacity: 0.85;
+  }
+
+  .photo-trigger img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .image-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    aspect-ratio: 4 / 3;
+    border: 2px dashed var(--bulma-border, #ccc);
+    border-radius: 8px;
+    background-color: var(--bulma-scheme-main-bis, rgba(128, 128, 128, 0.05));
+    color: var(--bulma-text-weak, #888);
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .image-placeholder .icon {
+    font-size: 1.75rem;
+    opacity: 0.6;
+  }
+
+  .image-placeholder .caption {
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+
+  #photo-modal .modal-content {
+    width: auto;
+    max-width: 90vw;
+  }
+
+  #photo-modal .modal-content img {
+    display: block;
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+    margin: 0 auto;
+  }
+
+  #photo-modal .modal-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.5;
+    transition:
+      opacity 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  #photo-modal .modal-nav:hover,
+  #photo-modal .modal-nav:focus-visible {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.55);
+  }
+
+  #photo-modal .modal-nav-prev {
+    left: 1rem;
+  }
+
+  #photo-modal .modal-nav-next {
+    right: 1rem;
+  }
+</style>
+
+<BaseLayout title={`Alaska - ${AUTHOR}`} description={description} contentWidth="narrow">
+  <h1 class="title is-2">Alaska</h1>
+  <p class="subtitle">
+    Alaska trip was pretty epic! This page is a work in progress. Stay tuned for more.
+  </p>
+
+  {
+    legs.map((leg) => (
+      <section class="trip-leg">
+        <h2 class="title is-4">{leg.title}</h2>
+        {leg.body.map((paragraph) => (
+          <p set:html={paragraph} />
+        ))}
+        {leg.photos.length > 0 && (
+          <div class="photo-grid">
+            {leg.photos.map((photo) =>
+              photo.src && photo.fullSrc ? (
+                <button
+                  type="button"
+                  class="photo-trigger"
+                  data-full={photo.fullSrc}
+                  data-alt={photo.alt}
+                  aria-label={`View larger photo: ${photo.alt}`}
+                >
+                  <Image src={photo.src} alt={photo.alt} width={600} height={450} />
+                </button>
+              ) : (
+                <div class="image-placeholder">
+                  <span class="icon">🏔️</span>
+                  <span class="caption">{photo.alt}</span>
+                </div>
+              )
+            )}
+          </div>
+        )}
+      </section>
+    ))
+  }
+
+  <div class="modal" id="photo-modal">
+    <div class="modal-background"></div>
+    <button class="modal-nav modal-nav-prev" type="button" aria-label="Previous photo">
+      &lsaquo;
+    </button>
+    <div class="modal-content">
+      <img id="photo-modal-image" src="" alt="" />
+    </div>
+    <button class="modal-nav modal-nav-next" type="button" aria-label="Next photo">
+      &rsaquo;
+    </button>
+    <button class="modal-close is-large" type="button" aria-label="Close"></button>
+  </div>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('photo-modal');
+    const modalImage = document.getElementById('photo-modal-image') as HTMLImageElement | null;
+    if (!modal || !modalImage) return;
+
+    const triggers = Array.from(document.querySelectorAll<HTMLButtonElement>('.photo-trigger'));
+    let currentIndex = -1;
+
+    const showPhoto = (index: number) => {
+      if (triggers.length === 0) return;
+      currentIndex = (index + triggers.length) % triggers.length;
+      const { full, alt } = triggers[currentIndex].dataset;
+      if (!full) return;
+      modalImage.src = full;
+      modalImage.alt = alt ?? '';
+    };
+
+    const openModal = (index: number) => {
+      showPhoto(index);
+      modal.classList.add('is-active');
+    };
+
+    const closeModal = () => {
+      modal.classList.remove('is-active');
+      modalImage.src = '';
+    };
+
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener('click', () => openModal(index));
+    });
+
+    modal.querySelector('.modal-background')?.addEventListener('click', closeModal);
+    modal.querySelector('.modal-close')?.addEventListener('click', closeModal);
+    modal
+      .querySelector('.modal-nav-prev')
+      ?.addEventListener('click', () => showPhoto(currentIndex - 1));
+    modal
+      .querySelector('.modal-nav-next')
+      ?.addEventListener('click', () => showPhoto(currentIndex + 1));
+
+    document.addEventListener('keydown', (event) => {
+      if (!modal.classList.contains('is-active')) return;
+      if (event.key === 'Escape') closeModal();
+      if (event.key === 'ArrowRight') showPhoto(currentIndex + 1);
+      if (event.key === 'ArrowLeft') showPhoto(currentIndex - 1);
+    });
+  });
+</script>
