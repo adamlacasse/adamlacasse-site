@@ -36,6 +36,12 @@ import denaliAlpenglow from '../assets/alaska-photos/denali-alpenglow.jpg';
 import denaliCaribouRidge from '../assets/alaska-photos/denali-caribou-ridge.jpg';
 import denaliCaribouLake from '../assets/alaska-photos/denali-caribou-lake.jpg';
 import denaliHelicopter from '../assets/alaska-photos/denali-helicopter.jpg';
+import anchorageBrewery from '../assets/alaska-photos/anchorage-1.jpg';
+import anchorageIceCream from '../assets/alaska-photos/anchorage-2.jpg';
+import awccMooseCloseup from '../assets/alaska-photos/awcc-2.jpg';
+import talkeetnaBrewery from '../assets/alaska-photos/talkeetna.jpg';
+import fairbanksIceMuseum from '../assets/alaska-photos/fairbanks-ice-museum.jpg';
+import fairbanksAntlerArch from '../assets/alaska-photos/fairbanks-arch.jpg';
 
 const description = "A trip recap from Adam LaCasse's trip to Alaska.";
 
@@ -95,14 +101,19 @@ const legs: Leg[] = [
     body: [
       'Visited the <a href="https://alaskawildlife.org/" target="_blank" rel="noreferrer">Alaska Wildlife Conservation Center</a>, home to bison, wolves, moose, and more - and got to feed a bull moose, which is not something I expected to cross off a list. His name is Eland.',
     ],
-    photos: [{ src: wildlifeCenterFeedingMoose, alt: 'Feeding the bull moose' }],
+    photos: [
+      { src: wildlifeCenterFeedingMoose, alt: 'Feeding the bull moose' },
+      { src: awccMooseCloseup, alt: 'Nose to nose with the moose' },
+    ],
   },
   {
-    title: 'Anchorage',
-    body: [
-      'Met up with some Boston-area friends in Anchorage for a quick reunion before heading further north.',
+    title: 'Anchorage -> Talkeetna',
+    body: ['Met up with some Boston-area friends in Anchorage and we all headed north.'],
+    photos: [
+      { src: anchorageBrewery, alt: 'Cheers at Forty Ninth State Brewing' },
+      { src: anchorageIceCream, alt: 'Wild Scoops ice cream in the rain' },
+      { src: talkeetnaBrewery, alt: 'Beers and live music in Talkeetna' },
     ],
-    photos: [],
   },
   {
     title: 'On to Denali',
@@ -134,7 +145,52 @@ const legs: Leg[] = [
   {
     title: 'Fairbanks',
     body: [
-      'Last leg was a glass-top train to Fairbanks. Toured the town a bit - cool vibes - before flying back to Boston from there.',
+      'Last leg was a glass-top train to Fairbanks. Toured the town a bit - cool vibes. Did the hot springs and Ice Museum in Chena before heading back east.',
+    ],
+    photos: [
+      { src: fairbanksAntlerArch, alt: 'Under the antler arch in Fairbanks' },
+      { src: fairbanksIceMuseum, alt: 'Playing an ice xylophone at the Ice Museum' },
+    ],
+  },
+  {
+    title: 'Checklist (partial)',
+    body: [
+      `
+        <ul class="checklist">
+          <li>Ate wild blueberries</li>
+          <li>Beavers</li>
+          <li>Black-tailed deer</li>
+          <li>Bore tide</li>
+          <li>Brown/grizzly bears</li>
+          <li>Caribou</li>
+          <li>Eagles</li>
+          <li>Flew in a Cessna</li>
+          <li>Flew in a float plane</li>
+          <li>Flew in a helicopter</li>
+          <li>Foxes</li>
+          <li>Glaciers</li>
+          <li>Harriers</li>
+          <li>Humpback whales</li>
+          <li>Laid down on the soft tundra</li>
+          <li>Moose</li>
+          <li>Mount Denali</li>
+          <li>Orcas</li>
+          <li>Porcupines</li>
+          <li>Porpoises</li>
+          <li>Puffins</li>
+          <li>Salmon</li>
+          <li>Sea Lions</li>
+          <li>Sea Otters</li>
+          <li>Seals</li>
+          <li>Trumpeter swans</li>
+          <li class="checklist-miss">Belugas</li>
+          <li class="checklist-miss">Black bears</li>
+          <li class="checklist-miss">River otters</li>
+          <li class="checklist-miss">Wolves</li>
+          <li class="checklist-maybe">Dall sheep</li>
+          <li class="checklist-maybe">Mountain goats</li>
+        </ul>
+      `,
     ],
     photos: [],
   },
@@ -154,6 +210,46 @@ for (const leg of legs) {
 <style>
   .trip-leg {
     margin-bottom: 3rem;
+  }
+
+  :global(.checklist) {
+    list-style: none;
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.5rem 1.5rem;
+  }
+
+  :global(.checklist li) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  :global(.checklist li::before) {
+    content: '✓';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #2ecc71;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  :global(.checklist li.checklist-miss::before) {
+    content: '\2715';
+    background-color: #e74c3c;
+  }
+
+  :global(.checklist li.checklist-maybe::before) {
+    content: '?';
+    background-color: #f1c40f;
+    color: #4a3b00;
   }
 
   .photo-grid {
@@ -269,7 +365,14 @@ for (const leg of legs) {
 <BaseLayout title={`Alaska - ${AUTHOR}`} description={description} contentWidth="narrow">
   <h1 class="title is-2">Alaska</h1>
   <p class="subtitle">
-    Alaska trip was pretty epic! This page is a work in progress. Stay tuned for more.
+    Alaska trip was pretty epic! This page is a work in progress. Stay tuned for more. Check out the <a
+      href="https://photos.app.goo.gl/fAKd1S75rQxygy3K7"
+      target="_blank"
+      rel="noreferrer">full photo album</a
+    > for more pics (permission required).
+  </p>
+  <p class="subtitle">
+    Adam turned 50 in 2026, and Alaska was his 50th state! Leigh did an amazing job planning ❤️
   </p>
 
   {
