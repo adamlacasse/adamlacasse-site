@@ -37,7 +37,7 @@ export interface ResumeProofPoint {
 
 export const resumeData = {
   name: 'Adam LaCasse',
-  headline: 'Senior Full-Stack Engineer & Tech Lead | Enterprise Platforms & Applied AI',
+  headline: 'Principal Full-Stack Engineer & Tech Lead | Enterprise Platforms & Applied AI',
   positioning:
     'I take messy business problems and turn them into durable systems that real people rely on. I’m looking for user-centric engineering leadership work where I can shape architecture, lead end-to-end delivery, and apply AI where it creates real leverage.',
   signature: 'Experienced leadership. Reliable systems. Fortune 100 scale.',
@@ -141,7 +141,7 @@ export const resumeData = {
 
   experience: [
     {
-      title: 'Senior Software Engineer & Tech Lead',
+      title: 'Principal Software Engineer & Tech Lead',
       company: 'Liberty Mutual Insurance',
       subtitle: 'Portsmouth, NH (Hybrid)',
       dates: '2019 - Present',
