@@ -91,10 +91,8 @@ const {
         resumeData.education.map((edu) => (
           <li class="mb-3">
             <div>
-              <div>
-                <strong>{edu.degree}</strong> - {edu.school}
-              </div>
-              {edu.date && <div class="has-text-grey">{edu.date}</div>}
+              <strong>{edu.degree}</strong> - {edu.school}
+              {edu.date && <span class="has-text-grey"> ({edu.date})</span>}
             </div>
             {edu.note && <p class="mt-2 has-text-grey-dark">{edu.note}</p>}
           </li>
