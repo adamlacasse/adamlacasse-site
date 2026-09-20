@@ -6,8 +6,8 @@ export const AUTHOR_FULL_NAME = 'Adam Wheeler LaCasse';
 export const SITE_URL = 'https://adamlacasse.dev';
 export const SITE_TITLE = 'Adam LaCasse | Full-Stack Engineer';
 export const SITE_DESCRIPTION =
-  'Adam LaCasse is a senior full-stack engineer focused on enterprise platforms, architecture, and applied AI.';
-export const AUTHOR_JOB_TITLE = 'Senior Full-Stack Engineer';
+  'Adam LaCasse is a principal full-stack engineer focused on enterprise platforms, architecture, and applied AI.';
+export const AUTHOR_JOB_TITLE = 'Principal Full-Stack Engineer';
 export const AUTHOR_PROFILE_URLS = [
   'https://github.com/adamlacasse',
   'https://www.linkedin.com/in/adamlacasse/',

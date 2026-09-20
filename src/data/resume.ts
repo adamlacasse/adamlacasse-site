@@ -37,7 +37,7 @@ export interface ResumeProofPoint {
 
 export const resumeData = {
   name: 'Adam LaCasse',
-  headline: 'Senior Full-Stack Engineer & Tech Lead | Enterprise Platforms & Applied AI',
+  headline: 'Principal Full-Stack Engineer & Tech Lead | Enterprise Platforms & Applied AI',
   positioning:
     'I take messy business problems and turn them into durable systems that real people rely on. I’m looking for user-centric engineering leadership work where I can shape architecture, lead end-to-end delivery, and apply AI where it creates real leverage.',
   signature: 'Experienced leadership. Reliable systems. Fortune 100 scale.',
@@ -141,12 +141,12 @@ export const resumeData = {
 
   experience: [
     {
-      title: 'Senior Software Engineer & Tech Lead',
+      title: 'Principal Software Engineer & Tech Lead',
       company: 'Liberty Mutual Insurance',
       subtitle: 'Portsmouth, NH (Hybrid)',
       dates: '2019 - Present',
       achievements: [
-        '<strong>RMIS platform redesign (2025-Present):</strong> Tech Lead on a multi-year, ~$4M modernization of a risk management platform supporting ~$4B in annual premium and ~70K users (enterprises, brokers, auditors, internal teams) - replacing legacy mainframe workflows with cloud-native services on AWS, currently in the foundations phase building toward incremental cutover.',
+        '<strong>RMIS platform redesign (2025-Present):</strong> Tech Lead on a multi-year, ~$4M modernization of a risk management platform supporting ~$4B in annual premium and ~70K users (enterprises, brokers, auditors, internal teams) - replacing legacy mainframe workflows with cloud-native services on AWS, currently in the foundations phase building toward incremental cutover. <strong>Promoted to Principal</strong> effective October 2026. My scope had already moved from features to programs, and the title caught up.',
         'Defined shared data contracts and migration patterns (dual-write, shadow read, expand-contract) across downstream consumers spanning reporting pipelines and customer-facing data flows - new services can stand up behind the live legacy app without disruption.',
         'Established service boundaries, rollout sequencing, and reference patterns the broader program builds against - downstream teams can move on the new architecture independently rather than waiting on a full ecosystem cutover.',
         `<strong>People & Talent platforms (2019-2025):</strong> Engineered several internal greenfield platforms from initial discovery through rollout - performance management, a people knowledge hub, compensation support, and more - consolidating a sprawl of third-party tools and spreadsheets in support of Liberty's "best place to work" strategic priority across ~40K multilingual employees. <strong>Promoted from Software Engineer to Senior in 2021</strong> mid-arc, through ownership of complex features and steady delivery on ambiguous technical problems.`,
