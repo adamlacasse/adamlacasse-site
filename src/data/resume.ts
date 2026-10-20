@@ -42,7 +42,7 @@ export const resumeData = {
     'I take messy business problems and turn them into durable systems that real people rely on. I’m looking for user-centric engineering leadership work where I can shape architecture, lead end-to-end delivery, and apply AI where it creates real leverage.',
   signature: 'Experienced leadership. Reliable systems. Fortune 100 scale.',
   location: 'Southern NH / Greater Boston',
-  phone: '(617) 407-3254',
+  phone: '(617) 419-0080',
   email: 'adamlacasse@outlook.com',
   website: 'adamlacasse.dev',
   github: 'https://github.com/adamlacasse',
