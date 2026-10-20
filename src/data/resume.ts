@@ -43,7 +43,7 @@ export const resumeData = {
   signature: 'Experienced leadership. Reliable systems. Fortune 100 scale.',
   location: 'Southern NH / Greater Boston',
   phone: '(617) 419-0080',
-  email: 'adamlacasse@outlook.com',
+  email: 'hello@adamlacasse.dev',
   website: 'adamlacasse.dev',
   github: 'https://github.com/adamlacasse',
   linkedin: 'https://www.linkedin.com/in/adamlacasse/',
